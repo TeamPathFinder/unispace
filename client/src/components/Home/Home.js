@@ -1,17 +1,23 @@
 import React from 'react';
 import './Home.css';
+import {ReactComponent as UniSpaceLogo} from '../../assets/UnispaceLogo.svg';
+import {ReactComponent as WriteSymbol} from '../../assets/WriteSymbol.svg';
 
 const Home = () => {
     return (
-        <div class="container">
+        
+        <div className="container">
+            <UniSpaceLogo className = "logo"/>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><WriteSymbol className = "writeSymbol"/></li>
+                    <li><a href="#">Write</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Sign In</a></li>
+                    <li><a href="#">Get Started</a></li>
                 </ul>
             </nav>
+            
         </div>
     );
 }
