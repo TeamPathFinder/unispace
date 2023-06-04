@@ -10,6 +10,7 @@
     padding-left: 2.5vw;
     padding-right: 2.5vw;
     height: 10vh;
+    padding-bottom: 1vh;
 }
 
 .logo {
@@ -23,6 +24,8 @@ nav {
     padding-top: 3vh;
     display: inline-block;
     color: #ffffff;
+    align-self: flex-end;
+    margin-bottom: 3vh;
 }
 
 nav ul {
