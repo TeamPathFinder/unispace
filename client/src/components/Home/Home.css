@@ -1,0 +1,31 @@
+
+@import '../../fonts.css';
+
+.container {
+    display: flex;
+    justify-content: center; /* Centers the navbar horizontally */
+    background-color: #f1f1f1;
+    padding: 20px;
+  }
+  
+  nav {
+    color: #fff;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    margin-right: 15px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  nav a {
+    color: gray;
+    text-decoration: none;
+  }
+  
