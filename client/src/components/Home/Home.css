@@ -1,61 +1,35 @@
 @import '../../fonts.css';
 
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* Centers the navbar horizontally */
-    background-color: white;
-    padding-top: 6vh;
-    padding-left: 2.5vw;
-    padding-right: 2.5vw;
-    height: 10vh;
-    padding-bottom: 1vh;
-}
-
-.logo {
-    display: inline-block;
+    padding: 0vh 10vw 0vh 10vw;
+    margin: 0;
     height: 100%;
-    min-width: 100px;
-    min-height: 8vh;
 }
 
-nav {
-    padding-top: 3vh;
-    display: inline-block;
-    color: #ffffff;
-    align-self: flex-end;
-    margin-bottom: 3vh;
-}
-
-nav ul {
-    display: flex;
-    list-style-type: none;
+.gridContainer{
+    display: grid;
+    height: 40vh;
+    width: 100%;
     margin: 0;
     padding: 0;
+    grid-template-columns: 40% 60%;
 }
 
-nav li {
-    margin-right: 1vw;
+.col.popular{
+    padding: 0;
+    background-color: aqua;
+    height: 100%;
+}
+
+.col.todayPicks{
+    padding: 0;
+    background-color: pink;
+    height: 100%;
+}
+
+.content.container{
+    height: 60vh;
+    background-color: mediumseagreen;
+    display: flex;
     justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
-nav a {
-    color: black;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 1em;
-}
-
-.writeSymbol {
-    height: 20px;
-}
-
-/* breakpoint for smallest browser width.*/
-@media (max-width: 600px) {
-    .logo{
-        width: 50%;
-    }
 }
