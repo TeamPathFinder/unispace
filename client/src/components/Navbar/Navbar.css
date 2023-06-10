@@ -6,11 +6,8 @@
     justify-content: space-between;
     /* Centers the navbar horizontally */
     background-color: white;
-    padding-top: 6vh;
-    padding-left: 10vw;
-    padding-right: 2.5vw;
     height: 10vh;
-    padding-bottom: 1vh;
+    padding: 6vh 10vw 1vh;
 }
 
 .logo {
