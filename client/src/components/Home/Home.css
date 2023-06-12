@@ -6,46 +6,29 @@
     height: 100%;
 }
 
-.gradient{
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), 
-                linear-gradient(to right, rgb(235, 253, 222), rgb(221, 253, 245), rgb(214, 225, 249));
+.container div {
+    outline: solid red 1px;
+}
+
+.gradient {
+    background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0.7),
+            rgba(255, 255, 255, 1)
+        ),
+        linear-gradient(
+            to right,
+            rgb(235, 253, 222),
+            rgb(221, 253, 245),
+            rgb(214, 225, 249)
+        );
     background-blend-mode: normal, lighten;
     background-size: 100% 100%, 100% 100%;
     background-repeat: no-repeat;
 }
 
-.gridContainer{
-    display: grid;
-    height: 55vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    grid-template-columns: 40% 60%;
-}
-
-.col.popular{
-    padding: 0;
-    outline: solid red 2px;
-    height: 100%;
-}
-
-.col.todayPicks{
-    padding: 0;
-    outline: solid red 2px;
-    height: 100%;
-}
-
-.content{
-    height: 60vh;
-    outline: solid red 2px;
-    justify-content: center;
-}
-
-.flex{
-    display: flex;
-}
-
-.slogan{
+.slogan {
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -53,15 +36,68 @@
     height: 10vh;
 }
 
-h2{
+.slogan h4 {
     color: white;
-    text-shadow: 0.5px 0.5px 5px rgba(00,00,00,0.3);
+    text-shadow: 0.5px 0.5px 5px rgba(00, 00, 00, 0.3);
     display: inline;
     font-family: 'Inter', sans-serif;
 }
 
-h2 a {
-    text-shadow: 0.5px 0.5px 6px rgba(00,00,00,0.5);
+.slogan h4 a {
+    text-shadow: 0.5px 0.5px 6px rgba(00, 00, 00, 0.5);
     display: inline;
     font-size: larger;
+}
+
+.gridContainer {
+    display: grid;
+    min-height: 40vmin;
+    height: max-content;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: 4fr 6fr;
+    grid-column-gap: 5%;
+}
+
+.col.todaysPick {
+    padding: 0;
+    outline: solid red 2px;
+    height: max-content;
+}
+
+.featuredArticle {
+    aspect-ratio: 1/1;
+    background-color: darkgrey;
+    border-radius: 20px;
+}
+
+.featuredArticle h3 {
+    padding: 40px;
+    margin: 0;
+    color: white;
+    text-shadow: 0.5px 0.5px 6px rgba(00, 00, 00, 0.5);
+}
+
+.col.popular {
+    padding: 0;
+    height: 100%;
+}
+
+.popular .highlight {
+    color: #3D3FEB;
+}
+
+.flex {
+    display: flex;
+}
+
+.verticalFlex {
+    display: flex;
+    flex-flow: column;
+}
+
+.content {
+    height: 60vh;
+    justify-content: center;
 }
