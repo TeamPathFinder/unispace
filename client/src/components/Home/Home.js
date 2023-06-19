@@ -9,11 +9,13 @@ import dummyData from './dummyData';
 
 const Home = () => {
 
+    //variables to keep tracking of arrow nav of popular items section
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(3);
     const [selectedData, setSelectedData] = useState([]);
     const [focusedEllipse, setFocusedEllipse] = useState(0);
 
+    //handle next on popular item arrow nav
     const handleNext = () => {
         if (endIndex + 4 < dummyData.length) {
             setStartIndex(startIndex + 4);
@@ -22,6 +24,7 @@ const Home = () => {
         }
     };
 
+    //handle going back on popular item arrow nav
     const handlePrevious = () => {
         if (startIndex - 4 >= 0) {
             setStartIndex(startIndex - 4);
@@ -30,6 +33,7 @@ const Home = () => {
         }
     };
 
+    //helper function used by .map to map popular items from list
     const renderPopularItem = (item, index) => {
         if (index === 0) {
             return <PopularItem
@@ -83,21 +87,6 @@ const Home = () => {
                 <div className="col popular">
                     <h2 className='block'>What's <span className="highlight">Popular</span> This Week</h2>
                     <div className="flex popularItemsContainer">
-                        {/* <PopularItem>
-
-                        </PopularItem>
-
-                        <PopularItem size="medium">
-
-                        </PopularItem>
-
-                        <PopularItem size="small">
-
-                        </PopularItem>
-
-                        <PopularItem size="small">
-
-                        </PopularItem> */}
 
                         {selectedData.map((item, index) => (
                             <React.Fragment key={item.id}>

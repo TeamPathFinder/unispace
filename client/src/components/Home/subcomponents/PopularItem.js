@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 /**
  * This is one of the popular item entries. 
  * @param {string} size - either big, medium, or small.
+ * @param {int} enumeration - number on left of popularItem
+ * @param {string} title - title of popular item
+ * @param {string} author - author
+ * @param {string} location - location
  */
 const PopularItem = ({ size, enumeration, title, author, location }) => {
 
