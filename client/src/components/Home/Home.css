@@ -6,9 +6,9 @@
     height: 100%;
 }
 
-.container div {
+/* .container div {
     outline: solid red 1px;
-}
+} */
 
 .gradient {
     background: linear-gradient(
@@ -56,13 +56,15 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    grid-template-columns: 4fr 6fr;
+}
+
+.todayPopularColumns{
+    grid-template-columns: 3fr 7fr;
     grid-column-gap: 5%;
 }
 
 .col.todaysPick {
     padding: 0;
-    outline: solid red 2px;
     height: max-content;
 }
 
@@ -92,12 +94,203 @@
     display: flex;
 }
 
+.inlineBlock {
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}
+
 .verticalFlex {
     display: flex;
     flex-flow: column;
 }
 
-.content {
+.mainArticles {
     height: 60vh;
     justify-content: center;
+}
+
+.popularItemsNav{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+}
+
+.popularItemsNavArrow{
+    height: 15px;
+    margin-left: 2px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+.popularItemsEllipseUnfocused{
+    height: 5px;
+    margin-left: 5px;
+    margin-right: 5px
+}
+
+.popularItemsEllipseFocused{
+    height: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.popularItemsEllipseFocused circle{
+    fill: #495461 !important;
+}
+
+
+.popularItemsContainer{
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popularItem{
+    background-color: white;
+    border-radius: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-top: 1%;
+
+}
+
+.popularItemNumber{
+    margin: auto;
+    height: 90%;
+    flex-basis: 10%;
+    border-right: 1px solid black;
+    align-items: flex-end;
+    align-content: center;
+    justify-content: center;
+    
+}
+
+.popularItemInfo{
+    flex-basis: 80%;
+    height: 96%;
+    flex-direction: column;
+    margin-right: 5%;
+    margin-top:5px;
+    text-overflow: ellipsis;
+    padding: 0;
+}
+
+.popularItemNumber > a{
+    font-weight: bold;
+    font-size: 1.4vw;
+}
+
+.popularItemTitle > h3 {
+    font-size: 1.2em;
+    min-width: 0;
+    display: inline-block;
+    text-align: right;
+    margin-top: 0;
+}
+
+.popularItemTitle{
+    overflow: hidden;
+    display: block;
+    height: 33%;
+    width: 100%;
+    padding: 0;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+
+}
+
+.popularItemInfo > a {
+    height: 12%;
+    margin-top: 0;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.popularItemLocation {
+    align-self: flex-end;
+    margin-top: 2px;
+    font-size: 1.05vw;
+    align-items: center;
+}
+
+.mapPin {
+    height: 20px;
+    margin-right: 8px;
+}
+
+.authorImg{
+    height: 25px;
+    margin-right: 1%;
+}
+
+.popularItemsLastRow{
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.authorName{
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 0.8;
+    font-size: 1.2vw;
+}
+
+.popularItemReadButton{
+    border-radius: 30px;
+    border: solid #06D6A0 1px;
+    color: #06D6A0;
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+.popularItemReadButton:hover{
+    border-radius: 30px;
+    border: solid #06D6A0 1px;
+    color: #fff;
+    background-color: #06D6A0;
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+.popularItemArrowButton{
+        align-self: center;
+        border-radius: 50%; 
+        width: 25px;
+        height: 25px;
+        align-items: center;
+        justify-content: center;
+        border: solid #06D6A0 1px;
+        margin-left: 1vw;
+}
+
+.popularItemArrowButton:hover{
+    align-self: center;
+    border-radius: 50%; 
+    width: 25px;
+    background-color: #06D6A0;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrowSvg{
+    height: 15px
+}
+
+.popularItemArrowButton:hover .arrowSvg{
+    height: 30px;
+    fill:white !important;
+}
+
+.popularItemArrowButton:hover .arrowSvg path{
+    fill:white !important;
 }
