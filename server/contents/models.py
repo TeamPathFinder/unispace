@@ -14,8 +14,13 @@ class Content(models.Model):
     name = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    # Actual content of the interview 
+    # TODO: Update the field type to be more appropriate
+    content = models.TextField(default="")
+
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
+    coffeChatRequests = models.IntegerField(default=0)
     category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, null=True, blank=True)
 
     date = models.DateTimeField(auto_now_add=True)
