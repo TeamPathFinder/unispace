@@ -4,11 +4,11 @@ from .models import Content
 from .serializers import ContentsInfoSerializer
 
 
+class GetTodayPickView(ListAPIView):
+    queryset = Content.objects.filter(isTodayPick = True)
+
 class PopularContentsListView(ListAPIView):
     serializer_class = ContentsInfoSerializer
-
-    class GetTodayPickView(APIView):
-    queryset = Content.objects.filter(isTodayPick = True)
 
     def get_queryset(self):
         """Return list of requested number of contents ordered by view and date."""
