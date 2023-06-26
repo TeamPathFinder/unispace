@@ -1,8 +1,11 @@
 from rest_framework import serializers
 from .models import Content
+from account.serializers import UserSerializer
 
-class ContentSerializer(serializers.ModelSerializer):
+
+class ContentsInfoSerializer(serializers.ModelSerializer):
+    userInfo = UserSerializer(read_only=True, source="user")
+
     class Meta:
         model = Content
-        fields = ('title', 'author', 'views', 'likes', 'category', 'date')
-        
+        fields = ["id", "title", "userInfo", "image", "views", "date"]
