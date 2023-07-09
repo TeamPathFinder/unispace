@@ -24,15 +24,15 @@ const PopularItem = ({ size, enumeration, title, author, location }) => {
     //inline style change to align the line between the number and content, 
     //as width changes mean they are no longer aligned in a row.
     const [enumerationWidth, setEnumerationWidth] = useState({
-        'flex-basis': '10%'
+        'flexBasis': '10%'
     });
 
     const [contentWidth, setContentWidth] = useState({
-        'flex-basis': '80%'
+        'flexBasis': '80%'
     });
 
     const [headerFontSize, setHeaderFontSize] = useState({
-        'font-size': '1.5vw'
+        'fontSize': '1.5vw'
     });
 
     const [titleOptions, setTitleOptions] = useState({
