@@ -44,6 +44,13 @@ INSTALLED_APPS = [
     "account",
     "contents",
     "rest_framework",
+    "corsheaders", # React - Django connection (CORS bypass)
+]
+
+# React - Django connection (CORS bypass, erase at deploy)
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:8000",
 ]
 
 REST_FRAMEWORK = {
@@ -53,6 +60,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware", # React - Django connection (CORS bypass)
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
