@@ -1,8 +1,12 @@
 from rest_framework.generics import ListAPIView
 
-from .models import Content
-from .serializers import ContentsInfoSerializer
+from .models import Content, TodayPick
+from .serializers import ContentsInfoSerializer, TodayPickSerializer
 
+
+class GetTodayPickView(ListAPIView):
+    serializer_class = TodayPickSerializer
+    queryset = TodayPick.objects.all()
 
 class PopularContentsListView(ListAPIView):
     serializer_class = ContentsInfoSerializer

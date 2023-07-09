@@ -10,7 +10,6 @@ class Content(models.Model):
         ('Study Space', 'Study Space'),
         ('Team Space', 'Team Space'),
     ]
-
     title = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -21,10 +20,19 @@ class Content(models.Model):
 
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
-    coffeChatRequests = models.IntegerField(default=0)
+    coffeeChatRequests = models.IntegerField(default=0)
     category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, null=True, blank=True)
 
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+class TodayPick(models.Model):
+    """Today's pick for the website."""
+
+    content = models.ForeignKey(Content, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def _str_(self):
+        return self.content.title
