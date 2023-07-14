@@ -11,8 +11,6 @@ const Navbar = () => {
             <nav>
                 <ul>
                     <li><WriteSymbol className = "writeSymbol"/></li>
-                    <li><a href="#">Write</a></li>
-                    <li><a href="#">|</a></li>
                     <li><a href="#">Sign In</a></li>
                     <li><a href="#">Get Started</a></li>
                 </ul>
