@@ -8,7 +8,8 @@ class ContentsInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Content
-        fields = ["id", "title", "userInfo", "image", "views", "date"]
+        fields = ["id", "title", "userInfo", "image", "views", "date", "category"]
+
 
 class TodayPickSerializer(serializers.ModelSerializer):
     class Meta:
