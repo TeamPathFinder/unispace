@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import {ReactComponent as UniSpaceLogo} from '../../assets/UnispaceLogo.svg';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -9,11 +10,11 @@ const Navbar = () => {
             <UniSpaceLogo className = "logo"/>
             <nav>
                 <ul>
-                    <li><a href="#">커피챗</a></li>
-                    <li><a href="#">리소스</a></li>
-                    <li><a href="#">팀빌딩</a></li>
-                    <li><a href="#">챌린지</a></li>
-                    <li><a href="#">블로그</a></li>
+                    <li><Link to="/interviews"><a>커피챗</a></Link></li>
+                    <li><a>리소스</a></li>
+                    <li><a>팀빌딩</a></li>
+                    <li><a>챌린지</a></li>
+                    <li><a>블로그</a></li>
                 </ul>
             </nav>
 
