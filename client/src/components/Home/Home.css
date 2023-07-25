@@ -188,7 +188,7 @@
 }
 
 .popularItemTitle > h3 {
-    font-size: 1.2em;
+    font-size: 1vw;
     min-width: 0;
     display: inline-block;
     text-align: right;
@@ -210,7 +210,7 @@
     height: 12%;
     margin-top: 0;
     text-align: right;
-    font-size: 0.9em;
+    font-size: 1vw;
 }
 
 .popularItemLocation {
@@ -293,4 +293,28 @@
 
 .popularItemArrowButton:hover .arrowSvg path{
     fill:white !important;
+}
+
+@media (max-width: 800px) {
+    .todaysPick{
+        display: none;
+    }
+
+    .todayPopularColumns{
+        grid-template-columns: 1fr;
+        grid-column-gap: 5%;
+    }
+
+    .popularItem a{
+        font-size: 2vw;
+    }
+
+    .popularItemTitle h3{
+        font-size: 2vw;
+    }
+
+    .popularItemInfo > a {
+        font-size: 2vw;
+    }
+
 }

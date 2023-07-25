@@ -62,8 +62,13 @@ nav a {
 }
 
 /* breakpoint for smallest browser width.*/
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .logo{
-        width: 50%;
+        display: none;
     }
+    
+    .navbar.container{
+        padding: 6vh 7vw 2.5vh 7vw;
+    }
+
 }
