@@ -3,8 +3,8 @@ import "./Interview.css"
 
 const Interview = () => {
     return(
-        <div>
-            Hello
+        <div className="container">
+            Hello World
         </div>
     )
 
