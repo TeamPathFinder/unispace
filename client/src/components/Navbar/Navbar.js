@@ -1,7 +1,6 @@
 import React from 'react';
 import './Navbar.css';
 import {ReactComponent as UniSpaceLogo} from '../../assets/UnispaceLogo.svg';
-import {ReactComponent as WriteSymbol} from '../../assets/WriteSymbol.svg';
 
 const Navbar = () => {
     return (
@@ -10,13 +9,17 @@ const Navbar = () => {
             <UniSpaceLogo className = "logo"/>
             <nav>
                 <ul>
-                    <li><WriteSymbol className = "writeSymbol"/></li>
-                    <li><a href="#">Write</a></li>
-                    <li><a href="#">|</a></li>
-                    <li><a href="#">Sign In</a></li>
-                    <li><a href="#">Get Started</a></li>
+                    <li><a href="#">커피챗</a></li>
+                    <li><a href="#">리소스</a></li>
+                    <li><a href="#">팀빌딩</a></li>
+                    <li><a href="#">챌린지</a></li>
+                    <li><a href="#">블로그</a></li>
                 </ul>
             </nav>
+
+            <div className="startButton"> 
+                <a> 시작하기 </a>
+            </div>
             
         </div>
     );

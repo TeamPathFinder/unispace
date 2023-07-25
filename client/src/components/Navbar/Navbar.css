@@ -4,24 +4,23 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* Centers the navbar horizontally */
+    align-items: center;
     background-color: white;
-    height: 10vh;
-    padding: 6vh 10vw 1vh;
+    height: 5vh;
+    padding: 6vh 15vw 2.5vh 15vw;
+    font-weight: bold;
 }
 
 .logo {
-    display: inline-block;
     height: 100%;
-    min-width: 100px;
-    min-height: 8vh;
+    min-width: 20px;
+    min-height: 4vh;
 }
 
 nav {
     padding-top: 3vh;
-    display: inline-block;
+    display: flex;
     color: #ffffff;
-    align-self: flex-end;
     margin-bottom: 3vh;
 }
 
@@ -33,7 +32,8 @@ nav ul {
 }
 
 nav li {
-    margin-right: 1vw;
+    margin-right: 1.5vw;
+    margin-left: 1.5vw;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -43,11 +43,22 @@ nav a {
     color: black;
     text-decoration: none;
     font-family: 'Inter', sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 .writeSymbol {
     height: 20px;
+}
+
+.startButton {
+    display: 'flex';
+    border-radius: 30px;
+    background-color: #3D3FEB;
+    padding: 1.6vh 1.5vw 1.6vh 1.5vw
+}
+
+.startButton > a {
+    color: white;
 }
 
 /* breakpoint for smallest browser width.*/
