@@ -24,15 +24,15 @@ const PopularItem = ({ size, enumeration, title, author, location }) => {
     //inline style change to align the line between the number and content, 
     //as width changes mean they are no longer aligned in a row.
     const [enumerationWidth, setEnumerationWidth] = useState({
-        'flex-basis': '10%'
+        'flexBasis': '10%'
     });
 
     const [contentWidth, setContentWidth] = useState({
-        'flex-basis': '80%'
+        'flexBasis': '80%'
     });
 
     const [headerFontSize, setHeaderFontSize] = useState({
-        'font-size': '1.5vw'
+        'fontSize': '1.5vw'
     });
 
     const [titleOptions, setTitleOptions] = useState({
@@ -85,7 +85,7 @@ const PopularItem = ({ size, enumeration, title, author, location }) => {
 
     return (
         <>
-            {size != "small" ? //if size is medium or large, return this
+            {size !== "small" ? //if size is medium or large, return this
                 <>
                     <div className="flex popularItem" style={dimensions}>
                         <Link to="/somewhere" style={{ "textDecoration": "none", "margin": "0", "padding": "0", "height": "100%", "width": "100%", "display": "contents" }}>

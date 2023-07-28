@@ -5,8 +5,6 @@ import { ReactComponent as NavRightArrow } from '../../assets/navRightArrow.svg'
 import { ReactComponent as Ellipse } from '../../assets/ellipse.svg';
 import PopularItem from './subcomponents/PopularItem';
 
-import dummyData from './dummyData';
-
 const Home = () => {
 
     //variables to keep tracking of arrow nav of popular items section
@@ -14,10 +12,14 @@ const Home = () => {
     const [endIndex, setEndIndex] = useState(3);
     const [selectedData, setSelectedData] = useState([]);
     const [focusedEllipse, setFocusedEllipse] = useState(0);
+    const MAX_POPULAR_ITEMS_LENGTH = 12;
+
+    //   TODO: dev environment & published environment differ
+    const baseURL = 'http://127.0.0.1:8000'
 
     //handle next on popular item arrow nav
     const handleNext = () => {
-        if (endIndex + 4 < dummyData.length) {
+        if (endIndex + 4 < MAX_POPULAR_ITEMS_LENGTH) {
             setStartIndex(startIndex + 4);
             setEndIndex(endIndex + 4);
             setFocusedEllipse(focusedEllipse + 1);
@@ -63,9 +65,44 @@ const Home = () => {
     };
 
     useEffect(() => {
-        const newData = dummyData.slice(startIndex, endIndex + 1);
-        setSelectedData(newData);
-    }, [dummyData, startIndex, endIndex]);
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+        fetch(`${baseURL}/api/contents/popular-contents/?num=${MAX_POPULAR_ITEMS_LENGTH}`, requestOptions)
+            .then(response => response.text())
+            .then(rawString => JSON.parse(rawString))
+            .then(result => result.map((data, index) => {
+                    return {
+                        enumeration: '' + index,
+                        title: data.title,
+                        author: data.userInfo.name, // TODO: name or nickname?
+                        location: 'South Korea', // info not in DB
+                        id: data.id
+                    }
+                })
+            )
+            .then(result => {
+                const selectedData = result.slice(startIndex, endIndex + 1)
+                setSelectedData(selectedData)
+            })
+            .catch(error => console.log('error', error));
+
+        fetch(`${baseURL}/api/contents/today-pick/`, requestOptions)
+            .then(response => response.text())
+            .then(rawString => JSON.parse(rawString)[0])
+            .then(result => {
+                console.log(result)
+                return {
+                    date: result.date,
+                    id: result.content
+                }
+            })
+            // TODO: update DOM
+            .catch(error => console.log('error', error));
+        
+    }, [startIndex, endIndex]);
 
     return (
         <div className="container gradient">
