@@ -1,7 +1,13 @@
 from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
 
-from .models import Content
-from .serializers import ContentsInfoSerializer
+from .models import Content, TodayPick
+from .serializers import ContentsInfoSerializer, TodayPickSerializer
+
+
+class GetTodayPickView(ListAPIView):
+    serializer_class = TodayPickSerializer
+    queryset = TodayPick.objects.all()
 
 
 class PopularContentsListView(ListAPIView):
@@ -21,4 +27,27 @@ class PopularContentsListView(ListAPIView):
             result = []
         else:
             result = (allContents.order_by("-views", "-date"))[: int(num_contents)]
+        return result
+
+
+class MainPageResultsSetPagination(PageNumberPagination):
+    """Pagination for main page contents list view."""
+
+    page_size = 6
+    page_size_query_param = "page_size"
+    max_page_size = 100
+
+
+class ContentsListView(ListAPIView):
+    serializer_class = ContentsInfoSerializer
+    pagination_class = MainPageResultsSetPagination
+
+    def get_queryset(self):
+        """Return list of contents with corresponding category ordered by date."""
+        allContents = Content.objects.all()
+        category = self.request.query_params.get("category", None)
+        if category is not None:
+            result = allContents.filter(category=category).order_by("-date")
+        else:
+            result = allContents.order_by("-date")
         return result
