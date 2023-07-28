@@ -1,8 +1,12 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 
 from .models import Content, TodayPick
-from .serializers import ContentsInfoSerializer, TodayPickSerializer
+from .serializers import (
+    ContentsInfoSerializer,
+    TodayPickSerializer,
+    InterviewSerializer,
+)
 
 
 class GetTodayPickView(ListAPIView):
@@ -51,3 +55,21 @@ class ContentsListView(ListAPIView):
         else:
             result = allContents.order_by("-date")
         return result
+
+
+class InterviewDetailView(RetrieveAPIView):
+    serializer_class = InterviewSerializer
+    queryset = Content.objects.all()
+    lookup_field = "id"
+
+    def get_object(self):
+        content = super().get_object()
+        # Prefetch the related interview and its qnas
+        content.interview = content.interview_set.first()
+
+        # Increment the view count
+        # TODO: Use Cookie to prevent multiple view count increment
+        content.views += 1
+        content.save()
+
+        return content

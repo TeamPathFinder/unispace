@@ -1,5 +1,10 @@
 from django.urls import path
-from .views import PopularContentsListView, GetTodayPickView, ContentsListView
+from .views import (
+    PopularContentsListView,
+    GetTodayPickView,
+    ContentsListView,
+    InterviewDetailView,
+)
 
 urlpatterns = [
     path(
@@ -9,4 +14,5 @@ urlpatterns = [
     ),
     path("today-pick/", GetTodayPickView.as_view(), name="today-pick-list"),
     path("contents-list/", ContentsListView.as_view(), name="contents-list"),
+    path("interviews/<int:id>/", InterviewDetailView.as_view(), name="interview-detail"),
 ]
