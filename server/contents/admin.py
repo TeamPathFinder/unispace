@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Content, TodayPick
+from .models import Content, TodayPick, Interview, QnA
 
 # Register your models here.
 admin.site.register(Content)
@@ -19,3 +19,5 @@ class TodayPickAdmin(admin.ModelAdmin):
         obj.save()
 
 admin.site.register(TodayPick, TodayPickAdmin)
+admin.site.register(Interview)
+admin.site.register(QnA)
