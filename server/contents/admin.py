@@ -18,6 +18,15 @@ class TodayPickAdmin(admin.ModelAdmin):
         # Save the current instance
         obj.save()
 
+
+class QnAInline(admin.StackedInline):
+    model = QnA
+    extra = 1
+
+class InterviewAdmin(admin.ModelAdmin):
+    inlines = [QnAInline]
+    
+
 admin.site.register(TodayPick, TodayPickAdmin)
-admin.site.register(Interview)
+admin.site.register(Interview, InterviewAdmin)
 admin.site.register(QnA)
