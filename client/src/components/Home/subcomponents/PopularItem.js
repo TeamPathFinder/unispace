@@ -85,7 +85,7 @@ const PopularItem = ({ size, enumeration, title, author, location }) => {
 
     return (
         <>
-            {size != "small" ? //if size is medium or large, return this
+            {size !== "small" ? //if size is medium or large, return this
                 <>
                     <div className="flex popularItem" style={dimensions}>
                         <Link to="/somewhere" style={{ "textDecoration": "none", "margin": "0", "padding": "0", "height": "100%", "width": "100%", "display": "contents" }}>
