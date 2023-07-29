@@ -43,3 +43,22 @@
     font-weight: 500;
     line-height: 30px;
 }
+
+.blueButton {
+    display: 'flex';
+    flex-direction: row;
+    border-radius: 30px;
+    background-color: #3D3FEB;
+    padding: 1.8vh 1.7vw 1.8vh 1.7vw;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bottomButtons{
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    align-items: center;
+    color: white;
+}
