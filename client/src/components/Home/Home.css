@@ -373,6 +373,37 @@
             rgb(213, 235, 251));
 }
 
+.contentCategory {
+    border-bottom: solid #5E5E5E 0.5px;
+    color: #5E5E5E;
+    align-items: flex-start;
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+
+.contentItemTitle {
+    margin-top: 0;
+    overflow: hidden;
+    height: 33%;
+    width: 100%;
+    padding: 0;
+    text-overflow: ellipsis;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.contentItemLocation {
+    margin-top: 2px;
+    font-size: 1.05vw;
+    align-items: center;
+    color: #5E5E5E;
+}
+
+.contentIcons{
+    height: 15px;
+    margin-right: 3px;
+}
+
 .popularItemArrowButton:hover .arrowSvg path {
     fill:white !important;
 }
