@@ -81,6 +81,8 @@ const Interview = () => {
         }
     }
 
+    const filteredData = dummyData.interview.qnas.filter(item => item.image !== null);
+
     return (
         <div className="interviewContainer">
             <Banner
@@ -90,8 +92,13 @@ const Interview = () => {
                 image={dummyData.image}
             />
             <div className="questionsContainer">
-                <QuestionAnswer isHighlighted={true} />
-                <QuestionAnswer isHighlighted={false} />
+                <QuestionAnswer 
+                question={dummyData.interview.one_line_intro}  
+                answer={dummyData.interview.more_intro}
+                isHighlighted={true} />
+                {dummyData.interview.qnas.map(item => (
+                    <QuestionAnswer key={item.question} question={item.question} answer={item.answer} isHighlighted={false} />
+                ))}
                 <div className="flex bottomButtons">
                     <div className="blueButton">
                         <div style={{ margin: 0, flexDirection: 'row', display: 'flex', alignItems: 'center' }}>
