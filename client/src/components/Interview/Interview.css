@@ -2,5 +2,56 @@
     height: '100%';
     width: '100%';
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+
+.bannerContainer {
+    width: 100%;
+    height: 80vh;
+    background-color: whitesmoke;
+    background-size: cover;
+}
+
+.gridBannerInfo {
+    display: grid;
+    width: 60vw;
+    height: max-content;
+    margin: 40vh auto 10vh;
+    grid-template-columns: 3fr 2fr 1fr;
+    grid-template-areas:
+        "a a ."
+        "b b ."
+        "c c d";
+
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.bannerCategory {
+    grid-area: a;
+    font-weight: 600;
+    font-size: 32px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.bannerCoffeeChatReq {
+    grid-area: b;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.bannerTitle {
+    grid-area: c;
+    font-weight: 700;
+    font-size: 45px;
+}
+
+.bannerDate {
+    grid-area: d;
+    font-weight: 600;
+    font-size: 32px;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: right;
 }
