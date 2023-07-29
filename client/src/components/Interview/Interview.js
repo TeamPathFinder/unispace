@@ -4,12 +4,12 @@ import QuestionAnswer from "./subcomponents/QuestionAnswer"
 import { ReactComponent as Coffee } from '../../assets/coffee.svg';
 import { ReactComponent as Paperclip } from '../../assets/paperclip.svg';
 import Banner from './subcomponents/Banner';
-
+import InterviewTitle from "./subcomponents/InterviewTitle";
 
 const Interview = () => {
     const dummyData = {
         "id": 10,
-        "title": "아이디어에서 실행까지, /Unispace의 PM을 만나다.", // / for line break
+        "title": "아이디어에서 실행까지, 유니스페이스의 PM을 만나다", // / for line break
         "image": "http://localhost:3000/static/media/tmp-bg.fffb447c480d0b7becc7.png",
         "views": 18,
         "date": "2023-07-17T04:59:46.012392Z",
@@ -81,8 +81,6 @@ const Interview = () => {
         }
     }
 
-    const filteredData = dummyData.interview.qnas.filter(item => item.image !== null);
-
     return (
         <div className="interviewContainer">
             <Banner
@@ -92,6 +90,12 @@ const Interview = () => {
                 image={dummyData.image}
             />
             <div className="questionsContainer">
+                <InterviewTitle
+                title={dummyData.title}
+                category={dummyData.category}
+                location="Canada"
+                views="219"
+                />
                 <QuestionAnswer 
                 question={dummyData.interview.one_line_intro}  
                 answer={dummyData.interview.more_intro}
