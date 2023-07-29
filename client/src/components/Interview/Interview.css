@@ -1,6 +1,45 @@
 .interviewContainer {
     height: '100%';
-    width: '100%';
+    width: 100vw;
     display: flex;
     justify-content: center;
+    overflow-x: auto;
+}
+
+.questionsContainer{
+    height: auto;
+    width: 55vw;
+    min-width: 500px;
+    margin: 0;
+    padding: 0;
+}
+
+.highlighted{
+    background-color: #DFF2B2;
+    padding: 4% 4.5% 4% 4.5%;
+    color: rgba(0,0,0,0.9);
+    border-radius: 20px;
+}
+
+.questionDialogue{
+    height: auto;
+    flex-direction: column;
+    color: rgba(0,0,0,0.9);
+    margin-bottom: 50px;
+    display: flex;
+}
+
+.questionTitle{
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 25px;
+}
+
+.questionAnswer{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
 }

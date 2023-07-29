@@ -1,10 +1,15 @@
 import React from "react"
 import "./Interview.css"
+import QuestionAnswer from "./subcomponents/QuestionAnswer"
 
 const Interview = () => {
     return(
         <div className="interviewContainer">
-            Hello World
+            <div className="questionsContainer">
+                <QuestionAnswer isHighlighted={true}/>
+                <QuestionAnswer isHighlighted={false}/>
+            </div>
+            
         </div>
     )
 
