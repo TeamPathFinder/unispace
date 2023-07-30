@@ -2,7 +2,6 @@ import React from "react"
 import "../Interview.css"
 import UnispaceCircle from "../../../assets/UnispaceCircle.png";
 
-
 /**
  * This is a question-answer dialogue box of the interview page.
  * @param {string} question - question
@@ -17,7 +16,8 @@ const QuestionAnswer = ({ question, answer, image, isHighlighted }) => {
             <div className="flex questionTitle">
                 <img className="authorImg"
                     style={isHighlighted ? { 'display': 'none' } : { 'display': 'flex', 'marginRight': '2%' }}
-                    src={UnispaceCircle}/>
+                    src={UnispaceCircle}
+                    alt="Q." />
                 <a> {question} </a>
             </div>
 
