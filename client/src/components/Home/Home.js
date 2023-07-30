@@ -5,6 +5,7 @@ import { ReactComponent as NavRightArrow } from '../../assets/navRightArrow.svg'
 import { ReactComponent as Ellipse } from '../../assets/ellipse.svg';
 import PopularItem from './subcomponents/PopularItem';
 import ContentItem from './subcomponents/ContentItem';
+import axios from 'axios';
 
 const Home = () => {
 
@@ -115,6 +116,22 @@ const Home = () => {
         
     }, [startIndex, endIndex]);
 
+
+    // **** Render main content in home page ****
+
+    const [contentDisplayed, setContentDisplayed] = useState([])
+    
+    useEffect(()=>{
+        axios.get(`${baseURL}/api/contents/contents-list/?page=1`)
+        .then(response => {
+            // const rawData = JSON.parse(response.data);
+            console.log(response.data);
+            setContentDisplayed(response.data.results);
+            console.log(contentDisplayed);
+        })
+    }, [])
+
+
     return (
         <div className="container gradient">
             <div className="flex slogan">
@@ -211,12 +228,24 @@ const Home = () => {
                     </div>
                 </div>
                 <div class="grid-content-container">
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
+                    {
+                        contentDisplayed.map( item => {
+                            return(
+                            <React.Fragment key={item.id}>
+                                { <ContentItem
+                                    title={item.title}
+                                    image={item.image}
+                                    author={item.userInfo.name}
+                                    id={item.id}
+                                    location={item.location}
+                                    subCategory={item.category} // this doesn't exist yet, putting in category for now
+                                    views = {item.views}
+                                />}
+                            </React.Fragment>
+                            );
+                        })
+                    }
+                    
                 </div>
             </div>
         </div>
