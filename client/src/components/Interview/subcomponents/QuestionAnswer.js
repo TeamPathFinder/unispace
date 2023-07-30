@@ -24,6 +24,8 @@ const QuestionAnswer = ({ question, answer, image, isHighlighted }) => {
             <div className="questionAnswer">
                 <a>{answer}</a>
             </div>
+
+            {!image ? <></> : <div className="questionImage" style={{ backgroundImage: `url(${image})` }}></div>}
         </div>
     );
 }

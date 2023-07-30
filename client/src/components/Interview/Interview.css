@@ -48,6 +48,13 @@
     line-height: 30px;
 }
 
+.questionImage {
+    margin: 100px 0 50px;
+    height: 20vw;
+    background-color: #D9D9D9;
+    background-size: cover;
+}
+
 .blueButton {
     display: 'flex';
     flex-direction: row;
