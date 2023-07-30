@@ -121,14 +121,18 @@ const Home = () => {
 
     const [contentDisplayed, setContentDisplayed] = useState([])
     
-    useEffect(()=>{
-        axios.get(`${baseURL}/api/contents/contents-list/?page=1`)
+    const getContent = (category, pageNo) => {
+        axios.get(`${baseURL}/api/contents/contents-list/?category=${category}&page=${pageNo}`)
         .then(response => {
             // const rawData = JSON.parse(response.data);
             console.log(response.data);
             setContentDisplayed(response.data.results);
             console.log(contentDisplayed);
         })
+    }
+
+    useEffect(()=>{
+        getContent("Work Space", "1");
     }, [])
 
 
@@ -181,6 +185,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[0] = true;
                                 setSelectedSpace(array);
+                                getContent("Work Space", "1");
                             }
                         }}>
                         <a>
@@ -194,6 +199,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[1] = true;
                                 setSelectedSpace(array);
+                                getContent("Study Space", "1");
                             }
                         }}>
                         <a>
@@ -207,6 +213,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[2] = true;
                                 setSelectedSpace(array);
+                                getContent("Life Space", "1");
                             }
                         }}>
                         <a>
@@ -220,6 +227,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[3] = true;
                                 setSelectedSpace(array);
+                                getContent("Team Space", "1");
                             }
                         }}>
                         <a>
