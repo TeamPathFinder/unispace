@@ -15,7 +15,7 @@ class Content(models.Model):
 
     # Actual content of the interview 
     # TODO: Update the field type to be more appropriate
-    content = models.TextField(default="")
+    # content = models.TextField(default="")
     image = models.ImageField(upload_to="images/content/", null=True, blank=True)
 
     views = models.IntegerField(default=0)
@@ -28,6 +28,7 @@ class Content(models.Model):
     def __str__(self):
         return self.title
 
+
 class TodayPick(models.Model):
     """Today's pick for the website."""
 
@@ -36,3 +37,28 @@ class TodayPick(models.Model):
 
     def _str_(self):
         return self.content.title
+
+
+class Interview(models.Model):
+    """Interview to be displayed on the website."""
+
+    content = models.ForeignKey(Content, on_delete=models.CASCADE)
+    one_line_intro = models.CharField(max_length=200)
+    more_intro = models.TextField(default="")
+
+    def __str__(self):
+        return f"Interview: {self.content.title}"
+
+
+class QnA(models.Model):
+    """Model to store individual QnA pairs."""
+
+    interview = models.ForeignKey(
+        Interview, on_delete=models.CASCADE, related_name="qnas"
+    )
+    question = models.CharField(max_length=200)
+    answer = models.TextField(default="")
+    image = models.ImageField(upload_to="images/qna/", null=True, blank=True)
+
+    def __str__(self):
+        return self.question
