@@ -17,7 +17,7 @@ const Home = () => {
     const MAX_POPULAR_ITEMS_LENGTH = 12;
     //   TODO: dev environment & published environment differ
     const baseURL = 'http://127.0.0.1:8000'
-    
+
     //handle next on popular item arrow nav
     const handleNext = () => {
         if (endIndex + 4 < MAX_POPULAR_ITEMS_LENGTH) {
@@ -79,20 +79,20 @@ const Home = () => {
         const requestOptions = {
             method: 'GET',
             redirect: 'follow'
-          };
-          
+        };
+
         fetch(`${baseURL}/api/contents/popular-contents/?num=${MAX_POPULAR_ITEMS_LENGTH}`, requestOptions)
             .then(response => response.text())
             .then(rawString => JSON.parse(rawString))
             .then(result => result.map((data, index) => {
-                    return {
-                        enumeration: '' + index,
-                        title: data.title,
-                        author: data.userInfo.name, // TODO: name or nickname?
-                        location: 'South Korea', // info not in DB
-                        id: data.id
-                    }
-                })
+                return {
+                    enumeration: '' + index,
+                    title: data.title,
+                    author: data.userInfo.name, // TODO: name or nickname?
+                    location: 'South Korea', // info not in DB
+                    id: data.id
+                }
+            })
             )
             .then(result => {
                 const selectedData = result.slice(startIndex, endIndex + 1)
@@ -112,7 +112,7 @@ const Home = () => {
             })
             // TODO: update DOM
             .catch(error => console.log('error', error));
-        
+
     }, [startIndex, endIndex]);
 
     return (
@@ -160,11 +160,9 @@ const Home = () => {
                 <div className="flex contentSpaceSelection" style={handleSpaceSelectBorder()}>
                     <div className={selectedSpace[0] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[0] = true;
-                                setSelectedSpace(array);
-                            }
+                            const array = [false, false, false, false];
+                            array[0] = true;
+                            setSelectedSpace(array);
                         }}>
                         <a>
                             Work Space
@@ -173,11 +171,9 @@ const Home = () => {
 
                     <div className={selectedSpace[1] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[1] = true;
-                                setSelectedSpace(array);
-                            }
+                            const array = [false, false, false, false];
+                            array[1] = true;
+                            setSelectedSpace(array);
                         }}>
                         <a>
                             Study Space
@@ -186,11 +182,9 @@ const Home = () => {
 
                     <div className={selectedSpace[2] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[2] = true;
-                                setSelectedSpace(array);
-                            }
+                            const array = [false, false, false, false];
+                            array[2] = true;
+                            setSelectedSpace(array);
                         }}>
                         <a>
                             Life Space
@@ -199,24 +193,22 @@ const Home = () => {
 
                     <div className={selectedSpace[3] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[3] = true;
-                                setSelectedSpace(array);
-                            }
+                            const array = [false, false, false, false];
+                            array[3] = true;
+                            setSelectedSpace(array);
                         }}>
                         <a>
                             Team Space
                         </a>
                     </div>
                 </div>
-                <div class="grid-content-container">
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
+                <div className="grid-content-container">
+                    <ContentItem />
+                    <ContentItem />
+                    <ContentItem />
+                    <ContentItem />
+                    <ContentItem />
+                    <ContentItem />
                 </div>
             </div>
         </div>
