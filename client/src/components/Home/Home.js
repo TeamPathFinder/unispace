@@ -178,12 +178,10 @@ const Home = () => {
                 <div className="flex contentSpaceSelection" style={handleSpaceSelectBorder()}>
                     <div className={selectedSpace[0] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[0] = true;
-                                setSelectedSpace(array);
-                                getContent("Work Space", "1");
-                            }
+                            const array = [false, false, false, false];
+                            array[0] = true;
+                            setSelectedSpace(array);
+                            getContent("Work Space", "1");
                         }}>
                         <a>
                             Work Space
@@ -192,12 +190,10 @@ const Home = () => {
 
                     <div className={selectedSpace[1] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[1] = true;
-                                setSelectedSpace(array);
-                                getContent("Study Space", "1");
-                            }
+                            const array = [false, false, false, false];
+                            array[1] = true;
+                            setSelectedSpace(array);
+                            getContent("Study Space", "1");
                         }}>
                         <a>
                             Study Space
@@ -206,12 +202,10 @@ const Home = () => {
 
                     <div className={selectedSpace[2] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[2] = true;
-                                setSelectedSpace(array);
-                                getContent("Life Space", "1");
-                            }
+                            const array = [false, false, false, false];
+                            array[2] = true;
+                            setSelectedSpace(array);
+                            getContent("Life Space", "1");
                         }}>
                         <a>
                             Life Space
@@ -220,12 +214,10 @@ const Home = () => {
 
                     <div className={selectedSpace[3] ? "contentSpaceSelected" : "contentSpaceUnselected"}
                         onClick={() => {
-                            {
-                                const array = [false, false, false, false];
-                                array[3] = true;
-                                setSelectedSpace(array);
-                                getContent("Team Space", "1");
-                            }
+                            const array = [false, false, false, false];
+                            array[3] = true;
+                            setSelectedSpace(array);
+                            getContent("Team Space", "1");
                         }}>
                         <a>
                             Team Space
