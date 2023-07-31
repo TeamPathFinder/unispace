@@ -1,5 +1,8 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 from .models import Content, TodayPick
 from .serializers import (
@@ -10,6 +13,7 @@ from .serializers import (
 
 
 class GetTodayPickView(ListAPIView):
+    """Return today's pick instance."""
     serializer_class = TodayPickSerializer
     queryset = TodayPick.objects.all()
 
