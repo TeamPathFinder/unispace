@@ -23,6 +23,7 @@ const InterviewTitle = ({ category, title, location, views, author }) => {
             <div className="titleLastRow" style={{ fontSize: '16px', fontWeight: '500' }}>
                 <div className="flex contentItemLocation">
                     <MapPin className="mapPin" style={{ marginRight: '6px' }}></MapPin>
+                    {/* TODO: update the icons */}
                     <a> {location} </a>
                 </div>
                 <div className="flex contentItemLocation" style={{ marginLeft: '3vw' }}>
