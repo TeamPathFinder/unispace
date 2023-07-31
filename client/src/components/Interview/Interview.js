@@ -26,10 +26,8 @@ const Interview = () => {
     }
 
     useEffect(() => {
-        setData(tmp)
-    })
-
-    const { interviewID } = useParams(); // Access the 'idnumber' from URL parameters
+        getInterviewData(6)
+    }, [interviewID])
 
     return (
         !data ? <></> :
