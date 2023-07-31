@@ -124,10 +124,7 @@ const Home = () => {
     const getContent = (category, pageNo) => {
         axios.get(`${baseURL}/api/contents/contents-list/?category=${category}&page=${pageNo}`)
             .then(response => {
-                // const rawData = JSON.parse(response.data);
-                console.log(response.data);
                 setContentDisplayed(response.data.results);
-                console.log(contentDisplayed);
             })
     }
 
