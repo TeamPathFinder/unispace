@@ -76,16 +76,11 @@ const Home = () => {
         }
     }
 
-    useEffect(() => {
-        const requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
+    // **** Render popular contents in home page ****
 
-        fetch(`${baseURL}/api/contents/popular-contents/?num=${MAX_POPULAR_ITEMS_LENGTH}`, requestOptions)
-            .then(response => response.text())
-            .then(rawString => JSON.parse(rawString))
-            .then(result => result.map((data, index) => {
+    const getPopularContents = () => {
+        axios.get(`${baseURL}/api/contents/popular-contents/?num=${MAX_POPULAR_ITEMS_LENGTH}`)
+            .then(response => response.data.map((data, index) => {
                 return {
                     enumeration: '' + index,
                     title: data.title,
@@ -93,28 +88,37 @@ const Home = () => {
                     location: 'South Korea', // info not in DB
                     id: data.id
                 }
-            })
-            )
+            }))
             .then(result => {
                 const selectedData = result.slice(startIndex, endIndex + 1)
                 setSelectedData(selectedData)
             })
-            .catch(error => console.log('error', error));
+        // .catch(error => console.log('error', error));
+    }
 
-        fetch(`${baseURL}/api/contents/today-pick/`, requestOptions)
-            .then(response => response.text())
-            .then(rawString => JSON.parse(rawString)[0])
-            .then(result => {
-                console.log(result)
-                return {
-                    date: result.date,
-                    id: result.content
+    // **** Render today's pick content in home page ****
+
+    // TODO: should not get id, but title
+    const [todayPick, setTodayPick] = useState([])
+
+    const getTodayPickContent = () => {
+        axios.get(`${baseURL}/api/contents/today-pick/`)
+            .then(response => response.data)
+            .then(arr => {
+                // TODO: should get image URL to show
+                if (arr.length > 0) {
+                    // TEMPORARILY SHOWING POST ID
+                    setTodayPick(arr[0].content)
+                    console.log(arr[0].content)
                 }
             })
-            // TODO: update DOM
-            .catch(error => console.log('error', error));
+    }
 
-    }, [startIndex, endIndex]);
+    useEffect(() => {
+        getTodayPickContent();
+
+
+    }, [startIndex]);
 
 
     // **** Render main content in home page ****
@@ -129,8 +133,10 @@ const Home = () => {
     }
 
     useEffect(() => {
+        getPopularContents();
+        getTodayPickContent();
         getContent("Work Space", "1");
-    }, [])
+    }, [startIndex, endIndex])
 
 
     return (
@@ -145,7 +151,7 @@ const Home = () => {
                     <h2>Today's Pick</h2>
                     <a href="#" style={{ backgroundImage: '' }}>
                         <div className="featuredArticle">
-                            <h3>Featured Article Title</h3>
+                            <h3>{`Today's Pick Post ID: ${todayPick}`}</h3>
                         </div>
                     </a>
                 </div>
@@ -224,7 +230,7 @@ const Home = () => {
                         </a>
                     </div>
                 </div>
-                <div class="grid-content-container">
+                <div className="grid-content-container">
                     {
                         contentDisplayed.map(item => {
                             return (
