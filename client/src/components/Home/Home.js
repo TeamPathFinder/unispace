@@ -114,13 +114,6 @@ const Home = () => {
             })
     }
 
-    useEffect(() => {
-        getTodayPickContent();
-
-
-    }, [startIndex]);
-
-
     // **** Render main content in home page ****
 
     const [contentDisplayed, setContentDisplayed] = useState([])
