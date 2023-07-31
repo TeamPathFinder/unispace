@@ -5,6 +5,7 @@ import { ReactComponent as NavRightArrow } from '../../assets/navRightArrow.svg'
 import { ReactComponent as Ellipse } from '../../assets/ellipse.svg';
 import PopularItem from './subcomponents/PopularItem';
 import ContentItem from './subcomponents/ContentItem';
+import axios from 'axios';
 
 const Home = () => {
 
@@ -115,6 +116,26 @@ const Home = () => {
         
     }, [startIndex, endIndex]);
 
+
+    // **** Render main content in home page ****
+
+    const [contentDisplayed, setContentDisplayed] = useState([])
+    
+    const getContent = (category, pageNo) => {
+        axios.get(`${baseURL}/api/contents/contents-list/?category=${category}&page=${pageNo}`)
+        .then(response => {
+            // const rawData = JSON.parse(response.data);
+            console.log(response.data);
+            setContentDisplayed(response.data.results);
+            console.log(contentDisplayed);
+        })
+    }
+
+    useEffect(()=>{
+        getContent("Work Space", "1");
+    }, [])
+
+
     return (
         <div className="container gradient">
             <div className="flex slogan">
@@ -164,6 +185,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[0] = true;
                                 setSelectedSpace(array);
+                                getContent("Work Space", "1");
                             }
                         }}>
                         <a>
@@ -177,6 +199,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[1] = true;
                                 setSelectedSpace(array);
+                                getContent("Study Space", "1");
                             }
                         }}>
                         <a>
@@ -190,6 +213,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[2] = true;
                                 setSelectedSpace(array);
+                                getContent("Life Space", "1");
                             }
                         }}>
                         <a>
@@ -203,6 +227,7 @@ const Home = () => {
                                 const array = [false, false, false, false];
                                 array[3] = true;
                                 setSelectedSpace(array);
+                                getContent("Team Space", "1");
                             }
                         }}>
                         <a>
@@ -211,12 +236,24 @@ const Home = () => {
                     </div>
                 </div>
                 <div class="grid-content-container">
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
-                    <ContentItem/>
+                    {
+                        contentDisplayed.map( item => {
+                            return(
+                            <React.Fragment key={item.id}>
+                                { <ContentItem
+                                    title={item.title}
+                                    image={item.image}
+                                    author={item.userInfo.name}
+                                    id={item.id}
+                                    location={item.location}
+                                    subCategory={item.category} // this doesn't exist yet, putting in category for now
+                                    views = {item.views}
+                                />}
+                            </React.Fragment>
+                            );
+                        })
+                    }
+                    
                 </div>
             </div>
         </div>

@@ -5,8 +5,12 @@ import { ReactComponent as Coffee } from '../../assets/coffee.svg';
 import { ReactComponent as Paperclip } from '../../assets/paperclip.svg';
 import Banner from './subcomponents/Banner';
 import InterviewTitle from "./subcomponents/InterviewTitle";
+import { useParams } from 'react-router-dom';
 
 const Interview = () => {
+    const { interviewID } = useParams(); // Access the 'idnumber' from URL parameters
+
+    
     const dummyData = {
         "id": 10,
         "title": "아이디어에서 실행까지, 유니스페이스의 PM을 만나다", // / for line break
