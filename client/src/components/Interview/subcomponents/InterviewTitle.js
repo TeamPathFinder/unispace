@@ -29,7 +29,7 @@ const InterviewTitle = ({ category, title, location, views, author }) => {
                     <ViewsIcon className="contentIcons" style={{ marginRight: '6px' }}></ViewsIcon>
                     <a> {views}</a>
                 </div>
-                <a style={{ display: 'flex', marginLeft: 'auto' }}>by. Writer</a>
+                <a style={{ display: 'flex', marginLeft: 'auto' }}>by. {author ? author : 'Writer'}</a>
             </div>
         </div>
     );

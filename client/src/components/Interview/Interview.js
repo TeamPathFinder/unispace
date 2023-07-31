@@ -30,6 +30,7 @@ const Interview = () => {
     }, [interviewID])
 
     return (
+        // TODO: if data is null, lead to a custom 404 page
         !data ? <></> :
             <div className="interviewContainer">
                 <Banner
@@ -42,8 +43,9 @@ const Interview = () => {
                     <InterviewTitle
                         title={data.title.replaceAll('/', '')}
                         category={data.category}
-                        location="Canada"
-                        views="219"
+                        location={data.userInfo.country}
+                        views={data.views}
+                        author={data.userInfo.name}
                     />
                     <QuestionAnswer
                         question={data.interview.one_line_intro}
