@@ -12,10 +12,17 @@ from .serializers import (
 )
 
 
-class GetTodayPickView(ListAPIView):
-    """Return today's pick instance."""
-    serializer_class = TodayPickSerializer
-    queryset = TodayPick.objects.all()
+class GetTodayPickView(APIView):
+    def get(self, request):
+        """Return today's pick content: the newest instance."""
+        try:
+            newest_instance = TodayPick.objects.latest("date")
+            serializer = TodayPickSerializer(newest_instance)
+            return Response(serializer.data)
+        except TodayPick.DoesNotExist:
+            return Response(
+                {"message": "No records found."}, status=status.HTTP_404_NOT_FOUND
+            )
 
 
 class PopularContentsListView(ListAPIView):
