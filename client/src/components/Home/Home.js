@@ -109,7 +109,6 @@ const Home = () => {
                 if (arr.length > 0) {
                     // TEMPORARILY SHOWING POST ID
                     setTodayPick(arr[0].content)
-                    console.log(arr[0].content)
                 }
             })
     }

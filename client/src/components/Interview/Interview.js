@@ -13,13 +13,11 @@ const Interview = () => {
     const baseURL = 'http://127.0.0.1:8000'
 
     const [data, setData] = useState(null);
-
     const { interviewID } = useParams(); // Access the 'idnumber' from URL parameters
 
     const getInterviewData = id => {
         axios.get(`${baseURL}/api/contents/interviews/${id}`)
             .then(response => {
-                console.log(response.data)
                 setData(response.data)
             })
             .catch(reason => console.log(reason.message))
