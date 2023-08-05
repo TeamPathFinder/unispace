@@ -5,10 +5,11 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
     height: 5vh;
     padding: 6vh 15vw 2.5vh 15vw;
     font-weight: bold;
+    font-size: 0.8rem;
+    border-bottom: 1px solid var(--main-dark-color);
 }
 
 .logo {
@@ -20,7 +21,6 @@
 nav {
     padding-top: 3vh;
     display: flex;
-    color: #ffffff;
     margin-bottom: 3vh;
 }
 
@@ -40,10 +40,9 @@ nav li {
 }
 
 nav a {
-    color: black;
+    color: var(--main-dark-color);
     text-decoration: none;
     font-family: 'Inter', sans-serif;
-    font-size: 1.1em;
 }
 
 .writeSymbol {
@@ -53,21 +52,21 @@ nav a {
 .startButton {
     display: 'flex';
     border-radius: 30px;
-    background-color: #3D3FEB;
+    background-color: var(--emph-color);
     padding: 1.6vh 1.5vw 1.6vh 1.5vw
 }
 
-.startButton > a {
+.startButton>a {
     color: white;
 }
 
 /* breakpoint for smallest browser width.*/
 @media (max-width: 800px) {
-    .logo{
+    .logo {
         display: none;
     }
-    
-    .navbar.container{
+
+    .navbar.container {
         padding: 6vh 7vw 2.5vh 7vw;
     }
 

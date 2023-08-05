@@ -20,14 +20,16 @@
 .highlighted {
     background-color: #DFF2B2;
     padding: 4% 4.5% 4% 4.5%;
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--main-dark-color);
+    opacity: 0.9;
     border-radius: 20px;
 }
 
 .questionDialogue {
     height: auto;
     flex-direction: column;
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--main-dark-color);
+    opacity: 0.9;
     margin-bottom: 50px;
     display: flex;
 }
@@ -51,7 +53,7 @@
 .questionImage {
     margin: 100px 0 50px;
     height: 20vw;
-    background-color: #D9D9D9;
+    background-color: var(--sub-light-color);
     background-size: cover;
 }
 
@@ -59,7 +61,7 @@
     display: 'flex';
     flex-direction: row;
     border-radius: 30px;
-    background-color: #3D3FEB;
+    background-color: var(--emph-color);
     padding: 1.8vh 1.7vw 1.8vh 1.7vw;
     align-items: center;
     cursor: pointer;
@@ -71,13 +73,13 @@
     width: 100%;
     font-weight: bold;
     align-items: center;
-    color: white;
+    color: var(--main-light-color);
 }
 
 .bannerContainer {
     width: 100%;
     height: 80vh;
-    background-color: whitesmoke;
+    background-color: var(--sub-light-color);
     background-size: cover;
 }
 
@@ -100,7 +102,8 @@
     grid-area: a;
     font-weight: 600;
     font-size: 32px;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--main-dark-color);
+    opacity: 0.6;
 }
 
 .bannerCoffeeChatReq {
@@ -119,7 +122,8 @@
     grid-area: d;
     font-weight: 600;
     font-size: 32px;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--main-dark-color);
+    opacity: 0.6;
     text-align: right;
 }
 
@@ -137,7 +141,8 @@
 }
 
 .interviewTitle {
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--main-dark-color);
+    opacity: 0.9;
     font-size: 20px;
     font-weight: bolder;
     margin-top: 1vh;
@@ -145,7 +150,8 @@
 }
 
 .interviewCategory {
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--main-dark-color);
+    opacity: 0.8;
     font-size: 15px;
     font-weight: 600;
 }
