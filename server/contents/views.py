@@ -2,9 +2,9 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, exceptions
 
-from .models import Content, TodayPick
+from .models import Content, TodayPick, ContentCategory
 from .serializers import (
     ContentsInfoSerializer,
     TodayPickSerializer,
@@ -60,7 +60,7 @@ class ContentsListView(ListAPIView):
     def get_queryset(self):
         """Return list of contents with corresponding category ordered by date."""
         allContents = Content.objects.all()
-        category = self.request.query_params.get("category", None)
+        category = self.request.query_params.get("legacy_category", None)
         if category is not None:
             result = allContents.filter(category=category).order_by("-date")
         else:
@@ -84,3 +84,28 @@ class InterviewDetailView(RetrieveAPIView):
         content.save()
 
         return content
+
+
+class BlogContentsListView(ListAPIView):
+    serializer_class = ContentsInfoSerializer
+    # TODO: Activate pagination when the number of blog contents increases
+    # pagination_class = MainPageResultsSetPagination
+
+    def get_queryset(self):
+        """Return list of contents with corresponding category ordered by date."""
+        allContents = Content.objects.all()
+        category = self.request.query_params.get("category", None)
+
+        if category is None:
+            raise exceptions.ParseError("category is required")
+        elif category == "all":
+            result = allContents.order_by("-date")
+        else:
+            try:
+                categoryInstance = ContentCategory.objects.get(name=category)
+            except ContentCategory.DoesNotExist:
+                raise exceptions.NotFound("Category does not exist")
+
+            result = allContents.filter(category=categoryInstance).order_by("-date")
+
+        return result
