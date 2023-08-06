@@ -5,6 +5,7 @@ from .views import (
     ContentsListView,
     InterviewDetailView,
     BlogContentsListView,
+    ContentsCategoryListView,
 )
 
 urlpatterns = [
@@ -18,6 +19,11 @@ urlpatterns = [
     path("contents-list/", ContentsListView.as_view(), name="contents-list"),
     # Blog Page
     path("blogs/", BlogContentsListView.as_view(), name="blogs-list"),
+    path(
+        "categories/",
+        ContentsCategoryListView.as_view(),
+        name="content-categories-list",
+    ),
     # Interview Page
     path(
         "interviews/<int:id>/", InterviewDetailView.as_view(), name="interview-detail"

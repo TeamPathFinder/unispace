@@ -9,6 +9,7 @@ from .serializers import (
     ContentsInfoSerializer,
     TodayPickSerializer,
     InterviewSerializer,
+    ContentCategorySerializer
 )
 
 
@@ -102,10 +103,15 @@ class BlogContentsListView(ListAPIView):
             result = allContents.order_by("-date")
         else:
             try:
-                categoryInstance = ContentCategory.objects.get(name=category)
+                categoryInstance = ContentCategory.objects.get(id=category)
             except ContentCategory.DoesNotExist:
                 raise exceptions.NotFound("Category does not exist")
 
             result = allContents.filter(category=categoryInstance).order_by("-date")
 
         return result
+    
+class ContentsCategoryListView(ListAPIView):
+    """Return list of content categories."""
+    serializer_class = ContentCategorySerializer
+    queryset = ContentCategory.objects.all()
