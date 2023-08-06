@@ -15,9 +15,9 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    height: 11vh;
-    width: 70vw;
-    margin-top: 2.5vh;
+    height: 10.5vh;
+    width: 60vw;
+    margin-top: 3vh;
     font-weight: bold;
     margin-left: auto;
     margin-right: auto;
@@ -37,7 +37,7 @@
     margin-left: auto;
     margin-right: auto;
     font-family: 'Inter', 'sans-serif';
-    font-size: 20px;
+    font-size: 15px;
     height: 100%;
 }
 
@@ -100,6 +100,7 @@ nav .active {
     border-radius: 30px;
     background-color: var(--emph-color);
     padding: 1.6vh 1.5vw 1.6vh 1.5vw;
+    font-size: 15px;
 }
 
 .startButton>a {

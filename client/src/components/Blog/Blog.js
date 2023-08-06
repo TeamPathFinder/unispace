@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom';
 import './Blog.css'
 
+import BlogItem from './subcomponents/BlogItem';
+
 const Blog = () => {
     const [blogTitle, blogSubtitle] = ['블로그', '우리의 이야기를 담은 space'];
     const [category, setCategory] = useState('전체');
@@ -25,18 +27,12 @@ const Blog = () => {
                 </ul>
             </div>
             <div className="blogItemContainer">
-                {/* TODO: make it into a subcomponent */}
-                <div className="blogItem">
-                    <Link>
-                        <div className="blogItemImage" />
-                    </Link>
-                    <div className="blogItemCategory"> 가나다 </div>
-                    <div className="blogItemTitle"> 마나담다</div>
-                </div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
+                <BlogItem category="가나다라" title="마바사 askfasjkhfkj ashfkjsh"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
             </div>
         </div>
     </div>
