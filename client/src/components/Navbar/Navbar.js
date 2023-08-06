@@ -17,11 +17,11 @@ const Navbar = () => {
             </LinkContainer>
             <nav>
                 <ul>
-                    <li className={activateLink('interviews')}><Link to="/interviews"><a>커피챗</a></Link></li>
+                    <li className={activateLink('interviews')}><Link to="/interviews">커피챗</Link></li>
                     <li><Link><a>리소스</a></Link></li>
                     <li><Link><a>팀빌딩</a></Link></li>
                     <li><Link><a>챌린지</a></Link></li>
-                    <li className={activateLink('blog')}><Link to="/blog"><a>블로그</a></Link></li>
+                    <li className={activateLink('blog')}><Link to="/blog">블로그</Link></li>
                 </ul>
             </nav>
 

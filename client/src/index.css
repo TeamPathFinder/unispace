@@ -8,6 +8,10 @@
     --emph-color: #3D3FEB;
 }
 
+html {
+    font-size: 12px;
+}
+
 body {
     background-color: var(--main-light-color);
     color: var(--main-dark-color);
