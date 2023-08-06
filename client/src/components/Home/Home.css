@@ -29,7 +29,7 @@
 }
 
 .slogan h4 {
-    color: white;
+    color: var(--main-light-color);
     text-shadow: 0.5px 0.5px 5px rgba(00, 00, 00, 0.3);
     display: inline;
     font-family: 'Inter', sans-serif;
@@ -69,7 +69,7 @@
 .featuredArticle h3 {
     padding: 40px;
     margin: 0;
-    color: white;
+    color: var(--main-light-color);
     text-shadow: 0.5px 0.5px 6px rgba(00, 00, 00, 0.5);
 }
 
@@ -79,7 +79,7 @@
 }
 
 .popular .highlight {
-    color: #3D3FEB;
+    color: var(--emph-color);
 }
 
 .flex {
@@ -146,7 +146,7 @@
 }
 
 .popularItem {
-    background-color: white;
+    background-color: var(--main-light-color);
     border-radius: 10px;
     flex-direction: row;
     flex-wrap: wrap;
@@ -181,7 +181,7 @@
     font-size: 1.4vw;
 }
 
-.popularItemTitle > h3 {
+.popularItemTitle>h3 {
     font-size: 1vw;
     min-width: 0;
     display: inline-block;
@@ -250,7 +250,7 @@
 .popularItemReadButton:hover {
     border-radius: 30px;
     border: solid #06D6A0 1px;
-    color: #fff;
+    color: var(--main-light-color);
     background-color: #06D6A0;
     padding: 1vh 1vw 1vh 1vw;
 }
@@ -282,11 +282,11 @@
 
 .popularItemArrowButton:hover .arrowSvg {
     height: 30px;
-    fill: white !important;
+    fill: var(--main-light-color) !important;
 }
 
 .popularItemArrowButton:hover .arrowSvg path {
-    fill: white !important;
+    fill: var(--main-light-color) !important;
 }
 
 .contentSpaceSelection {
@@ -304,13 +304,13 @@
     display: flex;
     border-radius: 30px;
     height: 100%;
-    background-color: #3D3FEB;
-    border: solid 3px #3D3FEB;
+    background-color: var(--emph-color);
+    border: solid 3px var(--emph-color);
     justify-content: center;
     width: 24%;
     align-items: center;
     font: 'Inter';
-    color: white;
+    color: var(--main-light-color);
     font-weight: 700;
     cursor: pointer;
     box-shadow: 1px 3px 7px rgba(00, 00, 00, 0.5);
@@ -360,7 +360,7 @@
     background-color: pink;
 }
 
-.contentInfo{
+.contentInfo {
     padding-left: 8%;
     padding-right: 8%;
     border-bottom-right-radius: 30px;
@@ -399,13 +399,13 @@
     color: #5E5E5E;
 }
 
-.contentIcons{
+.contentIcons {
     height: 15px;
     margin-right: 3px;
 }
 
 .popularItemArrowButton:hover .arrowSvg path {
-    fill:white !important;
+    fill: var(--main-light-color) !important;
 }
 
 @media (max-width: 800px) {
@@ -426,7 +426,7 @@
         font-size: 2vw;
     }
 
-    .popularItemInfo > a {
+    .popularItemInfo>a {
         font-size: 2vw;
     }
 }

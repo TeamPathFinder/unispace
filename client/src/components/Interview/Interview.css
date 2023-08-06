@@ -9,7 +9,7 @@
     font-family: 'Inter', sans-serif;
 }
 
-.questionsContainer{
+.questionsContainer {
     height: auto;
     width: 50vw;
     min-width: 500px;
@@ -17,24 +17,26 @@
     padding: 0;
 }
 
-.highlighted{
+.highlighted {
     background-color: #DFF2B2;
     padding: 4% 4.5% 4% 4.5%;
-    color: rgba(0,0,0,0.9);
+    color: var(--main-dark-color);
+    opacity: 0.9;
     border-radius: 20px;
 }
 
-.questionDialogue{
+.questionDialogue {
     height: auto;
     flex-direction: column;
-    color: rgba(0,0,0,0.9);
+    color: var(--main-dark-color);
+    opacity: 0.9;
     margin-bottom: 50px;
     display: flex;
 }
 
-.questionTitle{
+.questionTitle {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     line-height: 30px;
@@ -42,35 +44,42 @@
     margin-bottom: 25px;
 }
 
-.questionAnswer{
+.questionAnswer {
     font-size: 16px;
     font-weight: 500;
     line-height: 30px;
+}
+
+.questionImage {
+    margin: 100px 0 50px;
+    height: 20vw;
+    background-color: var(--sub-light-color);
+    background-size: cover;
 }
 
 .blueButton {
     display: 'flex';
     flex-direction: row;
     border-radius: 30px;
-    background-color: #3D3FEB;
+    background-color: var(--emph-color);
     padding: 1.8vh 1.7vw 1.8vh 1.7vw;
     align-items: center;
     cursor: pointer;
 }
 
-.bottomButtons{
+.bottomButtons {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     font-weight: bold;
     align-items: center;
-    color: white;
+    color: var(--main-light-color);
 }
 
 .bannerContainer {
     width: 100%;
     height: 80vh;
-    background-color: whitesmoke;
+    background-color: var(--sub-light-color);
     background-size: cover;
 }
 
@@ -93,7 +102,8 @@
     grid-area: a;
     font-weight: 600;
     font-size: 32px;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--main-dark-color);
+    opacity: 0.6;
 }
 
 .bannerCoffeeChatReq {
@@ -112,33 +122,36 @@
     grid-area: d;
     font-weight: 600;
     font-size: 32px;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--main-dark-color);
+    opacity: 0.6;
     text-align: right;
 }
 
-.titleContainer{
+.titleContainer {
     display: flex;
     flex-direction: column;
     margin-top: 60px;
     margin-bottom: 60px;
 }
 
-.titleLastRow{
+.titleLastRow {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.interviewTitle{
-    color: rgba(0,0,0,0.9);
+.interviewTitle {
+    color: var(--main-dark-color);
+    opacity: 0.9;
     font-size: 20px;
     font-weight: bolder;
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
 
-.interviewCategory{
-    color: rgba(0,0,0,0.8);
+.interviewCategory {
+    color: var(--main-dark-color);
+    opacity: 0.8;
     font-size: 15px;
     font-weight: 600;
 }
