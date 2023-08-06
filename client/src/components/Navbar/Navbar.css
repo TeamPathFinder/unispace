@@ -59,32 +59,36 @@
 }
 
 nav {
-    padding-top: 3vh;
-    display: flex;
-    color: #ffffff;
-    margin-bottom: 3vh;
+    height: 9vh;
 }
 
 nav ul {
+    align-items: center;
     display: flex;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 nav li {
-    margin-right: 1.5vw;
-    margin-left: 1.5vw;
+    margin: 0 1.5vw;
     justify-content: center;
-    align-items: center;
-    align-content: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-bottom: 3px solid transparent;
 }
 
 nav a {
-    color: black;
-    text-decoration: none;
+    margin: auto 0;
     font-family: 'Inter', sans-serif;
-    font-size: 1.1em;
+}
+
+nav .active {
+    color: var(--emph-color);
+    border-bottom: 3px solid var(--emph-color);
 }
 
 .writeSymbol {
@@ -94,8 +98,8 @@ nav a {
 .startButton {
     display: 'flex';
     border-radius: 30px;
-    background-color: #3D3FEB;
-    padding: 1.6vh 1.5vw 1.6vh 1.5vw
+    background-color: var(--emph-color);
+    padding: 1.6vh 1.5vw 1.6vh 1.5vw;
 }
 
 .startButton>a {
