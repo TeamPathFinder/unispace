@@ -1,3 +1,4 @@
+
 .blogContainer {
     display: flex;
     flex-direction: column;
@@ -92,4 +93,25 @@
     align-items: left;
     width: 100%;
     font-weight: bold;
+}
+
+@media (max-width: 1100px) {
+    .blogContainer{
+        padding: 10vh 10vw;
+    }
+
+    .blogItemContainer {
+        gap: 8vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .blogContainer{
+        padding: 10vh 10vw;
+    }
+
+    .blogItemContainer {
+        gap: 10vw;
+        grid-template-columns: 1fr 1fr;
+    }
 }
