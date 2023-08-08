@@ -13,34 +13,38 @@ const Interview = () => {
     const baseURL = 'http://127.0.0.1:8000'
 
     const [data, setData] = useState(null);
-    const { interviewID } = useParams(); // Access the 'idnumber' from URL parameters
+    const { idnumber } = useParams(); // Access the 'idnumber' from URL parameters
 
     const getInterviewData = id => {
         axios.get(`${baseURL}/api/contents/interviews/${id}`)
             .then(response => {
-                setData(response.data)
+                setData(response.data);
+                console.log(response.data);
+                console.log(`${baseURL}/api/contents/interviews/${id}`)
             })
             .catch(reason => console.log(reason.message))
     }
 
     useEffect(() => {
-        getInterviewData(6)
-    }, [interviewID])
+        console.log(idnumber);
+        getInterviewData(idnumber);
+    }, [idnumber])
 
     return (
         // TODO: if data is null, lead to a custom 404 page
         !data ? <></> :
+            
             <div className="interviewContainer">
                 <Banner
                     title={data.title}
-                    category={data.category}
+                    category={data.category.name}
                     date={data.date}
                     image={data.image}
                 />
                 <div className="questionsContainer">
                     <InterviewTitle
                         title={data.title.replaceAll('/', '')}
-                        category={data.category}
+                        category={data.category.name}
                         location={data.userInfo.country}
                         views={data.views}
                         author={data.userInfo.name}
