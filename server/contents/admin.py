@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Content, TodayPick, Interview, QnA
+from .models import Content, ContentCategory, TodayPick, Interview, QnA
 
 # Register your models here.
 admin.site.register(Content)
+admin.site.register(ContentCategory)
 
 class TodayPickAdmin(admin.ModelAdmin):
     readonly_fields = ['date']
