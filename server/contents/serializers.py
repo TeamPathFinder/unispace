@@ -11,10 +11,18 @@ class ContentsInfoSerializer(serializers.ModelSerializer):
         fields = ["id", "title", "userInfo", "image", "views", "date", "category"]
 
 
+class TodayPickContentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Content
+        fields = ["id", "title", "image"]
+
+
 class TodayPickSerializer(serializers.ModelSerializer):
+    content = TodayPickContentsSerializer(read_only=True)
+
     class Meta:
         model = TodayPick
-        fields = ["content", "date"]
+        fields = ["content"]
 
 
 class QnASerializer(serializers.ModelSerializer):
