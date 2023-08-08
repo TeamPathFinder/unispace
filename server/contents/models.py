@@ -1,32 +1,53 @@
 from django.db import models
 from account.models import User
 
+
 class Content(models.Model):
     """Content(Interview) to be displayed on the website."""
 
+    # Choices for legacy_category (deprecated)
     CATEGORY_CHOICES = [
-        ('Life Space', 'Life Space'),
-        ('Work Space', 'Work Space'),
-        ('Study Space', 'Study Space'),
-        ('Team Space', 'Team Space'),
+        ("Life Space", "Life Space"),
+        ("Work Space", "Work Space"),
+        ("Study Space", "Study Space"),
+        ("Team Space", "Team Space"),
     ]
+
     title = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    # Actual content of the interview 
-    # TODO: Update the field type to be more appropriate
-    # content = models.TextField(default="")
     image = models.ImageField(upload_to="images/content/", null=True, blank=True)
 
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     coffeeChatRequests = models.IntegerField(default=0)
-    category = models.CharField(max_length=60, choices=CATEGORY_CHOICES, null=True, blank=True)
+
+    # (deprecated)
+    legacy_category = models.CharField(
+        max_length=60, choices=CATEGORY_CHOICES, null=True, blank=True
+    )
+
+    category = models.ForeignKey(
+        "ContentCategory", on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+
+class ContentCategory(models.Model):
+    """Category of content."""
+
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = "Content Category"
+        verbose_name_plural = "Content Categories"
+
+    def __str__(self):
+        return self.name
 
 
 class TodayPick(models.Model):
@@ -42,7 +63,7 @@ class TodayPick(models.Model):
 class Interview(models.Model):
     """Interview to be displayed on the website."""
 
-    content = models.ForeignKey(Content, on_delete=models.CASCADE)
+    content = models.OneToOneField(Content, on_delete=models.CASCADE)
     one_line_intro = models.CharField(max_length=200)
     more_intro = models.TextField(default="")
 
