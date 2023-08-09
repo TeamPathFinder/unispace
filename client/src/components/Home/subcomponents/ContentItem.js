@@ -18,7 +18,7 @@ import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
 const ContentItem = ({ id, title, author, location, views, subCategory, image }) => {
 
-    const thumbnailImg = image ? { backgroundImage: `url(${image})`, backgroundSize: 'cover' } : { backgroudnColor: 'pink' };
+    const thumbnailImg = image ? { backgroundImage: `url(${image})`, backgroundSize: 'cover' } : { backgroundColor: 'pink' };
 
     return (
         <LinkContainer to={`/interviews/${id}`}>

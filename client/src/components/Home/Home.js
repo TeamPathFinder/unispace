@@ -125,9 +125,9 @@ const Home = () => {
     }
 
     useEffect(() => {
-        getPopularContents();
-        getTodayPickContent();
-        getContent("Work Space", "1");
+        // getPopularContents(); deprecated
+        // getTodayPickContent(); deprecated
+        //getContent("Work Space", "1");
     }, [startIndex, endIndex])
 
 

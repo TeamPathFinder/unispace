@@ -1,21 +1,62 @@
 @import '../../fonts.css';
 
-.navbar.container {
+.navbar-underline {
+    width: 100vw;
+    padding: 0;
+    height: 13.5vh;
+    border-bottom: solid rgba(0, 0, 0, 0.4) 1px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: max-content;
-    padding: 3.5vh 15vw 0;
+    background-color: white;
+    height: 10.5vh;
+    width: 60vw;
+    margin-top: 3vh;
     font-weight: bold;
-    font-size: 1rem;
-    border-bottom: 1px solid var(--main-dark-color);
-    color: var(--main-dark-color);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fd-row {
+    flex-direction: row;
+}
+
+.fd-col {
+    flex-direction: column;
+}
+
+.nav-category-container {
+    justify-content: space-between;
+    width: 30vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Inter', 'sans-serif';
+    font-size: 15px;
+    height: 100%;
+}
+
+.nav-category {
+    height: '100%';
+    align-items: center;
+    border-bottom: solid transparent 4px;
+}
+
+.nav-category-selected {
+    height: '100%';
+    align-items: center;
+    border-bottom: solid var(--emph-color) 4px;
+    color: var(--emph-color)
 }
 
 .logo {
+    height: 40px;
     min-width: 20px;
-    height: 4vh;
 }
 
 nav {
@@ -60,10 +101,23 @@ nav .active {
     border-radius: 30px;
     background-color: var(--emph-color);
     padding: 1.6vh 1.5vw 1.6vh 1.5vw;
+    font-size: 15px;
 }
 
 .startButton>a {
     color: white;
+}
+
+/* breakpoint for medium browser width */
+@media (max-width: 1100px) {
+    .navbar-container {
+        width: 80vw;
+    }
+
+    .nav-category-container {
+        width: 40vw;
+    }
+
 }
 
 /* breakpoint for smallest browser width.*/
@@ -72,8 +126,12 @@ nav .active {
         display: none;
     }
 
-    .navbar.container {
-        padding: 6vh 7vw 2.5vh 7vw;
+    .navbar-container {
+        width: 90vw;
+    }
+
+    .nav-category-container {
+        width: 65vw;
     }
 
 }

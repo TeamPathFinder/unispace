@@ -63,7 +63,7 @@ class TodayPick(models.Model):
 class Interview(models.Model):
     """Interview to be displayed on the website."""
 
-    content = models.OneToOneField(Content, on_delete=models.CASCADE)
+    content = models.OneToOneField(Content, on_delete=models.CASCADE, related_name="interview")
     one_line_intro = models.CharField(max_length=200)
     more_intro = models.TextField(default="")
 

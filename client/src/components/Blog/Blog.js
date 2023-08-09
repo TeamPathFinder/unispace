@@ -1,14 +1,61 @@
-import React, { useState, useRef } from 'react'
+import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './Blog.css'
+import BlogItem from './subcomponents/BlogItem';
+
+const baseURL = 'http://127.0.0.1:8000'
+
 
 const Blog = () => {
     const [blogTitle, blogSubtitle] = ['블로그', '우리의 이야기를 담은 space'];
     const [category, setCategory] = useState('전체');
+    const [categoryID, setCategoryID] = useState('all');
 
-    const activateCategory = e => {
-        setCategory(e.target.outerText);
+    const [categoryList, setCategoryList] = useState([{
+        "id": 'all',
+        "name": "전체"
+    }])
+
+    const [blogListData, setBlogListData] = useState([]);
+
+    const getCategories = () => {
+        axios.get(`${baseURL}/api/contents/categories`)
+            .then(response => response.data)
+            .then(categoryData => {
+                if (categoryData.length > 0) {
+                    setCategoryList(categoryList.concat(categoryData))
+                }
+            })
     }
+
+    const getBlogListData = () => {
+        const blogContentAPICALL = categoryID === '0'
+            ? `${baseURL}/api/contents/blogs`
+            : `${baseURL}/api/contents/blogs?category=${categoryID}`;
+
+
+        axios.get(blogContentAPICALL)
+            .then(result => result.data)
+            .then(blogListData => {
+                setBlogListData(blogListData);
+            })
+    }
+
+    const handleNavChange = (e, id) => {
+        setCategory(e.target.outerText);
+        setCategoryID(id);
+    }
+
+    // to get category list from server
+    useEffect(() => {
+        getCategories();
+    }, [])
+
+    // to update what blogs are shown
+    useEffect(() => {
+        getBlogListData();
+    }, [categoryID])
 
     return <div className="blogContainer">
         <div className="blogTitle">{blogTitle}</div>
@@ -16,27 +63,33 @@ const Blog = () => {
         <div className="blogContent">
             <div className="blogNavbar">
                 <ul>
-                    {/* TODO: generate categories based on an array */}
-                    <li className={category === '전체' ? 'active' : ''} onClick={activateCategory}>전체</li>
-                    <li className={category === '가나다라' ? 'active' : ''} onClick={activateCategory}>가나다라</li>
-                    <li className={category === '마바사' ? 'active' : ''} onClick={activateCategory}>마바사</li>
-                    <li className={category === '아자차' ? 'active' : ''} onClick={activateCategory}>아자차</li>
-                    <li className={category === '카타파하' ? 'active' : ''} onClick={activateCategory}>카타파하</li>
+                    {categoryList.map((item) => {
+                        return (<li
+                            key={item.id}
+                            className={category === item.name ? 'active' : ''}
+                            onClick={e => { handleNavChange(e, item.id) }}> {item.name} </li>);
+                    })}
+
                 </ul>
             </div>
             <div className="blogItemContainer">
-                {/* TODO: make it into a subcomponent */}
-                <div className="blogItem">
-                    <Link>
-                        <div className="blogItemImage" />
-                    </Link>
-                    <div className="blogItemCategory"> 가나다 </div>
-                    <div className="blogItemTitle"> 마나담다</div>
-                </div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
+                {blogListData.map((item) => {
+                    console.log(item);
+                    console.log(item.id)
+                    return (<BlogItem
+                        key={item.id}
+                        id={item.id}
+                        category={item.category?.name}
+                        image={item.image}
+                        title={item.title}
+                    />)
+                })}
+                {/* <BlogItem category="가나다라" title="마바사 askfasjkhfkj ashfkjsh"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem>
+                <BlogItem category="가나다라" title="마바사"></BlogItem> */}
             </div>
         </div>
     </div>

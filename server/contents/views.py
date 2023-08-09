@@ -77,7 +77,7 @@ class InterviewDetailView(RetrieveAPIView):
     def get_object(self):
         content = super().get_object()
         # Prefetch the related interview and its qnas
-        content.interview = content.interview_set.first()
+        # content.interview = content.interview_set.first()
 
         # Increment the view count
         # TODO: Use Cookie to prevent multiple view count increment
