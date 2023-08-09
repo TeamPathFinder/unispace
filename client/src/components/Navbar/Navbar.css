@@ -1,6 +1,6 @@
 @import '../../fonts.css';
 
-.navbar-underline{
+.navbar-underline {
     width: 100vw;
     padding: 0;
     height: 13.5vh;
@@ -41,16 +41,17 @@
     height: 100%;
 }
 
-.nav-category{
+.nav-category {
     height: '100%';
     align-items: center;
+    border-bottom: solid transparent 4px;
 }
 
-.nav-category-selected{
+.nav-category-selected {
     height: '100%';
     align-items: center;
-    border-bottom: solid #3D3FEB 4px;
-    color: #3D3FEB
+    border-bottom: solid var(--emph-color) 4px;
+    color: var(--emph-color)
 }
 
 .logo {
