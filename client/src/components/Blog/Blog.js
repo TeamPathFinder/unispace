@@ -27,6 +27,7 @@ const Blog = () => {
                     setCategoryList(categoryList.concat(categoryData))
                 }
             })
+            .catch(error => console.log(error))
     }
 
     const getBlogListData = () => {
@@ -40,6 +41,7 @@ const Blog = () => {
             .then(blogListData => {
                 setBlogListData(blogListData);
             })
+            .catch(error => console.log(error))
     }
 
     const handleNavChange = (e, id) => {
