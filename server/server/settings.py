@@ -41,10 +41,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # INTERNAL APPS
     "account",
     "contents",
+    # EXTERNAL PACKAGES
     "rest_framework",
     "corsheaders", # React - Django connection (CORS bypass)
+    "drf_yasg",
 ]
 
 # React - Django connection (CORS bypass, erase at deploy)

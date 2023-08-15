@@ -4,16 +4,20 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, exceptions
 
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
 from .models import Content, TodayPick, ContentCategory
 from .serializers import (
     ContentsInfoSerializer,
     TodayPickSerializer,
     InterviewSerializer,
-    ContentCategorySerializer
+    ContentCategorySerializer,
 )
 
 
 class GetTodayPickView(APIView):
+    @swagger_auto_schema(tags=["deprecated"])
     def get(self, request):
         """Return today's pick content: the newest instance."""
         try:
@@ -27,10 +31,11 @@ class GetTodayPickView(APIView):
 
 
 class PopularContentsListView(ListAPIView):
+    """Return list of requested number of contents ordered by view and date."""
+
     serializer_class = ContentsInfoSerializer
 
     def get_queryset(self):
-        """Return list of requested number of contents ordered by view and date."""
         allContents = Content.objects.all()
         # default number of contents to return is 12
         num_contents = self.request.query_params.get("num", 12)
@@ -45,6 +50,10 @@ class PopularContentsListView(ListAPIView):
             result = (allContents.order_by("-views", "-date"))[: int(num_contents)]
         return result
 
+    @swagger_auto_schema(tags=["deprecated"])
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 
 class MainPageResultsSetPagination(PageNumberPagination):
     """Pagination for main page contents list view."""
@@ -55,11 +64,12 @@ class MainPageResultsSetPagination(PageNumberPagination):
 
 
 class ContentsListView(ListAPIView):
+    """Return list of contents with corresponding category ordered by date."""
+
     serializer_class = ContentsInfoSerializer
     pagination_class = MainPageResultsSetPagination
 
     def get_queryset(self):
-        """Return list of contents with corresponding category ordered by date."""
         allContents = Content.objects.all()
         category = self.request.query_params.get("legacy_category", None)
         if category is not None:
@@ -68,8 +78,16 @@ class ContentsListView(ListAPIView):
             result = allContents.order_by("-date")
         return result
 
+    @swagger_auto_schema(tags=["deprecated"])
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 
 class InterviewDetailView(RetrieveAPIView):
+    """
+    Return interview content with corresponding qnas.
+    """
+
     serializer_class = InterviewSerializer
     queryset = Content.objects.all()
     lookup_field = "id"
@@ -86,14 +104,22 @@ class InterviewDetailView(RetrieveAPIView):
 
         return content
 
+    @swagger_auto_schema(
+        operation_description="Get an interview content with corresponding qnas.",
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 
 class BlogContentsListView(ListAPIView):
+    """Return list of contents with corresponding category ordered by date."""
+
     serializer_class = ContentsInfoSerializer
+
     # TODO: Activate pagination when the number of blog contents increases
     # pagination_class = MainPageResultsSetPagination
 
     def get_queryset(self):
-        """Return list of contents with corresponding category ordered by date."""
         allContents = Content.objects.all()
         category = self.request.query_params.get("category", None)
 
@@ -110,8 +136,34 @@ class BlogContentsListView(ListAPIView):
             result = allContents.filter(category=categoryInstance).order_by("-date")
 
         return result
-    
+
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                name="category",
+                in_=openapi.IN_QUERY,
+                description='ID of the category. Use "all" to fetch contents from all categories.',
+                type=openapi.TYPE_STRING,
+                required=True,
+            ),
+        ],
+        responses={
+            400: "Category is required",
+            404: "Category does not exist",
+        },
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+
 class ContentsCategoryListView(ListAPIView):
     """Return list of content categories."""
+
     serializer_class = ContentCategorySerializer
     queryset = ContentCategory.objects.all()
+
+    @swagger_auto_schema(
+        operation_description="Get a list of content categories.",
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
