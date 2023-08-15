@@ -28,7 +28,7 @@ const Navbar = () => {
                         to="/internship"
                         className={activateLink("internship")}
                     >
-                        <a>인턴십</a>
+                        <a>인턴쉽</a>
                     </LinkContainer>
 
                     <LinkContainer
