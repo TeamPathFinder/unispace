@@ -1,18 +1,22 @@
 // FilterOption.js
 import React from 'react';
+import '../Internship.css'
 
 const FilterOption = ({ id, label, isChecked, onChange }) => {
     return (
-        <div className='flex fd-row filter-option'>
+
+        <label className={`custom-checkbox-label ${isChecked ? 'checked' : ''}`} htmlFor={id}> {label}
             <input
                 type="checkbox"
                 id={id}
                 checked={isChecked}
-                onChange={onChange}
-                style={{ borderRadius: '0', marginRight: '10px' }} />
-            <label htmlFor={id} style={{color: 'rgba(0,0,0,0.6)'}}>{label}</label>
-        </div>
+                onChange={onChange} />
+            <span class="custom-checkbox" />
+        </label>
+
     );
 };
 
 export default FilterOption;
+
+

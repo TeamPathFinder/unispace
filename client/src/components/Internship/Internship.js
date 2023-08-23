@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './Internship.css'
 import FilterOption from './subcomponents/FilterOption';
 import Searchbar from './subcomponents/Searchbar';
 import InternshipListing from './subcomponents/InternshipListing';
+import { ReactComponent as NavRightArrow } from '../../assets/navRightArrow.svg'
+import { ReactComponent as NavLeftArrow } from '../../assets/navLeftArrow.svg'
+import { ReactComponent as CollapsibleArrow } from '../../assets/collapsible_arrow.svg'
 
 const Internship = () => {
 
+    //***************************** FILTER RELATED VARS **************** */
     const [filterOptions, setFilterOptions] = useState([
         { id: 'toronto', label: 'Toronto', isChecked: false },
         { id: 'vancouver', label: 'Vancouver', isChecked: false },
@@ -18,24 +22,26 @@ const Internship = () => {
         { id: 'chicago', label: 'Chicago', isChecked: false },
         { id: 'usOther', label: 'Other', isChecked: false },
         { id: 'Seoul', label: 'Seoul', isChecked: false },
-        { id: 'koreaOther', label: 'Other', isChecked: false }
+        { id: 'koreaOther', label: 'Other', isChecked: false },
+        { id: 'remote', label: 'remote', isChecked: false }
         // Add more filter options here
     ]);
 
-    const [search, setSearch] = useState("");
-
-    const handleFilterChange = (id) => {
-        //TODO: axios call here later at some point
-
-        setFilterOptions((prevOptions) =>
-            prevOptions.map((option) =>
-                option.id === id ? { ...option, isChecked: !option.isChecked } : option
-            )
-        );
-
-    };
-
+    // function to render country options on left hand filter
+    // index_start is start index of filter options, index_end is end index
     const renderFilterList = (index_start, index_end) => {
+
+        // function that occurs when clicking on filter checkbox
+        const handleFilterChange = (id) => {
+            //TODO: axios call here later at some point
+
+            setFilterOptions((prevOptions) =>
+                prevOptions.map((option) =>
+                    option.id === id ? { ...option, isChecked: !option.isChecked } : option
+                )
+            );
+        };
+
         return (
             filterOptions.slice(index_start, index_end).map((option) => (
                 <FilterOption
@@ -49,6 +55,85 @@ const Internship = () => {
         );
     }
 
+    const [collapsibleHeaders, setCollapsibleHeaders] = useState([
+        {
+            'canada': true,
+            'usa': true,
+            'korea': true
+        }
+    ])
+
+    const handleCollapsibleHeader = (header) => {
+        setCollapsibleHeaders((prevState) => {
+            return (
+                {
+                    ...prevState,
+                    [header]: !prevState[header]
+                })
+
+        }
+        )
+    }
+
+    /**************** SEARCH RELATED VARS *******************************/
+
+    const [search, setSearch] = useState("");
+
+    // *********** ************ PAGINATION RELATED VARS **************** *//
+
+    const ref = useRef(null);
+    const [currPage, setCurrPage] = useState(1);
+    const [shownInternshipList, setShownInternshipList] = useState([]);
+    const [maxPage, setMaxPage] = useState(22);
+    const [pageNumbers, setPageNumbers] = useState([]);
+
+    const generatePagination = () => {
+        const PAGESTOSHOW = 5
+        const halfRange = Math.floor(PAGESTOSHOW / 2);
+        let start = Math.max(currPage - halfRange, 1);
+        let end = Math.min(start + PAGESTOSHOW - 1, maxPage);
+
+        // if start and end is less than 5 pages
+        if (end - start + 1 < 5) {
+            start = Math.max(end - PAGESTOSHOW + 1, 1);
+        }
+
+        const pagination = [];
+
+        for (let i = start; i <= end; i++) {
+            pagination.push(i);
+        }
+
+        // logic to add ... at the end
+        if (end < maxPage - 1) {
+            pagination.push('...');
+        }
+        if (end < maxPage) {
+            pagination.push(maxPage);
+        }
+        console.log(pagination)
+        return pagination;
+    };
+
+    const handlePageChange = (pageNum) => {
+        if (!(1 <= pageNum && pageNum <= maxPage)) {
+            return;
+        } else {
+            setCurrPage(pageNum);
+            ref.current?.scrollIntoView();
+        }
+
+    }
+
+    useEffect(() => {
+        //Axios call here to get max page number and fetch internship list
+
+        setPageNumbers(generatePagination());
+
+
+    }, [currPage])
+
+    //***********************************JSX below ********************************* */
     return (
         <div className="internship-container flex fd-col">
             <div className="flex fd-col internship-content-container">
@@ -59,23 +144,65 @@ const Internship = () => {
                 <div className='internship-grid'>
                     <div className='internship-filter-col flex fd-col'>
                         <div className='flex fd-col internship-filter-container'>
-                            <a> Canada </a>
-                            {renderFilterList(0, 4)}
-                            <a> USA </a>
-                            {renderFilterList(5, 10)}
-                            <a> Korea </a>
-                            {renderFilterList(10, 12)}
+                            <div
+                                className='flex fd-row align-center internship-collapsible-header'
+                                onClick={() => handleCollapsibleHeader('canada')}
+                            >
+                                <CollapsibleArrow
+                                    className={`filter-collapsible-arrow ${collapsibleHeaders['canada'] ? 'flip-vertical' : ''}`} />
+                                <a> Canada </a>
+                            </div>
+                            <div className={`filter-collapsible-div ${collapsibleHeaders['canada'] ? 'open' : ''}`}>
+                                {renderFilterList(0, 4)}
+                            </div>
+
+
+                            <div
+                                className='flex fd-row align-center internship-collapsible-header'
+                                onClick={() => handleCollapsibleHeader('usa')}
+                            >
+                                <CollapsibleArrow
+                                    className={`filter-collapsible-arrow ${collapsibleHeaders['usa'] ? 'flip-vertical' : ''}`} />
+                                <a> USA </a>
+                            </div>
+                            <div className={`filter-collapsible-div ${collapsibleHeaders['usa'] ? 'open' : ''}`}>
+                                {renderFilterList(5, 10)}
+                            </div>
+
+                            <div
+                                className='flex fd-row align-center internship-collapsible-header'
+                                onClick={() => handleCollapsibleHeader('korea')}
+                            >
+                                <CollapsibleArrow
+                                    className={`filter-collapsible-arrow ${collapsibleHeaders['korea'] ? 'flip-vertical' : ''}`} />
+                                <a> Korea </a>
+                            </div>
+                            <div className={`filter-collapsible-div ${collapsibleHeaders['korea'] ? 'open' : ''}`}>
+                                {renderFilterList(10, 12)}
+                            </div>
+
+                            <div
+                                className='flex fd-row align-center internship-collapsible-header'
+                                onClick={() => handleCollapsibleHeader('remote')}
+                            >
+                                <CollapsibleArrow
+                                    className={`filter-collapsible-arrow ${collapsibleHeaders['remote'] ? 'flip-vertical' : ''}`} />
+                                <a> Remote </a>
+                            </div>
+                            <div className={`filter-collapsible-div ${collapsibleHeaders['remote'] ? 'open' : ''}`}>
+                                {renderFilterList(12, 13)}
+                            </div>
                         </div>
                     </div>
-                    <div className='internship-content-col'>
+                    <div ref={ref} className='internship-content-col'>
                         <Searchbar setSearch={setSearch}></Searchbar>
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
                             isPaid={false}
-                            postTime="Posted 1d ago" 
-                            isNew={true}/>
+                            postTime="Posted 1d ago"
+                            isNew={true} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
@@ -142,6 +269,24 @@ const Internship = () => {
                             location="Trono, Canada"
                             isPaid={false}
                             postTime="Posted 1d ago" />
+                        <div className='pagination flex fd-row align-center'>
+                            <NavLeftArrow
+                                className="nav-arrow"
+                                onClick={() => { handlePageChange(currPage - 1) }} 
+                            />
+                            {pageNumbers.map((page, i) => {
+                                return (
+                                    <span
+                                        onClick={() => handlePageChange(page)}
+                                        key={i}
+                                        className={`${page == currPage ? 'active' : ''}`}> {page} </span>
+                                );
+                            })}
+                            <NavRightArrow
+                                onClick={() => { handlePageChange(currPage + 1) }}
+                                className="nav-arrow" 
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@ const InternshipListing = ({ company, position, location, isPaid, postTime, isNe
                 <a>
                     {isPaid ? 'Paid' : 'Unpaid'}
                 </a>
-                <a className="fw-800" style={{color: 'rgba(0,0,0,0.5)'}}>
+                <a className="fw-500" style={{color: 'rgba(0,0,0,0.5)'}}>
                     {postTime}
                 </a>
             </div>

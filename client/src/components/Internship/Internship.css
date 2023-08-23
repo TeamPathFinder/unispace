@@ -1,34 +1,38 @@
-.internship-container{
+.align-center {
+    align-items: center;
+}
+
+.internship-container {
     width: 100vw;
 }
 
-.internship-content-container{
+.internship-content-container {
     width: 70vw;
     margin-left: auto;
     margin-right: auto;
 }
 
-.internship-header-container{
+.internship-header-container {
     justify-content: flex-start;
     padding-bottom: 60px;
     margin-top: 50px;
-    border-bottom: solid 1px rgba(0,0,0,0.8);
+    border-bottom: solid 1px rgba(0, 0, 0, 0.8);
     width: 100%;
 }
 
-.internship-header-container > h2{
+.internship-header-container>h2 {
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: rgba(0,0,0,0.9);
+    color: rgba(0, 0, 0, 0.9);
 }
 
-.internship-header-container > a{
+.internship-header-container>a {
     font-size: 20px;
-    color: rgba(0,0,0,0.8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
-.internship-grid{
+.internship-grid {
     width: 100%;
     display: grid;
     grid-template-columns: [filter] 250px [internship-content] 1fr;
@@ -36,73 +40,141 @@
     padding-top: 50px;
 }
 
-.internship-filter-col{
+.internship-filter-col {
     grid-column: filter;
-    padding:0;
+    padding: 0;
     margin: 0;
 }
 
-.internship-filter-container{
-    border: solid 1px rgba(0,0,0,0.5);
+.internship-filter-container {
+    border: solid 1px rgba(0, 0, 0, 0.5);
     padding-left: 25px;
     font-size: 16px;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
+    padding-top: 3px;
     position: sticky;
     top: 100px;
 }
 
-.internship-filter-container > a{
+.internship-filter-container a {
     font-weight: 500;
-    color: rgba(0,0,0,0.8);
-    margin-bottom: 10px;
-    margin-top: 25px;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .filter-option {
     align-items: center;
-    margin-top: 10px; 
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
-.internship-content-col{
+.custom-checkbox-label input[type=checkbox] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    height: 15px;
+    width: 15px
+}
+
+.custom-checkbox-label {
+    position: relative;
+    display: block;
+    padding-left: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.custom-checkbox {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    border: solid rgba(0, 0, 0, 0.6) 1px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.custom-checkbox-label input:checked ~.custom-checkbox {
+    /* background-color: #3D3FEB; */
+    background-image: url('../../assets/checked.svg');
+    border: solid #3D3FEB 1px;
+}
+
+.custom-checkbox-label.checked {
+    /* background-color: #3D3FEB; */
+    font-weight: 700;
+}
+
+.internship-collapsible-header {
+    margin-bottom: 10px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.filter-collapsible-arrow {
+    height: 8px;
+    margin-right: 10px;
+}
+
+.flip-vertical {
+    transform: scaleY(-1);
+}
+
+.filter-collapsible-div {
+    overflow: hidden;
+    max-height: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-collapsible-div.open {
+    max-height: 600px;
+}
+
+.internship-content-col {
     grid-column: internship-content;
 }
 
-.searchbar{
+.searchbar {
     height: 42px;
     justify-content: space-between;
-    border: solid 1px rgba(0,0,0,0.5);
+    border: solid 1px rgba(0, 0, 0, 0.5);
     width: 100%;
     align-items: center;
     margin-bottom: 30px;
 }
 
-input[type="text"]
-{
-    font-size:14px;
+input[type="text"] {
+    font-size: 14px;
     border-width: 0px;
     background-color: transparent;
     width: 90%;
     padding-left: 10px;
-    color: rgba(0,0,0,0.8);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 input[type="text"]:focus {
-    outline: none; /* Remove the blue outline */
-  }
+    outline: none;
+    /* Remove the blue outline */
+}
 
-.search-icon{
+.search-icon {
     height: 24px;
     width: 24px;
     margin-right: 10px;
 }
 
-.internship-listing-container{
+.internship-listing-container {
     width: 100%;
     height: 55px;
     margin: 0;
     padding: 0;
-    position:relative;
+    position: relative;
     cursor: pointer;
 }
 
@@ -114,14 +186,15 @@ input[type="text"]:focus {
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
-    border-bottom: 20px solid #3D3FEB; /* Set the color you want */
+    border-bottom: 20px solid #3D3FEB;
+    /* Set the color you want */
 }
 
-.internship-listing-grid{
+.internship-listing-grid {
     display: grid;
     height: 55px;
     width: calc(100% - 20px);
-    border: solid 1px rgba(0,0,0,0.5);
+    border: solid 1px rgba(0, 0, 0, 0.5);
     padding-left: 20px;
     grid-template-columns: [company] 1fr [position] 2.4fr [location] 2fr [payment] 0.9fr [post-time] 1.6fr;
     column-gap: 20px;
@@ -129,43 +202,76 @@ input[type="text"]:focus {
     margin-bottom: 20px;
 }
 
-.internship-listing-grid > a{
+.internship-listing-grid>a {
     font-family: sans-serif;
     margin-top: auto;
     margin-bottom: auto;
     font-size: 16px;
-    color: rgba(0,0,0,0.9);
+    color: rgba(0, 0, 0, 0.9);
     font-weight: 400;
     width: 100%;
 }
 
-.fw-500{
+.pagination{
+    margin-top: 40px;
+    margin-bottom: 100px;
+    color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    height: 20px
+}
+
+.pagination span{
+    cursor: pointer;
+    user-select: none;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    margin: 0px 1px 0px 1px;
+}
+
+.pagination span.active{
+    background-color: #3D3FEB;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.nav-arrow{
+    height: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.fw-500 {
     font-weight: 500 !important;
 }
 
-.fw-800{
+.fw-800 {
     font-weight: 800 !important;
 }
 
 @media (max-width: 1300px) {
-    .internship-content-container{
+    .internship-content-container {
         width: 80vw;
     }
 }
 
 
 @media (max-width: 1000px) {
-    .internship-content-container{
+    .internship-content-container {
         width: 90vw;
     }
 }
 
 @media (max-width: 800px) {
-    .internship-content-container{
+    .internship-content-container {
         width: 90vw;
     }
 
-    .internship-grid{
+    .internship-grid {
         width: 100%;
         display: grid;
         grid-template-columns: [internship-content] 1fr;
@@ -173,7 +279,7 @@ input[type="text"]:focus {
         padding-top: 50px;
     }
 
-    .internship-filter-col{
+    .internship-filter-col {
         display: none;
     }
 }
