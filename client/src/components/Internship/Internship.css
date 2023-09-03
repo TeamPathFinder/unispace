@@ -14,10 +14,32 @@
 
 .internship-header-container {
     justify-content: flex-start;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
     margin-top: 50px;
     border-bottom: solid 1px rgba(0, 0, 0, 0.8);
     width: 100%;
+}
+
+.internship-count{
+    
+    background-image: url('../../assets/unispace_gradient.svg');
+    background-size: cover;
+    height: 32px;
+    display: flex;
+    width: max-content;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+    margin-top: 25px;
+}
+
+.internship-count a{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    color:rgba(0, 0, 0, 0.9)
 }
 
 .internship-header-container>h2 {
@@ -243,6 +265,11 @@ input[type="text"]:focus {
     margin-left: 20px;
     margin-right: 20px;
     cursor: pointer;
+}
+
+.nav-arrow.inactive{
+    opacity: 0.4;
+    cursor: default;
 }
 
 .fw-500 {

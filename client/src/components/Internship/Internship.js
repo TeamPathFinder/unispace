@@ -23,7 +23,7 @@ const Internship = () => {
         { id: 'usOther', label: 'Other', isChecked: false },
         { id: 'Seoul', label: 'Seoul', isChecked: false },
         { id: 'koreaOther', label: 'Other', isChecked: false },
-        { id: 'remote', label: 'remote', isChecked: false }
+        { id: 'remote', label: 'Remote', isChecked: false }
         // Add more filter options here
     ]);
 
@@ -83,6 +83,8 @@ const Internship = () => {
 
     const ref = useRef(null);
     const [currPage, setCurrPage] = useState(1);
+    const [leftNavArrow, setLeftNavArrow] = useState(false)
+    const [rightNavArrow, setRightNavArrow] = useState(true)
     const [shownInternshipList, setShownInternshipList] = useState([]);
     const [maxPage, setMaxPage] = useState(22);
     const [pageNumbers, setPageNumbers] = useState([]);
@@ -90,7 +92,7 @@ const Internship = () => {
     const generatePagination = () => {
         const PAGESTOSHOW = 5
         const halfRange = Math.floor(PAGESTOSHOW / 2);
-        let start = Math.max(currPage - halfRange, 1);
+        let start = currPage
         let end = Math.min(start + PAGESTOSHOW - 1, maxPage);
 
         // if start and end is less than 5 pages
@@ -103,13 +105,13 @@ const Internship = () => {
         for (let i = start; i <= end; i++) {
             pagination.push(i);
         }
-
-        // logic to add ... at the end
-        if (end < maxPage - 1) {
-            pagination.push('...');
-        }
-        if (end < maxPage) {
-            pagination.push(maxPage);
+        if (start > 1 && end < maxPage ){
+            setLeftNavArrow(true);
+            setRightNavArrow(true);
+        } else if (start == 1) {
+            setLeftNavArrow(false)
+        } else if (end == maxPage){
+            setRightNavArrow(false)
         }
         console.log(pagination)
         return pagination;
@@ -138,8 +140,11 @@ const Internship = () => {
         <div className="internship-container flex fd-col">
             <div className="flex fd-col internship-content-container">
                 <div className="flex fd-col internship-header-container">
-                    <h2> 인턴쉽 </h2>
+                    <h2> 인턴십 </h2>
                     <a> 다가오는 2024 하계 인턴십을 위한 space </a>
+                    <div className='internship-count'> 
+                        <a> 2023.08.20.23:19 | <span style={{fontWeight:'bold'}}> 18,420 </span> 개의 채용공구가 당신을 기다리고 있어요! </a>
+                    </div>
                 </div>
                 <div className='internship-grid'>
                     <div className='internship-filter-col flex fd-col'>
@@ -271,7 +276,7 @@ const Internship = () => {
                             postTime="Posted 1d ago" />
                         <div className='pagination flex fd-row align-center'>
                             <NavLeftArrow
-                                className="nav-arrow"
+                                className={`nav-arrow ${leftNavArrow ? '': 'inactive'}`}
                                 onClick={() => { handlePageChange(currPage - 1) }} 
                             />
                             {pageNumbers.map((page, i) => {
@@ -284,7 +289,8 @@ const Internship = () => {
                             })}
                             <NavRightArrow
                                 onClick={() => { handlePageChange(currPage + 1) }}
-                                className="nav-arrow" 
+                                className={`nav-arrow ${rightNavArrow ? '': 'inactive'}`}
+
                             />
                         </div>
                     </div>
