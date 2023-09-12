@@ -10,3 +10,6 @@ class Job(models.Model):
     city = models.CharField(max_length=50)
     apply_link = models.URLField()
     date_posted = models.IntegerField()
+
+    def __str__(self):
+        return self.title + " - " + self.company
