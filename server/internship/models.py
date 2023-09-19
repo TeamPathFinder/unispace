@@ -9,6 +9,7 @@ class Job(models.Model):
     country = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     apply_link = models.URLField()
+    description = models.TextField(default="")
     date_posted = models.IntegerField()
 
     def __str__(self):

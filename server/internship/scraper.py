@@ -124,6 +124,24 @@ def scrape_google_jobs():
                     by=By.TAG_NAME, value="a"
                 ).get_attribute("href")
 
+                # GET JOB DESCRIPTION
+                # Expand the description if the button exists
+                try:
+                    expand_description_button = job_details.find_element(
+                        by=By.CLASS_NAME,
+                        value="mjkhcd.OSrXXb",
+                    )
+                    driver.execute_script(
+                        "arguments[0].scrollIntoView(true);", expand_description_button
+                    )
+                    expand_description_button.click()
+                except NoSuchElementException:
+                    pass
+                description = job_details.find_element(
+                    by=By.CLASS_NAME,
+                    value="HBvzbc",
+                ).text
+
                 print(f"{title} - {company}")
 
                 # SAVE JOB TO DATABASE
@@ -138,6 +156,7 @@ def scrape_google_jobs():
                     country=country,
                     city=city,
                     apply_link=apply_link,
+                    description=description,
                     date_posted=posted_date,
                 )
 
