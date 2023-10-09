@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,10 +45,12 @@ INSTALLED_APPS = [
     # INTERNAL APPS
     "account",
     "contents",
+    "internship",
     # EXTERNAL PACKAGES
     "rest_framework",
-    "corsheaders", # React - Django connection (CORS bypass)
+    "corsheaders",  # React - Django connection (CORS bypass)
     "drf_yasg",
+    "django_filters",
 ]
 
 # React - Django connection (CORS bypass, erase at deploy)
@@ -63,7 +66,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware", # React - Django connection (CORS bypass)
+    "corsheaders.middleware.CorsMiddleware",  # React - Django connection (CORS bypass)
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -143,10 +146,29 @@ STATIC_URL = "static/"
 
 
 # Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery
+CELERY_ALWAYS_EAGER = True
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://127.0.0.1:6379")
+CELERY_RESULT_BACKEND = config(
+    "CELERY_RESULT_BACKEND", default="redis://127.0.0.1:6379"
+)
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "America/Toronto"
+
+CELERY_BEAT_SCHEDULE = {
+    # Executes every day at midnight
+    'run_scrapper': {
+        'task': 'internship.tasks.run_scraper',
+        'schedule': crontab(minute=0, hour=0),
+    },
+}
