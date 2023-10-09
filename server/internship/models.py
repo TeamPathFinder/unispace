@@ -21,6 +21,7 @@ class Job(models.Model):
     apply_link = models.URLField(max_length=300)
     description = models.TextField(default="")
     date_posted = models.IntegerField()
+    view_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title + " - " + self.company
