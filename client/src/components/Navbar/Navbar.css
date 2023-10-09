@@ -7,6 +7,7 @@
     border-bottom: solid rgba(0, 0, 0, 0.4) 1px;
     display: flex;
     justify-content: center;
+    background-color: white;
 }
 
 .navbar-container {
@@ -16,7 +17,7 @@
     align-items: center;
     background-color: white;
     height: 10.5vh;
-    width: 60vw;
+    width: 70vw;
     margin-top: 3vh;
     font-weight: bold;
     margin-left: auto;

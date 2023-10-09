@@ -25,10 +25,10 @@ const Navbar = () => {
                     </LinkContainer>
 
                     <LinkContainer
-                        to="/"
-                        className={activateLink("resource")}
+                        to="/internship"
+                        className={activateLink("internship")}
                     >
-                        <a>리소스</a>
+                        <a>인턴십</a>
                     </LinkContainer>
 
                     <LinkContainer
