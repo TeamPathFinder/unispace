@@ -6,6 +6,9 @@ import InternshipListing from './subcomponents/InternshipListing';
 import { ReactComponent as NavRightArrow } from '../../assets/navRightArrow.svg'
 import { ReactComponent as NavLeftArrow } from '../../assets/navLeftArrow.svg'
 import { ReactComponent as CollapsibleArrow } from '../../assets/collapsible_arrow.svg'
+import { useParams } from 'react-router-dom';
+import { useLanguage } from "../../LanguageContext";
+
 
 const Internship = () => {
 
@@ -26,6 +29,14 @@ const Internship = () => {
         { id: 'remote', label: 'Remote', isChecked: false }
         // Add more filter options here
     ]);
+
+    const {lang} = useParams();
+    const isEnglish = lang == 'en'
+    const { setIsEnglish } = useLanguage();
+
+    useEffect(() => {
+        setIsEnglish(lang === "en");
+      }, [lang, setIsEnglish]);
 
     // function to render country options on left hand filter
     // index_start is start index of filter options, index_end is end index
@@ -140,10 +151,10 @@ const Internship = () => {
         <div className="internship-container flex fd-col">
             <div className="flex fd-col internship-content-container">
                 <div className="flex fd-col internship-header-container">
-                    <h2> 인턴십 </h2>
-                    <a> 다가오는 2024 하계 인턴십을 위한 space </a>
+                    <h2> {isEnglish ? 'Internship': '인턴십'}  </h2>
+                    <a> {isEnglish ? 'Your space for upcoming 2024 internships': '다가오는 2024 하계 인턴십을 위한 space'} </a>
                     <div className='internship-count'> 
-                        <a> 2023.08.20.23:19 | <span style={{fontWeight:'bold'}}> 18,420 </span> 개의 채용공구가 당신을 기다리고 있어요! </a>
+                        <a> 2023.08.20.23:19 | <span style={{fontWeight:'bold'}}> 18,420 </span> {isEnglish ? 'opportunies are waiting for you': '개의 채용공구가 당신을 기다리고 있어요!'} </a>
                     </div>
                 </div>
                 <div className='internship-grid'>
@@ -200,7 +211,7 @@ const Internship = () => {
                         </div>
                     </div>
                     <div ref={ref} className='internship-content-col'>
-                        <Searchbar setSearch={setSearch}></Searchbar>
+                        <Searchbar setSearch={setSearch} isEnglish={isEnglish}></Searchbar>
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"

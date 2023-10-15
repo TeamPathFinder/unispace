@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import './Blog.css'
 import BlogItem from './subcomponents/BlogItem';
 
+import { useParams } from 'react-router-dom';
+import { useLanguage } from "../../LanguageContext";
+
 const baseURL = 'http://127.0.0.1:8000'
 
 
@@ -11,6 +14,10 @@ const Blog = () => {
     const [blogTitle, blogSubtitle] = ['블로그', '우리의 이야기를 담은 space'];
     const [category, setCategory] = useState('전체');
     const [categoryID, setCategoryID] = useState('all');
+
+    const {lang} = useParams();
+    const isEnglish = lang == 'en'
+    const { setIsEnglish } = useLanguage();
 
     const [categoryList, setCategoryList] = useState([{
         "id": 'all',
@@ -60,8 +67,8 @@ const Blog = () => {
     }, [categoryID])
 
     return <div className="blogContainer">
-        <div className="blogTitle">{blogTitle}</div>
-        <div className="blogSubtitle">{blogSubtitle}</div>
+        <div className="blogTitle">{isEnglish ? 'Blog': '블로그'}</div>
+        <div className="blogSubtitle">{isEnglish ? 'The space containing our stories' : '우리의 이야기를 담은 space'}</div>
         <div className="blogContent">
             <div className="blogNavbar">
                 <ul>
