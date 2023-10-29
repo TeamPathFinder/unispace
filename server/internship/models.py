@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 REGION = {
     "Canada": ["Toronto", "Vancouver", "Québec City", "Ottawa"],
-    "United States": ["New York", "San Francisco", "Boston", "Washington", "Chicago"],
+    "United States": ["New York", "San Francisco", "Boston"],
     "Korea": ["Seoul"],
     "Remote": ["Remote"],
 }
