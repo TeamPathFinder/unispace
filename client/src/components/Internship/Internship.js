@@ -18,8 +18,6 @@ const Internship = () => {
         { id: 'canadaOther', label: 'Other', isChecked: false },
         { id: 'newyorkcity', label: 'New York City', isChecked: false },
         { id: 'boston', label: 'Boston', isChecked: false },
-        { id: 'washingtondc.', label: 'Washington D.C.', isChecked: false },
-        { id: 'chicago', label: 'Chicago', isChecked: false },
         { id: 'usOther', label: 'Other', isChecked: false },
         { id: 'Seoul', label: 'Seoul', isChecked: false },
         { id: 'koreaOther', label: 'Other', isChecked: false },
@@ -158,7 +156,7 @@ const Internship = () => {
                                 <a> Canada </a>
                             </div>
                             <div className={`filter-collapsible-div ${collapsibleHeaders['canada'] ? 'open' : ''}`}>
-                                {renderFilterList(0, 4)}
+                                {renderFilterList(0, 5)}
                             </div>
 
 
@@ -171,7 +169,7 @@ const Internship = () => {
                                 <a> USA </a>
                             </div>
                             <div className={`filter-collapsible-div ${collapsibleHeaders['usa'] ? 'open' : ''}`}>
-                                {renderFilterList(5, 10)}
+                                {renderFilterList(5, 8)}
                             </div>
 
                             <div
@@ -183,7 +181,7 @@ const Internship = () => {
                                 <a> Korea </a>
                             </div>
                             <div className={`filter-collapsible-div ${collapsibleHeaders['korea'] ? 'open' : ''}`}>
-                                {renderFilterList(10, 12)}
+                                {renderFilterList(8, 10)}
                             </div>
 
                             <div
@@ -195,7 +193,7 @@ const Internship = () => {
                                 <a> Remote </a>
                             </div>
                             <div className={`filter-collapsible-div ${collapsibleHeaders['remote'] ? 'open' : ''}`}>
-                                {renderFilterList(12, 13)}
+                                {renderFilterList(10, 11)}
                             </div>
                         </div>
                     </div>
