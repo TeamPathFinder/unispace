@@ -205,75 +205,63 @@ const Internship = () => {
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago"
+                            viewCount={7}
                             isNew={true} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <InternshipListing
                             company="Apple"
                             position="Janitor Intern"
                             location="Trono, Canada"
-                            isPaid={false}
-                            postTime="Posted 1d ago" />
+                            viewCount={7} />
                         <div className='pagination flex fd-row align-center'>
                             <NavLeftArrow
                                 className={`nav-arrow ${leftNavArrow ? '': 'inactive'}`}

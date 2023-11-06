@@ -280,6 +280,15 @@ input[type="text"]:focus {
     font-weight: 800 !important;
 }
 
+.view-count {
+    display: block;
+    text-align: center
+}
+
+.view-count-num {
+    color: #3D3FEB;
+}
+
 @media (max-width: 1300px) {
     .internship-content-container {
         width: 80vw;
