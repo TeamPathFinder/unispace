@@ -147,9 +147,18 @@ const Internship = () => {
     const getCurrentTimeFormatted = () => {
         const now = new Date();
         const year = now.getFullYear();
-        const month = now.getMonth() + 1;
-        const date = now.getDate();
-        const hour = now.getHours();
+        let month = now.getMonth() + 1;
+        if (month < 10) {
+            month = `0${month}`;
+        }
+        let date = now.getDate();
+        if (date < 10) {
+            date = `0${date}`;
+        }
+        let hour = now.getHours();
+        if (hour < 10) {
+            hour = `0${hour}`;
+        }
         const minute = now.getMinutes();
 
         // format: YYYY.MM.DD.HH:MM
