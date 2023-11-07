@@ -1,6 +1,6 @@
 
 
-const InternshipListing = ({ company, position, location, isPaid, postTime, isNew }) => {
+const InternshipListing = ({ company, position, location, viewCount, isNew }) => {
     return (
         <div className="internship-listing-container">
             <div className={`internship-listing-grid ${isNew ? 'with-decoration' : ''}`}>
@@ -13,15 +13,13 @@ const InternshipListing = ({ company, position, location, isPaid, postTime, isNe
                 <a>
                     {location}
                 </a>
-                <a>
-                    {isPaid ? 'Paid' : 'Unpaid'}
-                </a>
-                <a className="fw-500" style={{color: 'rgba(0,0,0,0.5)'}}>
-                    {postTime}
-                </a>
+                <a className="view-count">
+					<div className="view-count-num"> {viewCount} </div>
+					<div>Viewed</div>
+				</a>
             </div>
         </div>
     );
-}
+};
 
 export default InternshipListing;
