@@ -2,14 +2,25 @@ from django.db import models
 
 # Create your models here.
 REGION = {
-    "Canada": ["Toronto", "Vancouver", "Québec City", "Ottawa"],
-    "United States": ["New York", "San Francisco", "Boston"],
-    "Korea": ["Seoul"],
-    "Remote": ["Remote"],
+    "Canada": [
+        ("Toronto", "Toronto"),
+        ("Vancouver", "Vancouver"),
+        ("Quebec", "Quebec City"),
+        ("Ottawa", "Ottawa"),
+        ("Canada Other", "Canada Other"),
+    ],
+    "USA": [
+        ("New York", "New York"),
+        ("San Francisco", "San Francisco"),
+        ("Boston", "Boston"),
+        ("USA Other", "USA Other"),
+    ],
+    "Korea": [("Seoul", "Seoul"), ("Korea Other", "Korea Other")],
+    "Remote": [("Remote", "Remote")],
 }
 
 COUNTRY_CHOICES = [(country, country) for country in REGION.keys()]
-CITY_CHOICES = [(city, city) for cities in REGION.values() for city in cities]
+CITY_CHOICES = [city for cities in REGION.values() for city in cities]
 
 class Job(models.Model):
     id = models.AutoField(primary_key=True)

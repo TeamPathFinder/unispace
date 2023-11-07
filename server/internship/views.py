@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView, Response, status
 
@@ -20,6 +21,22 @@ class InternshipPageSetPagination(PageNumberPagination):
     max_page_size = 100
 
 
+class JobFilter(filters.FilterSet):
+    """Filter for Job model by cities."""
+
+    cities = filters.CharFilter(method="filter_cities")
+
+    class Meta:
+        model = Job
+        fields = ["country", "cities"]
+
+    def filter_cities(self, queryset, name, value):
+        # Split the city values by comma and filter
+        cities = list(map(str.strip, value.split(",")))
+        print(cities)
+        return queryset.filter(city__in=cities)
+
+
 class InternshipList(ListAPIView):
     """Return list of internship ordered by date."""
 
@@ -27,10 +44,10 @@ class InternshipList(ListAPIView):
     queryset = Job.objects.all()
     pagination_class = InternshipPageSetPagination
 
-    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ["title", "company"]
-    filterset_fields = ["country", "city"]
-    ordering_fields = ["date_posted"]
+    filterset_class = JobFilter
+    queryset = Job.objects.all().order_by('date_posted')
 
     @swagger_auto_schema()
     def get(self, request, *args, **kwargs):
