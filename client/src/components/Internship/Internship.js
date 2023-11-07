@@ -247,6 +247,7 @@ const Internship = () => {
                         {shownInternshipList.map((item) => (
                             <InternshipListing
                                 key={item.id}
+                                job_id={item.id}
                                 company={item.company}
                                 position={item.title}
                                 city={item.city.includes('Other') ? 'Other' : item.city}
