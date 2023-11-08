@@ -11,16 +11,15 @@ from .models import Job
 KEYWORD = "Intern"
 REGION = {
     "Canada": ["Toronto", "Vancouver", "Québec City", "Ottawa"],
-    "United States": [
+    "USA": [
         "New York",
         "San Francisco",
         "Boston",
-        "Washington",
-        "Chicago",
     ],
     "Korea": ["Seoul"],
     "Remote": ["Remote"],
 }
+OTHER_REGION = {"Canada": "Canada Other", "USA": "USA Other", "Korea": "Korea Other"}
 
 
 def scrape_google_jobs():
@@ -79,8 +78,11 @@ def scrape_google_jobs():
 
                 location = job.find_element(by=By.CLASS_NAME, value="Qk80Jf").text
                 location = location.split(",")
+                
+                # SET CITY TO "OTHER" IF NOT IN THE LIST
+                this_city = city
                 if city != "Remote" and location[0] not in REGION[country]:
-                    location[0] = "other"
+                    this_city = OTHER_REGION[country]
 
                 posted_date_div = job.find_element(
                     by=By.CLASS_NAME,
@@ -154,7 +156,7 @@ def scrape_google_jobs():
                     title=title,
                     company=company,
                     country=country,
-                    city=city,
+                    city=this_city,
                     apply_link=apply_link,
                     description=description,
                     date_posted=posted_date,

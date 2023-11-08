@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
 import './Internship.css'
 import FilterOption from './subcomponents/FilterOption';
@@ -9,22 +10,28 @@ import { ReactComponent as CollapsibleArrow } from '../../assets/collapsible_arr
 import { useParams } from 'react-router-dom';
 import { useLanguage } from "../../LanguageContext";
 
+const baseURL = 'http://127.0.0.1:8000';
 
 const Internship = () => {
 
     //***************************** FILTER RELATED VARS **************** */
     const [filterOptions, setFilterOptions] = useState([
-        { id: 'toronto', label: 'Toronto', isChecked: false },
-        { id: 'vancouver', label: 'Vancouver', isChecked: false },
-        { id: 'quebec', label: 'Quebec', isChecked: false },
-        { id: 'ottawa', label: 'Ottawa', isChecked: false },
-        { id: 'canadaOther', label: 'Other', isChecked: false },
-        { id: 'newyorkcity', label: 'New York City', isChecked: false },
-        { id: 'boston', label: 'Boston', isChecked: false },
-        { id: 'usOther', label: 'Other', isChecked: false },
+        // Canada
+        { id: 'Toronto', label: 'Toronto', isChecked: false },
+        { id: 'Vancouver', label: 'Vancouver', isChecked: false },
+        { id: 'Quebec', label: 'Quebec', isChecked: false },
+        { id: 'Ottawa', label: 'Ottawa', isChecked: false },
+        { id: 'Canada Other', label: 'Other', isChecked: false },
+        // USA
+        { id: 'New York', label: 'New York City', isChecked: false },
+        { id: 'San Francisco', label: 'San Francisco', isChecked: false },
+        { id: 'Boston', label: 'Boston', isChecked: false },
+        { id: 'USA Other', label: 'Other', isChecked: false },
+        // Korea
         { id: 'Seoul', label: 'Seoul', isChecked: false },
-        { id: 'koreaOther', label: 'Other', isChecked: false },
-        { id: 'remote', label: 'Remote', isChecked: false }
+        { id: 'Korea Other', label: 'Other', isChecked: false },
+        // Remote
+        { id: 'Remote', label: 'Remote', isChecked: false }
         // Add more filter options here
     ]);
 
@@ -97,6 +104,7 @@ const Internship = () => {
     const [shownInternshipList, setShownInternshipList] = useState([]);
     const [maxPage, setMaxPage] = useState(22);
     const [pageNumbers, setPageNumbers] = useState([]);
+    const [totalInternshipCount, setTotalInternshipCount] = useState(-1);
 
     const generatePagination = () => {
         const PAGESTOSHOW = 5
@@ -136,13 +144,48 @@ const Internship = () => {
 
     }
 
+    const getCurrentTimeFormatted = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        if (month < 10) {
+            month = `0${month}`;
+        }
+        let date = now.getDate();
+        if (date < 10) {
+            date = `0${date}`;
+        }
+        let hour = now.getHours();
+        if (hour < 10) {
+            hour = `0${hour}`;
+        }
+        const minute = now.getMinutes();
+
+        // format: YYYY.MM.DD.HH:MM
+        return `${year}.${month}.${date}.${hour}:${minute}`;
+    }
+
     useEffect(() => {
         //Axios call here to get max page number and fetch internship list
-
+        const fetchInternshipList = () => {
+            const cities = filterOptions.filter((option) => option.isChecked).map((option) => option.id).join(',');
+            const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}`;
+            axios.get(requestURL)
+            .then((response) => {
+                if (totalInternshipCount == -1){
+                    setTotalInternshipCount(response.data.count);
+                }
+                setShownInternshipList(response.data.results);
+                setMaxPage(Math.ceil(response.data.count / response.data.results.length));
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+        
         setPageNumbers(generatePagination());
+        fetchInternshipList();
 
-
-    }, [currPage])
+    }, [currPage, filterOptions, search])
 
     //***********************************JSX below ********************************* */
     return (
@@ -152,7 +195,7 @@ const Internship = () => {
                     <h2> {isEnglish ? 'Internship': '인턴십'}  </h2>
                     <a> {isEnglish ? 'Your space for upcoming 2024 internships': '다가오는 2024 하계 인턴십을 위한 space'} </a>
                     <div className='internship-count'> 
-                        <a> 2023.08.20.23:19 | <span style={{fontWeight:'bold'}}> 18,420 </span> {isEnglish ? 'opportunies are waiting for you': '개의 채용공구가 당신을 기다리고 있어요!'} </a>
+                        <a> {getCurrentTimeFormatted()} | <span style={{fontWeight:'bold'}}> {totalInternshipCount} </span> {isEnglish ? 'opportunies are waiting for you': '개의 채용공구가 당신을 기다리고 있어요!'} </a>
                     </div>
                 </div>
                 <div className='internship-grid'>
@@ -180,7 +223,7 @@ const Internship = () => {
                                 <a> USA </a>
                             </div>
                             <div className={`filter-collapsible-div ${collapsibleHeaders['usa'] ? 'open' : ''}`}>
-                                {renderFilterList(5, 8)}
+                                {renderFilterList(5, 9)}
                             </div>
 
                             <div
@@ -192,7 +235,7 @@ const Internship = () => {
                                 <a> Korea </a>
                             </div>
                             <div className={`filter-collapsible-div ${collapsibleHeaders['korea'] ? 'open' : ''}`}>
-                                {renderFilterList(8, 10)}
+                                {renderFilterList(9, 11)}
                             </div>
 
                             <div
@@ -204,73 +247,25 @@ const Internship = () => {
                                 <a> Remote </a>
                             </div>
                             <div className={`filter-collapsible-div ${collapsibleHeaders['remote'] ? 'open' : ''}`}>
-                                {renderFilterList(10, 11)}
+                                {renderFilterList(11, 12)}
                             </div>
                         </div>
                     </div>
                     <div ref={ref} className='internship-content-col'>
                         <Searchbar setSearch={setSearch} isEnglish={isEnglish}></Searchbar>
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7}
-                            isNew={true} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
-                        <InternshipListing
-                            company="Apple"
-                            position="Janitor Intern"
-                            location="Trono, Canada"
-                            viewCount={7} />
+                        {shownInternshipList.map((item) => (
+                            <InternshipListing
+                                key={item.id}
+                                job_id={item.id}
+                                company={item.company}
+                                position={item.title}
+                                city={item.city.includes('Other') ? 'Other' : item.city}
+                                country={item.country}
+                                viewCount={item.view_count}
+                                isNew={item.date_posted == 0}
+                                url = {item.apply_link}
+                            />                            
+                        ))}
                         <div className='pagination flex fd-row align-center'>
                             <NavLeftArrow
                                 className={`nav-arrow ${leftNavArrow ? '': 'inactive'}`}
