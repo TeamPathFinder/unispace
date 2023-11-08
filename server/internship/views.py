@@ -33,7 +33,6 @@ class JobFilter(filters.FilterSet):
     def filter_cities(self, queryset, name, value):
         # Split the city values by comma and filter
         cities = list(map(str.strip, value.split(",")))
-        print(cities)
         return queryset.filter(city__in=cities)
 
 
