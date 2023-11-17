@@ -105,6 +105,22 @@ nav .active {
     font-size: 15px;
 }
 
+.languageButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.language {
+    stroke: #B2B2B2;
+    cursor: pointer;
+}
+
+.language.active {
+    stroke: #3D3FEB !important;
+}
+
 .startButton>a {
     color: white;
 }

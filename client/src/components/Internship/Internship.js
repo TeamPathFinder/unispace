@@ -102,7 +102,7 @@ const Internship = () => {
     const [leftNavArrow, setLeftNavArrow] = useState(false)
     const [rightNavArrow, setRightNavArrow] = useState(true)
     const [shownInternshipList, setShownInternshipList] = useState([]);
-    const [maxPage, setMaxPage] = useState(22);
+    const [maxPage, setMaxPage] = useState(5);
     const [pageNumbers, setPageNumbers] = useState([]);
     const [totalInternshipCount, setTotalInternshipCount] = useState(-1);
 
@@ -118,19 +118,35 @@ const Internship = () => {
         }
 
         const pagination = [];
-
+        console.log(end)
+        console.log(maxPage)
         for (let i = start; i <= end; i++) {
             pagination.push(i);
         }
-        if (start > 1 && end < maxPage ){
-            setLeftNavArrow(true);
-            setRightNavArrow(true);
-        } else if (start == 1) {
-            setLeftNavArrow(false)
-        } else if (end == maxPage){
+        // if (start > 1 && end < maxPage ){
+        //     setLeftNavArrow(true);
+        //     setRightNavArrow(true);
+        // } else if (start == 1) {
+        //     setLeftNavArrow(false)
+        // } 
+        // if (end == maxPage){
+        //     setRightNavArrow(false)
+        //     console.log("HA")
+        // }
+        if (currPage < end){
+            setRightNavArrow(true)
+        } else if (currPage == end){
             setRightNavArrow(false)
         }
+
+        if (currPage > 1){
+            setLeftNavArrow(true)
+        } else if (currPage == 1){
+            setLeftNavArrow(false)
+        }
+
         console.log(pagination)
+        
         return pagination;
     };
 
@@ -176,16 +192,21 @@ const Internship = () => {
                     setTotalInternshipCount(response.data.count);
                 }
                 setShownInternshipList(response.data.results);
-                setMaxPage(Math.ceil(response.data.count / response.data.results.length));
+                console.log(response.data)
+                setMaxPage(Math.ceil(response.data.count / 12));
             }).catch((error) => {
                 console.log(error);
             });
         }
-        
-        setPageNumbers(generatePagination());
-        fetchInternshipList();
 
-    }, [currPage, filterOptions, search])
+        fetchInternshipList();
+        setPageNumbers(generatePagination());
+
+    }, [currPage, filterOptions, search, maxPage])
+
+    useEffect(()=> {
+        setCurrPage(1);
+    }, [filterOptions])
 
     //***********************************JSX below ********************************* */
     return (

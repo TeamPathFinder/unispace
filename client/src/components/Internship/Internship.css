@@ -198,6 +198,7 @@ input[type="text"]:focus {
     padding: 0;
     position: relative;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .internship-listing-grid.with-decoration::after {
@@ -218,13 +219,13 @@ input[type="text"]:focus {
     width: calc(100% - 20px);
     border: solid 1px rgba(0, 0, 0, 0.5);
     padding-left: 20px;
-    grid-template-columns: [company] 1fr [position] 2.4fr [location] 2fr [payment] 0.9fr [post-time] 1.6fr;
+    grid-template-columns: [company] 1.4fr [position] 2.5fr [location] 1.2fr [post-time] 1fr;
     column-gap: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.internship-listing-grid>a {
+.internship-listing-grid>p {
     font-family: sans-serif;
     margin-top: auto;
     margin-bottom: auto;
@@ -288,6 +289,12 @@ input[type="text"]:focus {
 .view-count-num {
     color: #3D3FEB;
 }
+
+.textWithEllipsis {
+    white-space: nowrap;      
+    overflow: hidden;         
+    text-overflow: ellipsis; 
+  }
 
 @media (max-width: 1300px) {
     .internship-content-container {

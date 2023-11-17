@@ -25,13 +25,13 @@ const InternshipListing = ({ job_id, company, position, city, country, viewCount
 							isNew ? 'with-decoration' : ''
 						}`}
 					>
-						<a className="fw-500">{company}</a>
-						<a className="fw-800">{position}</a>
-						<a>{city != 'Remote' ? `${city}, ${country}` : 'Remote'}</a>
-						<a className="view-count">
+						<p className="fw-500 textWithEllipsis">{company}</p>
+						<p className="fw-800">{position}</p>
+						<p>{city != 'Remote' ? `${city}, ${country}` : 'Remote'}</p>
+						<p className="view-count">
 							<div className="view-count-num"> {viewCount} </div>
 							<div>Viewed</div>
-						</a>
+						</p>
 					</div>
 				</div>
 			</a>

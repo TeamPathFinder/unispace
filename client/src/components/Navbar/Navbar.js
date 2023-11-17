@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { ReactComponent as UniSpaceLogo } from '../../assets/UnispaceLogo.svg';
+import { ReactComponent as English } from '../../assets/english.svg';
+import { ReactComponent as Korean } from '../../assets/korean.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useLanguage } from "../../LanguageContext";
+
 
 const Navbar = () => {
 
@@ -59,8 +62,20 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="startButton">
-                    <a> {isEnglish ? 'Start': '시작하기'} </a>
+                <div className="languageButtons">
+                    <LinkContainer to="/kr/internship" style={{height: '100%', width:'20px'}}>
+                        <Korean 
+                        style={{height: '20px'}}
+                        class={isEnglish ? "language": "language active"}
+                        // stroke={isEnglish ? "#FFFFFF": "#111111"}
+                        />
+                    </LinkContainer>
+                    <LinkContainer to="/en/internship" style={{height: '100%', width:'20px'}}>
+                        <English 
+                        style={{height: '20px'}}
+                        class={isEnglish ? "language active": "language"}
+                        />
+                    </LinkContainer>
                 </div>
 
             </div>
