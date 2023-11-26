@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "account",
     "contents",
     "internship",
+    "career",
     # EXTERNAL PACKAGES
     "rest_framework",
     "corsheaders",  # React - Django connection (CORS bypass)
