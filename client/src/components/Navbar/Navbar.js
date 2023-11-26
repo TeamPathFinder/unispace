@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { ReactComponent as UniSpaceLogo } from '../../assets/UnispaceLogo.svg';
 import { ReactComponent as English } from '../../assets/english.svg';
@@ -10,11 +10,24 @@ import { useLanguage } from "../../LanguageContext";
 
 const Navbar = () => {
 
-    let { isEnglish } = useLanguage();
+    // let { isEnglish } = useLanguage();
 
-    const topLocation = useLocation().pathname.split('/')[1];
+    const [isEnglish, setIsEnglish] = useState(true);
 
-    const activateLink = location => location === topLocation ? 'flex nav-category-selected' : 'flex nav-category';
+    let topLocation = useLocation().pathname.split('/')[1];
+
+    const activateLink = location => {
+        console.log(topLocation);
+        return location === topLocation ? 'flex nav-category-selected' : 'flex nav-category';
+    }
+
+    useEffect(()=>{
+        if (topLocation == 'en'){
+            setIsEnglish(true);
+        } else {
+            setIsEnglish(false);
+        }
+    }, [topLocation])
 
     return (
         <div className='navbar-underline'>
@@ -63,17 +76,18 @@ const Navbar = () => {
                 </div>
 
                 <div className="languageButtons">
+                    {console.log(isEnglish)}
                     <LinkContainer to="/kr/internship" style={{height: '100%', width:'20px'}}>
                         <Korean 
                         style={{height: '20px'}}
-                        class={isEnglish ? "language": "language active"}
+                        className={isEnglish ? "language": "language active"}
                         // stroke={isEnglish ? "#FFFFFF": "#111111"}
                         />
                     </LinkContainer>
                     <LinkContainer to="/en/internship" style={{height: '100%', width:'20px'}}>
                         <English 
                         style={{height: '20px'}}
-                        class={isEnglish ? "language active": "language"}
+                        className={isEnglish ? "language active": "language"}
                         />
                     </LinkContainer>
                 </div>

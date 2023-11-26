@@ -118,7 +118,7 @@ nav .active {
 }
 
 .language.active {
-    stroke: #3D3FEB !important;
+    stroke: #3D3FEB;
 }
 
 .startButton>a {
