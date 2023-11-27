@@ -14,20 +14,21 @@ const Navbar = () => {
 
     const [isEnglish, setIsEnglish] = useState(true);
 
-    let topLocation = useLocation().pathname.split('/')[1];
+    let selectedLanguage = useLocation().pathname.split('/')[1];
+
+    let topLocation = useLocation().pathname.split('/')[2];
 
     const activateLink = location => {
-        console.log(topLocation);
         return location === topLocation ? 'flex nav-category-selected' : 'flex nav-category';
     }
 
     useEffect(()=>{
-        if (topLocation == 'en'){
+        if (selectedLanguage == 'en'){
             setIsEnglish(true);
         } else {
             setIsEnglish(false);
         }
-    }, [topLocation])
+    }, [selectedLanguage])
 
     return (
         <div className='navbar-underline'>
@@ -38,8 +39,8 @@ const Navbar = () => {
                 <div className='flex fd-row nav-category-container'>
 
                     <LinkContainer
-                        to="/"
-                        className={activateLink("coffeechats")}
+                        to="/kr/coffee_chat"
+                        className={activateLink("coffee_chat")}
                         style={isEnglish? {'display': 'none'}: {'display':'flex'}}
                     >
                         <a>커피챗</a>
@@ -77,14 +78,14 @@ const Navbar = () => {
 
                 <div className="languageButtons">
                     {console.log(isEnglish)}
-                    <LinkContainer to="/kr/internship" style={{height: '100%', width:'20px'}}>
+                    <LinkContainer to={`/kr/${topLocation}`} style={{height: '100%', width:'20px'}}>
                         <Korean 
                         style={{height: '20px'}}
                         className={isEnglish ? "language": "language active"}
                         // stroke={isEnglish ? "#FFFFFF": "#111111"}
                         />
                     </LinkContainer>
-                    <LinkContainer to="/en/internship" style={{height: '100%', width:'20px'}}>
+                    <LinkContainer to={`/en/${topLocation}`} style={{height: '100%', width:'20px'}}>
                         <English 
                         style={{height: '20px'}}
                         className={isEnglish ? "language active": "language"}

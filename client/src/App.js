@@ -4,8 +4,9 @@ import Navbar from "./components/Navbar/Navbar";
 import Interview from "./components/Interview/Interview";
 import Blog from "./components/Blog/Blog"
 import Internship from "./components/Internship/Internship";
-
+import CoffeeChat from "./components/CoffeeChat/CoffeeChat";
 import { LanguageProvider } from "./LanguageContext";
+
 
 function App() {
     return (
@@ -28,6 +29,10 @@ function App() {
                     <Route
                         path="/:lang" // Matches "/en/" or "/kr/"
                         element={<Home />}
+                    />
+                    <Route
+                        path="/:lang/coffee_chat" // Matches "/en/interview/:idnumber" or "/kr/interview/:idnumber"
+                        element={<CoffeeChat />}
                     />
 
                 </Routes>
