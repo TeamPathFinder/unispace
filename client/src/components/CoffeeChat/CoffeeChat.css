@@ -93,25 +93,35 @@ transition: 2.5s linear
     overflow: hidden;
     white-space: nowrap;
     display: inline-block;
-    animation: slide linear 30s infinite;
 }
 
-.icon-slide {
-    display: inline-block;
-    animation: slide linear 10s infinite;
+  .coffee-chat-logo-container img {
+    transition: transform 0.5s ease-in-out;
   }
   
-  @keyframes slide {
-    0%, 12.5% { transform: translateX(0); }
-    25%, 37.5% { transform: translateX(-25%); } /* Moves to the second image */
-    50%, 62.5% { transform: translateX(-50%); } /* Moves to the third image */
-    75%, 87.5% { transform: translateX(-75%); } /* Moves to the fourth image */
-    100% { transform: translateX(-100%); } /* Moves back to the start; ensure you have a duplicate set of images */
+  .slide-in {
+    transform: translateX(100%); /* Start from the right */
+    animation: slideIn 0.5s forwards; /* Slide in */
+  }
+  
+  .slide-out {
+    transform: translateX(0); /* Start from the current position */
+    animation: slideOut 0.5s forwards; /* Slide out */
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  
+  @keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); } /* Slide to the left */
   }
 
 .coffee-chat-logo-container img {
     display: inline-block;
-    margin-right: 20px; /* Adjust space between icons */
+    width: 100%; /* Adjust space between icons */
     /* other styles as needed */
   }
 

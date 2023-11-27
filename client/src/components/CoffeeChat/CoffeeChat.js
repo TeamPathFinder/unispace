@@ -5,6 +5,7 @@ import { ReactComponent as Mail} from '../../assets/mail.svg'
 import { ReactComponent as UnispaceLogo} from '../../assets/UnispaceLogo.svg'
 import SamsungLogo from '../../assets/samsung.png'
 import MicrosoftLogo from '../../assets/microsoft.png'
+import EYLogo from '../../assets/ey.png'
 import UnispaceCircle from "../../assets/UnispaceCircle.png"
 import useOnScreen from './UseOnScreen.js'
 import { useState, useEffect, useRef } from 'react';
@@ -20,6 +21,24 @@ const CoffeeChat = () => {
     const onScreen2 = useOnScreen(fadeInRef2);
     const onScreen3 = useOnScreen(fadeInRef3);
 
+    const imageList = [SamsungLogo, MicrosoftLogo, EYLogo]; //maybe we can get the list of images as an API call
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [slideIn, setSlideIn] = useState(true);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          setSlideIn(false); // Trigger slide-out
+    
+          setTimeout(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % imageList.length); // go back to start
+            setSlideIn(true); // Trigger slide-in for next image
+          }, 500); // Assuming the slide-out animation takes 0.5 seconds
+    
+        }, 5500); // 5 seconds plus animation time
+    
+        return () => clearInterval(interval);
+      }, []);
 
     return(
         <div className={"coffee-chat-container"}>
@@ -30,16 +49,13 @@ const CoffeeChat = () => {
                 <p>5분안에 조건 선택하고 매칭 받기</p>
             </div>
 
-            <p style={{marginTop: '4rem', marginBottom: '0'}}>
+            <p style={{marginTop: '4rem', marginBottom: '2rem'}}>
             신청자들은 아래 학교/회사에 소속되어 있어요.
             </p>
 
             <div className={"coffee-chat-logo-container"}>
-                <img style={{height: '60px', marginTop: '1rem', marginBottom: '5rem'}} src={SamsungLogo}/> 
-                <img style={{height: '60px', marginTop: '1rem', marginBottom: '5rem'}} src={MicrosoftLogo}/>   
-
-                <img style={{height: '60px', marginTop: '1rem', marginBottom: '5rem'}} src={SamsungLogo}/> 
-                <img style={{height: '60px', marginTop: '1rem', marginBottom: '5rem'}} src={MicrosoftLogo}/> 
+                <img style={{height: '60px', marginTop: '1rem', marginBottom: '5rem'}}  
+                className={`slide-${slideIn ? 'in' : 'out'}`}  src={imageList[currentIndex]}/>  
             </div>
 
             <ArrowDown style={{height: '10px', marginBottom: '6rem'}}/>
@@ -103,7 +119,7 @@ const CoffeeChat = () => {
             </div>
 
             <div className={"coffee-chat-footer"}>
-                <UnispaceLogo style={{background: 'transparent', height: '20px', marginRight: '10%', marginLeft: 'auto', marginTop: '1rem'}}></UnispaceLogo>
+                <UnispaceLogo style={{background: 'transparent', height: '20px', marginRight: '10%', marginLeft: 'auto', marginTop: '1rem', display: 'block'}}></UnispaceLogo>
             </div>
 
         </div>
