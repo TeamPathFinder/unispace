@@ -1,7 +1,7 @@
 @import '../../fonts.css';
 
 .navbar-underline {
-    width: 100vw;
+    width: 99.2vw;
     padding: 0;
     height: 13.5vh;
     border-bottom: solid rgba(0, 0, 0, 0.4) 1px;
