@@ -1,0 +1,130 @@
+.coffee-chat-container{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter';
+    background: 
+        linear-gradient(to bottom,
+            rgba(235, 253, 222, 0.4),
+            rgba(235, 253, 222, 0.4),
+            rgba(235, 253, 222, 0.4),
+            rgba(221, 253, 245, 0.1),
+            rgba(255, 255, 255, 1),
+            rgb(227, 214, 249),
+            rgb(208, 198, 246));
+}
+
+
+.coffee-chat-blue-button{
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: solid white 1.5px;
+    background-color: #3D3FEB;
+    padding: 0.5rem 2rem; 
+    color: white;
+    box-shadow: 1px 2px 2px rgb(134, 138, 133);
+    cursor: pointer;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.coffee-chat-blue-button:hover{
+    background-color: white;
+    color: #3D3FEB;
+    box-shadow: inset 1px 1px 2px rgb(134, 138, 133);
+    border: solid #3D3FEB 1.5px;
+}
+
+.coffee-chat-blue-button2{
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: solid white 1.5px;
+    background-color: #3D3FEB;
+    padding: 0.5rem 2rem; 
+    color: white;
+    box-shadow: 1px 2px 2px rgb(134, 138, 133);
+    cursor: pointer;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.coffee-chat-white-button{
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: solid #3D3FEB 1.5px;
+    background-color: white;
+    padding: 0.5rem 2rem; 
+    color: #3D3FEB;
+    box-shadow: inset 1px 1px 1px rgb(134, 138, 133);
+    cursor: pointer;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+
+.coffee-chat-blue-button p{
+    margin: 0;
+}
+
+.coffee-chat-fade-in-container{
+    width: 360px;
+}
+
+.coffee-chat-fade-in-container p{
+    line-height: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+.fadeInOnView {
+opacity: 0;
+animation-name: fadeIn;
+animation-duration: 2.5s;
+animation-fill-mode: forwards;
+transition: 2.5s linear
+}
+
+.coffee-chat-logo-container{
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    animation: slide linear 30s infinite;
+}
+
+.icon-slide {
+    display: inline-block;
+    animation: slide linear 10s infinite;
+  }
+  
+  @keyframes slide {
+    0%, 12.5% { transform: translateX(0); }
+    25%, 37.5% { transform: translateX(-25%); } /* Moves to the second image */
+    50%, 62.5% { transform: translateX(-50%); } /* Moves to the third image */
+    75%, 87.5% { transform: translateX(-75%); } /* Moves to the fourth image */
+    100% { transform: translateX(-100%); } /* Moves back to the start; ensure you have a duplicate set of images */
+  }
+
+.coffee-chat-logo-container img {
+    display: inline-block;
+    margin-right: 20px; /* Adjust space between icons */
+    /* other styles as needed */
+  }
+
+.coffee-chat-unispace-logo{
+    height: 16px;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.coffee-chat-footer{
+    height: 5rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: flex-start;
+}
