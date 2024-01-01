@@ -5,8 +5,11 @@ import Interview from "./components/Interview/Interview";
 import Blog from "./components/Blog/Blog"
 import Internship from "./components/Internship/Internship";
 import CoffeeChat from "./components/CoffeeChat/CoffeeChat";
+import Career from "./components/Career/Career";
 import { LanguageProvider } from "./LanguageContext";
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function App() {
     return (
@@ -33,6 +36,10 @@ function App() {
                     <Route
                         path="/:lang/coffee_chat" // Matches "/en/interview/:idnumber" or "/kr/interview/:idnumber"
                         element={<CoffeeChat />}
+                    />
+                    <Route
+                        path="/:lang/career" // Matches "/en/interview/:idnumber" or "/kr/interview/:idnumber"
+                        element={<Career />}
                     />
 
                 </Routes>

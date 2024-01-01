@@ -216,7 +216,7 @@ const Internship = () => {
                     <h2> {isEnglish ? 'Internship': '인턴십'}  </h2>
                     <a> {isEnglish ? 'Your space for upcoming 2024 internships': '다가오는 2024 하계 인턴십을 위한 space'} </a>
                     <div className='internship-count'> 
-                        <a> {getCurrentTimeFormatted()} | <span style={{fontWeight:'bold'}}> {totalInternshipCount} </span> {isEnglish ? 'opportunies are waiting for you': '개의 채용공구가 당신을 기다리고 있어요!'} </a>
+                        <a> {getCurrentTimeFormatted()} | <span style={{fontWeight:'bold'}}> {totalInternshipCount} </span> {isEnglish ? 'opportunies are waiting for you': '개의 채용공고가 당신을 기다리고 있어요!'} </a>
                     </div>
                 </div>
                 <div className='internship-grid'>
