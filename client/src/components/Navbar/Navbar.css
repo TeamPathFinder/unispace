@@ -3,7 +3,7 @@
 .navbar-underline {
     width: 99.2vw;
     padding: 0;
-    height: 13.5vh;
+    height: 10vh;
     border-bottom: solid rgba(0, 0, 0, 0.4) 1px;
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    height: 10.5vh;
+    height: 7vh;
     width: 70vw;
     margin-top: 3vh;
     font-weight: bold;

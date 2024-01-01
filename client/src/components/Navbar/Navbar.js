@@ -54,17 +54,11 @@ const Navbar = () => {
                     </LinkContainer>
 
                     <LinkContainer
-                        to="/"
-                        className={activateLink("teambuilding")}
+                        to="/kr/career"
+                        className={activateLink("career")}
+                        style={isEnglish? {'display': 'none'}: {'display':'flex'}}
                     >
-                        <a>{isEnglish ? 'Team Building': '팀빌딩'}</a>
-                    </LinkContainer>
-
-                    <LinkContainer
-                        to="/"
-                        className={activateLink("challenge")}
-                    >
-                        <a>{isEnglish ? 'Challenge': '챌린지'}</a>
+                        <a>커리어</a>
                     </LinkContainer>
 
                     <LinkContainer
