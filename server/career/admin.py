@@ -14,6 +14,15 @@ class CategoryAdmin(admin.ModelAdmin):
     ]
 
 
+class ResourceAdmin(admin.ModelAdmin):
+    list_display = (
+        "title",
+        "category",
+        "display_order",
+    )
+    list_editable = ("display_order",)
+
+
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Resource)
+admin.site.register(Resource, ResourceAdmin)
