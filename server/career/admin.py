@@ -12,15 +12,18 @@ class CategoryAdmin(admin.ModelAdmin):
     inlines = [
         ResourceInline,
     ]
+    list_display = (
+        "name",
+        "display_order",
+    )
+    list_editable = ("display_order",)
 
 
 class ResourceAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "category",
-        "display_order",
     )
-    list_editable = ("display_order",)
 
 
 # Register your models here.

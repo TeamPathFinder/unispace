@@ -5,6 +5,12 @@ class Category(models.Model):
     """Category of resource."""
 
     name = models.CharField(max_length=100)
+    display_order = models.IntegerField(
+        default=0, help_text="Set the display order of the categories"
+    )
+
+    class Meta:
+        ordering = ["display_order", "name"]
 
     def __str__(self):
         return self.name
