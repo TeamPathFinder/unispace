@@ -27,7 +27,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".ca-central-1.compute.amazonaws.com"]
 
 AUTH_USER_MODEL = "account.User"
 
@@ -142,6 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # Media files
@@ -166,8 +167,8 @@ CELERY_TIMEZONE = "America/Toronto"
 
 CELERY_BEAT_SCHEDULE = {
     # Executes every day at midnight
-    'run_scrapper': {
-        'task': 'internship.tasks.run_scraper',
-        'schedule': crontab(minute=0, hour=0),
+    "run_scrapper": {
+        "task": "internship.tasks.run_scraper",
+        "schedule": crontab(minute=0, hour=0),
     },
 }
