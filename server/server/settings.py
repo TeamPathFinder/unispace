@@ -64,6 +64,8 @@ INSTALLED_APPS = [
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
+    # Frontend Deployed
+    "https://unispace-tmp.netlify.app",
 ]
 
 REST_FRAMEWORK = {
