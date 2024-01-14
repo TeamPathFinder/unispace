@@ -37,6 +37,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
+CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS.copy()
+
 AUTH_USER_MODEL = "account.User"
 
 # Application definition
