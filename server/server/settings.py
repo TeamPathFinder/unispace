@@ -27,7 +27,13 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = [".ca-central-1.compute.amazonaws.com"]
+ALLOWED_HOSTS = [
+    # AWS
+    ".ca-central-1.compute.amazonaws.com",
+    "35.183.101.165",
+    # Local
+    "127.0.0.1",
+]
 
 AUTH_USER_MODEL = "account.User"
 
