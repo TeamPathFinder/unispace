@@ -30,7 +30,7 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = [
     # AWS
     ".ca-central-1.compute.amazonaws.com",
-    "35.183.101.165",
+    "52.60.76.92"
     # Local
     "127.0.0.1",
 ]
