@@ -31,6 +31,8 @@ ALLOWED_HOSTS = [
     # AWS
     ".ca-central-1.compute.amazonaws.com",
     "52.60.76.92",
+    # Domain
+    "api.unispace.world",
     # Local
     "127.0.0.1",
 ]
