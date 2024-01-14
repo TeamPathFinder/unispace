@@ -37,8 +37,6 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
-CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS.copy()
-
 AUTH_USER_MODEL = "account.User"
 
 # Application definition
@@ -66,9 +64,12 @@ INSTALLED_APPS = [
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
+    "https://api.unispace.world",
     # Frontend Deployed
     "https://unispace-tmp.netlify.app",
 ]
+
+CSRF_TRUSTED_ORIGINS = ["api.unispace.world"]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
