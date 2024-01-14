@@ -69,7 +69,7 @@ CORS_ORIGIN_WHITELIST = [
     "https://unispace-tmp.netlify.app",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["api.unispace.world"]
+CSRF_TRUSTED_ORIGINS = ["https://api.unispace.world"]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
