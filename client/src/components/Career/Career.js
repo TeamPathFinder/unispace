@@ -4,7 +4,13 @@ import Slider from 'react-slick';
 
 import './Career.css';
 
-const baseURL = 'http://127.0.0.1:8000';
+// Set API URL according to environment
+let baseURL;
+if (process.env.REACT_APP_NODE_ENV === 'production') {
+	baseURL = process.env.REACT_APP_UNISPACE_API_URL;
+} else {
+	baseURL = process.env.REACT_APP_BASE_API_URL;
+}
 
 // ResourceCard Component
 function ResourceCard({ resource }) {
@@ -26,7 +32,6 @@ function ResourceCard({ resource }) {
 		</div>
 	);
 }
-
 
 // CategorySection Component
 function CategorySection({ category }) {

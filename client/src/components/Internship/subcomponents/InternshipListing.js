@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-const baseURL = 'http://127.0.0.1:8000';
+// Set API URL according to environment
+let baseURL;
+if (process.env.REACT_APP_NODE_ENV === 'production') {
+	baseURL = process.env.REACT_APP_UNISPACE_API_URL;
+} else {
+	baseURL = process.env.REACT_APP_BASE_API_URL;
+}
 
 const handleJobClick = (job_id) => {
     axios.post(`${baseURL}/api/internship/increase-view-count/`, {
