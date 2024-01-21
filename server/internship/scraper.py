@@ -78,17 +78,14 @@ def scrape_google_jobs():
 
                 location = job.find_element(by=By.CLASS_NAME, value="Qk80Jf").text
                 location = location.split(",")
-                
+
                 # SET CITY TO "OTHER" IF NOT IN THE LIST
                 this_city = city
                 if city != "Remote" and location[0] not in REGION[country]:
                     this_city = OTHER_REGION[country]
 
-                posted_date_div = job.find_element(
-                    by=By.CLASS_NAME,
-                    value="LL4CDc",
-                )
                 try:
+                    posted_date_div = job.find_element(by=By.CLASS_NAME, value="LL4CDc")
                     posted_date = posted_date_div.find_element(
                         by=By.TAG_NAME, value="span"
                     ).get_attribute("textContent")
@@ -128,29 +125,34 @@ def scrape_google_jobs():
 
                 # GET JOB DESCRIPTION
                 # Expand the description if the button exists
-                try:
-                    expand_description_button = job_details.find_element(
-                        by=By.CLASS_NAME,
-                        value="mjkhcd.OSrXXb",
-                    )
-                    driver.execute_script(
-                        "arguments[0].scrollIntoView(true);", expand_description_button
-                    )
-                    expand_description_button.click()
-                except NoSuchElementException:
-                    pass
-                description = job_details.find_element(
-                    by=By.CLASS_NAME,
-                    value="HBvzbc",
-                ).text
+                # try:
+                #     expand_description_button = job_details.find_element(
+                #         by=By.CLASS_NAME,
+                #         value="mjkhcd.OSrXXb",
+                #     )
+                #     driver.execute_script(
+                #         "arguments[0].scrollIntoView(true);", expand_description_button
+                #     )
+                #     expand_description_button.click()
+                # except NoSuchElementException:
+                #     pass
+                # description = job_details.find_element(
+                #     by=By.CLASS_NAME,
+                #     value="HBvzbc",
+                # ).text
 
                 print(f"{title} - {company}")
+
+                # CHECK IF JOB IS VALID
+                if (title == "") or (company == "") or (apply_link == ""):
+                    print("Missing details")
+                    continue
 
                 # SAVE JOB TO DATABASE
                 if Job.objects.filter(job_id=job_id).exists():
                     print("Job already exists")
                     continue
-
+                
                 Job.objects.create(
                     job_id=job_id,
                     title=title,
@@ -158,7 +160,7 @@ def scrape_google_jobs():
                     country=country,
                     city=this_city,
                     apply_link=apply_link,
-                    description=description,
+                    # description=description,
                     date_posted=posted_date,
                 )
 
