@@ -12,7 +12,11 @@ const Searchbar = ({ setSearch, isEnglish }) => {
             <input
                 type="text"
                 placeholder= {placeholder}
-                onChange={handleChange}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        handleChange(e)
+                    }}
+                }
                 style={{
                     borderWidth: '0px',
                     backgroundColor: 'transparent'
