@@ -98,12 +98,6 @@ const Blog = () => {
                         title={item.title}
                     />)
                 })}
-                {/* <BlogItem category="가나다라" title="마바사 askfasjkhfkj ashfkjsh"></BlogItem>
-                <BlogItem category="가나다라" title="마바사"></BlogItem>
-                <BlogItem category="가나다라" title="마바사"></BlogItem>
-                <BlogItem category="가나다라" title="마바사"></BlogItem>
-                <BlogItem category="가나다라" title="마바사"></BlogItem>
-                <BlogItem category="가나다라" title="마바사"></BlogItem> */}
             </div>
         </div>
     </div>

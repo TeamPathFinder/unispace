@@ -22,12 +22,12 @@ class TodayPickAdmin(admin.ModelAdmin):
 
 class QnAInline(admin.StackedInline):
     model = QnA
-    extra = 1
+    extra = 2
 
 class InterviewAdmin(admin.ModelAdmin):
     inlines = [QnAInline]
     
 
-admin.site.register(TodayPick, TodayPickAdmin)
+# admin.site.register(TodayPick, TodayPickAdmin)
 admin.site.register(Interview, InterviewAdmin)
 admin.site.register(QnA)
