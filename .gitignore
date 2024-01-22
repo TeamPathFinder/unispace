@@ -21,6 +21,9 @@ migrations
 *.py[cod]
 *$py.class
 
+# Celery stuff
+celerybeat-schedule.db
+
 # C extensions
 *.so
 

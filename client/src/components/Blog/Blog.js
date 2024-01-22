@@ -7,8 +7,13 @@ import BlogItem from './subcomponents/BlogItem';
 import { useParams } from 'react-router-dom';
 import { useLanguage } from "../../LanguageContext";
 
-const baseURL = 'http://127.0.0.1:8000'
-
+// Set API URL according to environment
+let baseURL;
+if (process.env.REACT_APP_NODE_ENV === 'production') {
+	baseURL = process.env.REACT_APP_UNISPACE_API_URL;
+} else {
+	baseURL = process.env.REACT_APP_BASE_API_URL;
+}
 
 const Blog = () => {
     const [blogTitle, blogSubtitle] = ['블로그', '우리의 이야기를 담은 space'];

@@ -27,7 +27,15 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # AWS
+    ".ca-central-1.compute.amazonaws.com",
+    "52.60.76.92",
+    # Domain
+    "api.unispace.world",
+    # Local
+    "127.0.0.1",
+]
 
 AUTH_USER_MODEL = "account.User"
 
@@ -56,7 +64,12 @@ INSTALLED_APPS = [
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
+    "https://api.unispace.world",
+    # Frontend Deployed
+    "https://unispace-tmp.netlify.app",
 ]
+
+CSRF_TRUSTED_ORIGINS = ["https://api.unispace.world"]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -142,6 +155,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # Media files
@@ -166,8 +180,8 @@ CELERY_TIMEZONE = "America/Toronto"
 
 CELERY_BEAT_SCHEDULE = {
     # Executes every day at midnight
-    'run_scrapper': {
-        'task': 'internship.tasks.run_scraper',
-        'schedule': crontab(minute=0, hour=0),
+    "run_scrapper": {
+        "task": "internship.tasks.run_scraper",
+        "schedule": crontab(minute=0, hour=0),
     },
 }

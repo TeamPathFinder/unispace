@@ -10,7 +10,13 @@ import { ReactComponent as CollapsibleArrow } from '../../assets/collapsible_arr
 import { useParams } from 'react-router-dom';
 import { useLanguage } from "../../LanguageContext";
 
-const baseURL = 'http://127.0.0.1:8000';
+// Set API URL according to environment
+let baseURL;
+if (process.env.REACT_APP_NODE_ENV === 'production') {
+	baseURL = process.env.REACT_APP_UNISPACE_API_URL;
+} else {
+	baseURL = process.env.REACT_APP_BASE_API_URL;
+}
 
 const Internship = () => {
 
@@ -19,7 +25,7 @@ const Internship = () => {
         // Canada
         { id: 'Toronto', label: 'Toronto', isChecked: false },
         { id: 'Vancouver', label: 'Vancouver', isChecked: false },
-        { id: 'Quebec', label: 'Quebec', isChecked: false },
+        { id: 'Québec City', label: 'Québec', isChecked: false },
         { id: 'Ottawa', label: 'Ottawa', isChecked: false },
         { id: 'Canada Other', label: 'Other', isChecked: false },
         // USA
