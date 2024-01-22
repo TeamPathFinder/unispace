@@ -45,14 +45,14 @@ const Interview = () => {
 			<div className="interviewContainer">
 				<Banner
 					title={data.title}
-					// category={data.category.name}
+					category={data.category.name}
 					date={data.date}
 					image={data.image}
 				/>
 				<div className="questionsContainer">
 					<InterviewTitle
 						title={data.title.replaceAll('/', '')}
-						// category={data.category.name}
+						category={data.category.name}
 						location={data.userInfo.country}
 						views={data.views}
 						author={data.userInfo.name}
