@@ -18,6 +18,11 @@ const Navbar = () => {
 
     let topLocation = useLocation().pathname.split('/')[2];
 
+    // default to empty string when routing to homepage 
+    if (!topLocation) {
+        topLocation = '';
+    }
+
     const activateLink = location => {
         return location === topLocation ? 'flex nav-category-selected' : 'flex nav-category';
     }
@@ -39,26 +44,24 @@ const Navbar = () => {
                 <div className='flex fd-row nav-category-container'>
 
                     <LinkContainer
-                        to="/kr/coffee_chat"
+                        to={isEnglish ?  '/en/coffee_chat' : '/kr/coffee_chat'}
                         className={activateLink("coffee_chat")}
-                        style={isEnglish? {'display': 'none'}: {'display':'flex'}}
                     >
-                        <a>커피챗</a>
+                        <a>{isEnglish ? 'Coffee Chat' : '커피챗'}</a>
                     </LinkContainer>
 
                     <LinkContainer
                         to={isEnglish ? '/en/internship' : '/kr/internship'} 
                         className={activateLink("internship")}
                     >
-                        <a>{isEnglish ? 'Internship': '인턴십'}</a>
+                        <a>{isEnglish ? 'Internship' : '인턴십'}</a>
                     </LinkContainer>
 
                     <LinkContainer
-                        to="/kr/career"
+                        to={isEnglish ? '/en/career' : '/kr/career'}
                         className={activateLink("career")}
-                        style={isEnglish? {'display': 'none'}: {'display':'flex'}}
                     >
-                        <a>커리어</a>
+                        <a>{isEnglish ? 'Career' : '커리어'}</a>
                     </LinkContainer>
 
                     <LinkContainer

@@ -1,0 +1,21 @@
+.container {
+    height: 800px;
+}
+
+.center {
+    justify-content: center;
+    flex-direction: column;
+}
+
+.header {
+    flex-direction: row;
+    gap: 40px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 20px;
+}
