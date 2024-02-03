@@ -1,6 +1,7 @@
 import time
 import random
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
@@ -24,8 +25,16 @@ OTHER_REGION = {"Canada": "Canada Other", "USA": "USA Other", "Korea": "Korea Ot
 
 def scrape_google_jobs():
     # INITIALIZE DRIVER
-    driver = webdriver.Chrome()
-    wait = WebDriverWait(driver, 10)
+    options = Options()
+    options.headless = True
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+    )
+    # options.add_argument("--no-sandbox")
+    # options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Chrome(options=options)
+    # Set wait time to 30 seconds
+    wait = WebDriverWait(driver, 30)
 
     # OPEN GOOGLE JOB SEARCH
     for country in REGION:
@@ -36,11 +45,13 @@ def scrape_google_jobs():
             driver.get(url=url)
 
             # WAIT FOR THE RESULTS TO LOAD
+            print("WAITING FOR PAGE TO LOAD")
             wait.until(
                 lambda d: d.find_element(
                     By.CLASS_NAME, "zxU94d.gws-plugins-horizon-jobs__tl-lvc"
                 )
             )
+            print("DONE LOADING")
             time.sleep(random.uniform(3, 10))
 
             # SCROLL TO THE END OF THE PAGE TO LOAD ALL RESULTS
@@ -93,14 +104,17 @@ def scrape_google_jobs():
                     posted_date = ""
 
                 # SET POSTED DATE TO INTEGER
-                # -1 means "not specified"
                 # 0 means "today"
+                # 5 means "5 days ago"
+                # For "unknown", set to 2 days ago
                 if "days" in posted_date or "day" in posted_date:
                     posted_date = int(posted_date.split(" ")[0])
                 elif "hours" in posted_date:
                     posted_date = 0
                 else:
-                    posted_date = -1
+                    # If the date is unknown, set to 2 days ago
+                    # So it does not appear as "today"
+                    posted_date = 2
 
                 # SCROLL TO THE JOB
                 driver.execute_script("arguments[0].scrollIntoView(true);", job)
@@ -152,7 +166,7 @@ def scrape_google_jobs():
                 if Job.objects.filter(job_id=job_id).exists():
                     print("Job already exists")
                     continue
-                
+
                 Job.objects.create(
                     job_id=job_id,
                     title=title,
