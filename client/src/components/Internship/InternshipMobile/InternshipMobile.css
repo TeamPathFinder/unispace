@@ -11,6 +11,10 @@
     justify-content: flex-start;
 }
 
+.flex-1{
+    flex: 1;
+}
+
 .curr-time {
     height: 2.5rem;
     font-size: 15px;
@@ -49,7 +53,10 @@
     background: none;
     border-color: #3D3FEB;
     color: #3D3FEB;
-    border-width: 1px
+    border-width: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .filter-icon{
@@ -70,3 +77,59 @@
     opacity: 0.5;
 }
 
+.mobile-filter-container{
+    display: flex;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    border: solid #3D3FEB 1.5px;
+    margin-top: 1.5rem;
+    box-sizing: border-box;
+}
+
+.mobile-filter-section{
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    display: flex;
+    border-top: 0px;
+    border-bottom: solid 1px rgba(61, 63, 235, 0.3);
+    color: rgba(61, 63, 235, 0.9);
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.mobile-filter-section.closed{
+    display: none;
+}
+
+.mobile-filter-header{
+    font-size: 14px;
+    font-weight: bolder;
+    margin-top: 0;
+    margin-bottom: 0;
+    user-select: none;
+}
+
+.filter-collapsible-arrow-mobile{
+    height: 8px;
+    fill:rgba(61, 63, 235, 0.9);
+}
+
+.mobile-filter-apply-button{
+    font-size: 14px;
+    color: rgba(61, 63, 235, 0.9);
+    border: solid 1.5px rgba(61, 63, 235, 0.9);
+    display: flex;
+    align-items: center;
+    padding:10px 15px 10px 15px;
+    width: max-content;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: 4vw;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: pointer;
+}
