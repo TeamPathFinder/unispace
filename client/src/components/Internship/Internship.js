@@ -24,84 +24,10 @@ if (process.env.REACT_APP_NODE_ENV === 'production') {
 }
 
 const Internship = () => {
-    const [isFilterOn, setIsFilterOn] = useState(false);
-    const observerTarget = useRef(null);
-    const [isFilterFocus, setIsFilterFocus] = useState(false);
 
-    useEffect(() => {
-        // const observer = new IntersectionObserver(
-        //   (entries) => {
-        //     if (entries[0].isIntersecting) {
-        //       handlePageChange(currPage + 1);
-        //       console.log("intersecting");
-        //     }
-        //   },
-        let timeouts = {};
-        const observer = new IntersectionObserver(
-            (entries, ob) => {
-                for (const e of entries) {
-                    if (e.isIntersecting) {
-                        timeouts[e.target.id] = setTimeout(() => {
-                            ob.unobserve(e.target);
-                            console.log('intersecting');
-                            handlePageChange(currPage + 1);
-                        }, 500);
-                    } else {
-                        clearTimeout(timeouts[e.target.id]);
-                    }
-                }
-            },
-            { threshold: 1 }
-        );
 	const [isFilterOn, setIsFilterOn] = useState(false);
 	const observerTarget = useRef(null);
 	const [isFilterFocus, setIsFilterFocus] = useState(false);
-    // const observer = new IntersectionObserver((entries, ob) => {
-    //     entries.forEach(entry => {
-    //         if (entry.isIntersecting) {
-    //             console.log("intersecting!!!");
-    //         }
-    //     })
-    // }, {threshold: 1})
-    // observer.observe(document.getElementById("load-more"));
-	// useEffect(() => {
-	// 	// const observer = new IntersectionObserver(
-	// 	//   (entries) => {
-	// 	//     if (entries[0].isIntersecting) {
-	// 	//       handlePageChange(currPage + 1);
-	// 	//       console.log("intersecting");
-	// 	//     }
-	// 	//   },
-	// 	let timeouts = {};
-	// 	const observer = new IntersectionObserver(
-	// 		(entries, ob) => {
-	// 			for (const e of entries) {
-	// 				if (e.isIntersecting) {
-	// 					timeouts[e.target.id] = setTimeout(() => {
-	// 						ob.unobserve(e.target);
-	// 						console.log('intersecting');
-	// 						handlePageChange(currPage + 1);
-	// 					}, 500);
-	// 				} else {
-	// 					clearTimeout(timeouts[e.target.id]);
-	// 				}
-	// 			}
-    //             // handlePageChange(currPage + 1);
-	// 		},
-	// 		{ threshold: 1 }
-	// 	);
-    
-
-	// 	if (observerTarget.current) {
-	// 		observer.observe(observerTarget.current);
-	// 	}
-
-	// 	return () => {
-	// 		if (observerTarget.current) {
-	// 			observer.unobserve(observerTarget.current);
-	// 		}
-	// 	};
-	// }, [observerTarget]);
 
    
 	const Desktop = ({ children }) => {
@@ -713,9 +639,6 @@ const Internship = () => {
                                             ))}
 
                                         </div>
-
-
-
                                         <div ref={observerTarget} />
                                     </div>
                                 </div>

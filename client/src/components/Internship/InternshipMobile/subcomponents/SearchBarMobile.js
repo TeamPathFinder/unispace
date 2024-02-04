@@ -7,9 +7,10 @@ const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange }) => {
     setSearch(event.target.value);
   };
 
-  const placeholder = isEnglish
-    ? "Company / Position"
-    : "찾고 있는 회사, 포지션을 자유롭게 검색해보세요.";
+  // const placeholder = isEnglish
+  //   ? "Company / Position"
+  //   : "찾고 있는 회사, 포지션을 자유롭게 검색해보세요.";
+  const placeholder = "Company / Position"; // English only for now
 
   return (
     <div className="flex fd-row searchbar-mobile">
