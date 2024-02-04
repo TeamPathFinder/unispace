@@ -65,6 +65,16 @@ const InternshipMobile = ({
     };
   }, [observerTarget]);
 
+  const InternshipTagline = () => {
+    return (
+      <div className="internship-tagline-container">
+        <p className="internship-tagline">
+          Your Space for upcoming <strong>2024 Summer Internships</strong>
+        </p>
+      </div>
+    );
+  };
+
   return (
     <>
       {isFilterFocus ?
@@ -124,6 +134,16 @@ const InternshipMobile = ({
           <div className="internship-content-container-mobile flex fd-col">
             <div className="internship-header-container-mobile flex fd-col">
               {/* <div className="internship-header-mobile">
+      <InternshipTagline />
+      <Filter
+        filterOptions={filterOptions}
+        setFilterOptions={setFilterOptions}
+        setIsFilterOn={setIsFilterOn}
+      />
+      <div className="internship-container-mobile flex fd-col">
+        <div className="internship-content-container-mobile flex fd-col">
+          <div className="internship-header-container-mobile flex fd-col">
+            {/* <div className="internship-header-mobile">
               {isEnglish
                 ? "Your space for upcoming 2024 internships"
                 : "다가오는 2024 하계 인턴십을 위한 space"}
