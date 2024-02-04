@@ -97,7 +97,7 @@
     opacity: 0;
     cursor: pointer;
     height: 15px;
-    width: 15px
+    width: 15px;
 }
 
 .custom-checkbox-label {
@@ -109,6 +109,7 @@
     margin-bottom: 6px;
     margin-top: 10px;
     color: rgba(0, 0, 0, 0.6);
+    user-select: none;
 }
 
 .custom-checkbox {
@@ -324,5 +325,18 @@ input[type="text"]:focus {
 
     .internship-filter-col {
         display: none;
+    }
+
+    .custom-checkbox-label {
+        margin-top: 2px;
+        color: rgba(61, 63, 235, 0.9);
+        font-size: 14px;
+        padding-left: 28px;
+    }
+
+    .custom-checkbox {
+        border-color: rgba(61, 63, 235, 0.9);
+        height: 14px;
+        width: 14px;
     }
 }

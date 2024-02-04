@@ -1,0 +1,97 @@
+.mobile-sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	/* To make sure it's on top of everything */
+	z-index: 1000;
+	background: #fcfcfc;
+	display: flex;
+	flex-direction: column;
+	padding: 3rem 2rem 5rem 2rem;
+	box-sizing: border-box;
+}
+
+.mobile-sidebar-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	border-bottom: 2px solid #ccc;
+}
+
+.mobile-sidebar-logo {
+	width: auto;
+	height: 2rem;
+}
+
+.mobile-sidebar-close-button {
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+}
+
+.close-icon {
+	height: 2rem;
+}
+
+.mobile-sidebar-links {
+	display: flex;
+	flex-direction: column;
+}
+
+.mobile-sidebar-link {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	font-size: 1.2rem;
+	justify-content: space-between;
+	margin-top: 1.5rem;
+}
+
+.mobile-sidebar-link.active {
+	font-weight: 600;
+}
+
+.mobile-sidebar-link-icon {
+	width: 1.5rem;
+}
+
+.mobile-sidebar-bottom {
+	margin-top: auto;
+}
+
+.mobile-sidebar-invite-friends {
+	display: flex;
+	flex-direction: column;
+}
+
+.invite-button {
+	width: 100%;
+	background: none;
+	border: 1px solid #3d3feb;
+	color: #3d3feb;
+	padding: 1rem;
+	font-size: 1.2rem;
+	margin: 1rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.invite-icon {
+	fill: #3d3feb;
+	width: 1.5rem;
+}
+
+.mobile-sidebar-additional-links {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-top: 1px solid #ccc;
+	padding-top: 1rem;
+}

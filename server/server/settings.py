@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     # AWS
     ".ca-central-1.compute.amazonaws.com",
     "52.60.76.92",
+    "172.31.7.206",
     # Domain
     "api.unispace.world",
     # Local
@@ -64,9 +65,11 @@ INSTALLED_APPS = [
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
     "https://api.unispace.world",
     # Frontend Deployed
     "https://unispace-tmp.netlify.app",
+    "https://unispace.world",
 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://api.unispace.world"]
