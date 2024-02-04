@@ -59,11 +59,11 @@ const MobileSidebar = ({ isOpen, onClose }) => {
 
 			{/* Links */}
 			<div className="mobile-sidebar-links">
-				<MobileSlidebarLink href="/en/coffee_chat" onClick={onClose}>
-					Coffee Chat
-				</MobileSlidebarLink>
 				<MobileSlidebarLink href="/en/internship" onClick={onClose}>
 					Internship
+				</MobileSlidebarLink>
+				<MobileSlidebarLink href="/en/coffee_chat" onClick={onClose}>
+					Coffee Chat
 				</MobileSlidebarLink>
 				<MobileSlidebarLink href="/en/career" onClick={onClose}>
 					Career

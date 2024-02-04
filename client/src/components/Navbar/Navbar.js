@@ -24,17 +24,17 @@ const NavigationLinks = ({ isEnglish, activateLink, topLocation }) => {
 	return (
 		<div className="flex fd-row nav-category-container">
 			<LinkContainer
-				to={isEnglish ? '/en/coffee_chat' : '/kr/coffee_chat'}
-				className={activateLink('coffee_chat')}
-			>
-				<a>{isEnglish ? 'Coffee Chat' : '커피챗'}</a>
-			</LinkContainer>
-
-			<LinkContainer
 				to={isEnglish ? '/en/internship' : '/kr/internship'}
 				className={activateLink('internship')}
 			>
 				<a>{isEnglish ? 'Internship' : '인턴십'}</a>
+			</LinkContainer>
+			
+			<LinkContainer
+				to={isEnglish ? '/en/coffee_chat' : '/kr/coffee_chat'}
+				className={activateLink('coffee_chat')}
+			>
+				<a>{isEnglish ? 'Coffee Chat' : '커피챗'}</a>
 			</LinkContainer>
 
 			<LinkContainer
