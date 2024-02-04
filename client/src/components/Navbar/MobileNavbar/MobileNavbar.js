@@ -14,15 +14,6 @@ const UnispaceSloganLogo = () => {
 	);
 };
 
-const MobileNavPhrase = () => {
-	return (
-		<p className="mobile-navbar-phrase">
-			{' '}
-			Your Space for upcoming <strong>2024 Summer Internships</strong>{' '}
-		</p>
-	);
-};
-
 const MobileNavbar = () => {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const location = useLocation();
@@ -66,14 +57,10 @@ const MobileNavbar = () => {
 						</button>
 					</div>
 				</div>
-				<div className="mobile-navbar-phrase-container">
-					<MobileNavPhrase />
-				</div>
 			</div>
 			<MobileSidebar
 				isOpen={sidebarOpen}
 				onClose={() => setSidebarOpen(false)}
-				location={currLocation}
 			/>
 		</>
 	);

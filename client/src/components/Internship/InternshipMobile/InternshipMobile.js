@@ -59,8 +59,19 @@ const InternshipMobile = ({
     };
   }, [observerTarget]);
 
+  const InternshipTagline = () => {
+    return (
+      <div className="internship-tagline-container">
+        <p className="internship-tagline">
+          Your Space for upcoming <strong>2024 Summer Internships</strong>
+        </p>
+      </div>
+    );
+  };
+
   return (
     <>
+      <InternshipTagline />
       <Filter
         filterOptions={filterOptions}
         setFilterOptions={setFilterOptions}

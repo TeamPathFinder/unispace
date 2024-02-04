@@ -9,7 +9,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	background-color: #fcfcfc;
-	padding: 1.7rem 1rem 0 1rem;
+	padding: 1.7rem 1rem 0.5rem 1rem;
 }
 
 .mobile-navbar-slogan-logo {
@@ -36,14 +36,4 @@
 .mobile-navbar-links-button-icon {
 	margin-left: 0.5rem;
 	width: 1.2rem;
-}
-
-.mobile-navbar-phrase-container {
-	background-image: url('../../../assets/unispace_gradient.svg');
-	background-size: auto;
-}
-
-.mobile-navbar-phrase {
-	font-size: 1.1rem;
-	padding-left: 1.2rem;
 }

@@ -24,10 +24,20 @@ const MobileSlidebarLink = ({ href, onClick, children }) => {
 	);
 };
 
-const MobileSidebar = ({ isOpen, onClose, location }) => {
+async function copyToClipboard(text) {
+	// Use the Clipboard API to copy the text to the clipboard
+	await navigator.clipboard.writeText(text);
+}
+
+const MobileSidebar = ({ isOpen, onClose }) => {
 	// If the sidebar is closed, return null
 	if (!isOpen) return null;
 	const emailAddress = 'askteam.pathfinder@gmail.com';
+
+	const handleInviteClick = () => {
+		const url = window.location.href; // Get the current URL
+		copyToClipboard(url); // Copy the URL to the clipboard
+	};
 
 	return (
 		<div className="mobile-sidebar">
@@ -66,7 +76,7 @@ const MobileSidebar = ({ isOpen, onClose, location }) => {
 			<div className="mobile-sidebar-bottom">
 				{/* Invite your friends */}
 				<div className="mobile-sidebar-invite-friends">
-					<button className="invite-button">
+					<button className="invite-button" onClick={handleInviteClick}>
 						<LinkIcon className="invite-icon" />
 						Invite Your Friends
 					</button>
