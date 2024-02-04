@@ -53,26 +53,65 @@ const Internship = () => {
             },
             { threshold: 1 }
         );
+	const [isFilterOn, setIsFilterOn] = useState(false);
+	const observerTarget = useRef(null);
+	const [isFilterFocus, setIsFilterFocus] = useState(false);
+    // const observer = new IntersectionObserver((entries, ob) => {
+    //     entries.forEach(entry => {
+    //         if (entry.isIntersecting) {
+    //             console.log("intersecting!!!");
+    //         }
+    //     })
+    // }, {threshold: 1})
+    // observer.observe(document.getElementById("load-more"));
+	// useEffect(() => {
+	// 	// const observer = new IntersectionObserver(
+	// 	//   (entries) => {
+	// 	//     if (entries[0].isIntersecting) {
+	// 	//       handlePageChange(currPage + 1);
+	// 	//       console.log("intersecting");
+	// 	//     }
+	// 	//   },
+	// 	let timeouts = {};
+	// 	const observer = new IntersectionObserver(
+	// 		(entries, ob) => {
+	// 			for (const e of entries) {
+	// 				if (e.isIntersecting) {
+	// 					timeouts[e.target.id] = setTimeout(() => {
+	// 						ob.unobserve(e.target);
+	// 						console.log('intersecting');
+	// 						handlePageChange(currPage + 1);
+	// 					}, 500);
+	// 				} else {
+	// 					clearTimeout(timeouts[e.target.id]);
+	// 				}
+	// 			}
+    //             // handlePageChange(currPage + 1);
+	// 		},
+	// 		{ threshold: 1 }
+	// 	);
+    
 
-        if (observerTarget.current) {
-            observer.observe(observerTarget.current);
-        }
+	// 	if (observerTarget.current) {
+	// 		observer.observe(observerTarget.current);
+	// 	}
 
-        return () => {
-            if (observerTarget.current) {
-                observer.unobserve(observerTarget.current);
-            }
-        };
-    }, [observerTarget]);
+	// 	return () => {
+	// 		if (observerTarget.current) {
+	// 			observer.unobserve(observerTarget.current);
+	// 		}
+	// 	};
+	// }, [observerTarget]);
 
-    const Desktop = ({ children }) => {
-        const isDesktop = useMediaQuery({ minWidth: 992 });
-        return isDesktop ? children : null;
-    };
-    const isMobile = useMediaQuery({ maxWidth: 991 }); // needed in outer scope to use it in fetching logic
-    const Mobile = ({ children }) => {
-        return isMobile ? children : null;
-    };
+   
+	const Desktop = ({ children }) => {
+		const isDesktop = useMediaQuery({ minWidth: 992 });
+		return isDesktop ? children : null;
+	};
+	const isMobile = useMediaQuery({ maxWidth: 991 }); // needed in outer scope to use it in fetching logic
+	const Mobile = ({ children }) => {
+		return isMobile ? children : null;
+	};
 
     //***************************** MOBILE RELATED VARS **************** */
     const InternshipTagline = () => {
@@ -306,55 +345,93 @@ const Internship = () => {
         const isAnyFilterChecked = filterOptions.some(option => option.isChecked);
 
         setIsFilterOn(isAnyFilterChecked);
-    }, [filterOptions]);
+      }, [filterOptions]); 
 
-    //***********************************JSX below ********************************* */
-    return (
-        <>
-            <Desktop>
-                <div className="internship-container flex fd-col">
-                    <div className="flex fd-col internship-content-container">
-                        <div className="flex fd-col internship-header-container">
-                            <h2> {isEnglish ? 'Internship' : '인턴십'} </h2>
-                            <a>
-                                {' '}
-                                {isEnglish
-                                    ? 'Your space for upcoming 2024 internships'
-                                    : '다가오는 2024 하계 인턴십을 위한 space'}{' '}
-                            </a>
-                            <div className="internship-count">
-                                <a>
-                                    {' '}
-                                    {getCurrentTimeFormatted()} |{' '}
-                                    <span style={{ fontWeight: 'bold' }}>
-                                        {' '}
-                                        {totalInternshipCount}{' '}
-                                    </span>{' '}
-                                    {isEnglish
-                                        ? 'opportunies are waiting for you'
-                                        : '개의 채용공고가 당신을 기다리고 있어요!'}{' '}
-                                </a>
-                            </div>
-                        </div>
-                        <div className="internship-grid">
-                            <div className="internship-filter-col flex fd-col">
-                                <div className="flex fd-col internship-filter-container">
-                                    <div
-                                        className="flex fd-row align-center internship-collapsible-header"
-                                        onClick={(e) => handleCollapsibleHeader(e, 'canada')}
-                                    >
-                                        <CollapsibleArrow
-                                            className={`filter-collapsible-arrow ${collapsibleHeaders['canada'] ? 'flip-vertical' : ''
-                                                }`}
-                                        />
-                                        <a> Canada </a>
-                                    </div>
-                                    <div
-                                        className={`filter-collapsible-div ${collapsibleHeaders['canada'] ? 'open' : ''
-                                            }`}
-                                    >
-                                        {renderFilterList(0, 5)}
-                                    </div>
+      let timeouts = {};
+
+      useEffect(() => {
+        const observerCallback = (entries, observer) => {
+          for (const entry of entries) {
+            const targetId = entry.target.id;
+    
+            if (entry.isIntersecting) {
+              timeouts[targetId] = setTimeout(() => {
+                observer.unobserve(entry.target);
+                console.log('Intersecting');
+                handlePageChange(currPage + 1);
+              }, 500);
+            } else {
+              clearTimeout(timeouts[targetId]);
+            }
+          }
+        };
+    
+        const observerOptions = { threshold: 1 };
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+        if (observerTarget.current) {
+          observer.observe(observerTarget.current);
+        }
+    
+        return () => {
+          if (observerTarget.current) {
+            observer.unobserve(observerTarget.current);
+          }
+    
+          // Clear all timeouts in cleanup
+          Object.values(timeouts).forEach(clearTimeout);
+        };
+      }, [observerTarget, handlePageChange, currPage]);
+  
+	//***********************************JSX below ********************************* */
+	return (
+		<>
+			<Desktop>
+				<div className="internship-container flex fd-col">
+					<div className="flex fd-col internship-content-container">
+						<div className="flex fd-col internship-header-container">
+							<h2> {isEnglish ? 'Internship' : '인턴십'} </h2>
+							<a>
+								{' '}
+								{isEnglish
+									? 'Your space for upcoming 2024 internships'
+									: '다가오는 2024 하계 인턴십을 위한 space'}{' '}
+							</a>
+							<div className="internship-count">
+								<a>
+									{' '}
+									{getCurrentTimeFormatted()} |{' '}
+									<span style={{ fontWeight: 'bold' }}>
+										{' '}
+										{totalInternshipCount}{' '}
+									</span>{' '}
+									{isEnglish
+										? 'opportunies are waiting for you'
+										: '개의 채용공고가 당신을 기다리고 있어요!'}{' '}
+								</a>
+							</div>
+						</div>
+						<div className="internship-grid">
+							<div className="internship-filter-col flex fd-col">
+								<div className="flex fd-col internship-filter-container">
+									<div
+										className="flex fd-row align-center internship-collapsible-header"
+										onClick={(e) => handleCollapsibleHeader(e, 'canada')}
+									>
+										<CollapsibleArrow
+											className={`filter-collapsible-arrow ${
+												collapsibleHeaders['canada'] ? 'flip-vertical' : ''
+											}`}
+										/>
+										<a> Canada </a>
+									</div>
+									<div
+										className={`filter-collapsible-div ${
+											collapsibleHeaders['canada'] ? 'open' : ''
+										}`}
+									>
+										{renderFilterList(0, 5)}
+									</div>
 
                                     <div
                                         className="flex fd-row align-center internship-collapsible-header"

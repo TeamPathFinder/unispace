@@ -200,3 +200,8 @@
 .internship-list-container-mobile {
     border: 1px solid black;
 }
+
+.load-more {
+    width:auto;
+    height: 1px;
+}
