@@ -8,21 +8,34 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	background-color: #ffffff;
-    padding: 1.7rem 1rem 0 1rem;
+	background-color: #fcfcfc;
+	padding: 1.7rem 1rem 0 1rem;
 }
 
 .mobile-navbar-slogan-logo {
 	width: auto;
-	height: 50px;
+	height: 4rem;
 }
 
 .mobile-navbar-links {
 	display: flex;
 	align-items: center;
-	font-size: 11pt; /* Temorary */
+}
+
+.mobile-navbar-links-button {
+	background: none;
+	border: none;
+	font-size: 1.3rem;
 	font-weight: 600;
-    padding-right: 1rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0;
+}
+
+.mobile-navbar-links-button-icon {
+	margin-left: 0.5rem;
+	width: 1.2rem;
 }
 
 .mobile-navbar-phrase-container {
@@ -32,5 +45,5 @@
 
 .mobile-navbar-phrase {
 	font-size: 1.1rem;
-    padding-left: 1.2rem;
+	padding-left: 1.2rem;
 }
