@@ -256,36 +256,41 @@ const Internship = () => {
         return `${year}.${month}.${date}.${hour}:${minute}`;
     };
 
-    useEffect(() => {
-        //Axios call here to get max page number and fetch internship list
-        const fetchInternshipList = () => {
-            const cities = filterOptions
-                .filter((option) => option.isChecked)
-                .map((option) => option.id)
-                .join(',');
-            const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}`;
-            axios
-                .get(requestURL)
-                .then((response) => {
-                    if (totalInternshipCount == -1) {
-                        setTotalInternshipCount(response.data.count);
-                    }
-                    setCurrInternshipCount(response.data.count);
-                    if (isMobile && currPage !== 1) {
-                        setShownInternshipList((prev) => [
-                            ...prev,
-                            ...response.data.results,
-                        ]); // extend data to implement infinite scrolling
-                    } else {
-                        setShownInternshipList(response.data.results);
-                    }
-                    console.log(response.data);
-                    setMaxPage(Math.ceil(response.data.count / 12));
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        };
+	useEffect(() => {
+		//Axios call here to get max page number and fetch internship list
+		const fetchInternshipList = () => {
+			const cities = filterOptions
+				.filter((option) => option.isChecked)
+				.map((option) => option.id)
+				.join(',');
+            if (cities) {
+                setIsFilterOn(true);
+            } else {
+                setIsFilterOn(false);
+            }
+			const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}`;
+			axios
+				.get(requestURL)
+				.then((response) => {
+					if (totalInternshipCount == -1) {
+						setTotalInternshipCount(response.data.count);
+					}
+					setCurrInternshipCount(response.data.count);
+					if (isMobile && currPage !== 1) {
+						setShownInternshipList((prev) => [
+							...prev,
+							...response.data.results,
+						]); // extend data to implement infinite scrolling
+					} else {
+						setShownInternshipList(response.data.results);
+					}
+					console.log(response.data);
+					setMaxPage(Math.ceil(response.data.count / 12));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		};
 
         fetchInternshipList();
         setPageNumbers(generatePagination());
@@ -583,16 +588,18 @@ const Internship = () => {
 
                                 <div className="internship-content-container-mobile flex fd-col">
                                     <div className="internship-content-col-mobile">
-                                        <div className="curr-internship-count-mobile">
+                            
+
+                                        <div className="curr-internship-count-mobile" >
                                             {isFilterOn &&
                                                 '*' +
                                                 currInternshipCount +
                                                 ' ' +
-                                                'results from your interest'}
+                                                'results from your interests.'}
                                         </div>
 
                                         <div style={shownInternshipList.length ? { border: 'solid 1px black', marginTop: '1.5em' }
-                                        : {display:'none'}}>
+                                            : { display: 'none' }}>
                                             {/* <InternshipListingMobile
                                                 job_id={1}
                                                 company={'Apple'}
