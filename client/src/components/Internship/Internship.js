@@ -25,8 +25,8 @@ const Internship = () => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
     return isDesktop ? children : null;
   };
+  const isMobile = useMediaQuery({ maxWidth: 991 }); // needed in outer scope to use it in fetching logic
   const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 991 });
     return isMobile ? children : null;
   };
 
@@ -119,7 +119,7 @@ const Internship = () => {
   const [maxPage, setMaxPage] = useState(5);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [totalInternshipCount, setTotalInternshipCount] = useState(-1);
-
+  const [currInternshipCount, setCurrInternshipCount] = useState(-1);
   const generatePagination = () => {
     const PAGESTOSHOW = 5;
     const halfRange = Math.floor(PAGESTOSHOW / 2);
@@ -208,7 +208,15 @@ const Internship = () => {
           if (totalInternshipCount == -1) {
             setTotalInternshipCount(response.data.count);
           }
-          setShownInternshipList(response.data.results);
+          setCurrInternshipCount(response.data.count);
+          if (isMobile && currPage !== 1) {
+            setShownInternshipList((prev) => [
+              ...prev,
+              ...response.data.results,
+            ]); // extend data to implement infinite scrolling
+          } else {
+            setShownInternshipList(response.data.results);
+          }
           console.log(response.data);
           setMaxPage(Math.ceil(response.data.count / 12));
         })
@@ -337,6 +345,7 @@ const Internship = () => {
                 <Searchbar
                   setSearch={setSearch}
                   isEnglish={isEnglish}
+                  handlePageChange={handlePageChange}
                 ></Searchbar>
                 {shownInternshipList.map((item) => (
                   <InternshipListing
@@ -383,7 +392,22 @@ const Internship = () => {
         </div>
       </Desktop>
       <Mobile>
-        <InternshipMobile />
+        <InternshipMobile
+          currTime={getCurrentTimeFormatted()}
+          shownInternshipList={shownInternshipList}
+          totalInternshipCount={totalInternshipCount}
+          handlePageChange={handlePageChange}
+          maxPage={maxPage}
+          currPage={currPage}
+          setCurrPage={setCurrPage}
+          search={search}
+          setSearch={setSearch}
+          filterOptions={filterOptions}
+          setFilterOptions={setFilterOptions}
+          isEnglish={true} // mobile view currently shows English only
+          currInternshipCount={currInternshipCount}
+        //   setCurrPage={setCurrPage}
+        />
       </Mobile>
     </>
   );
