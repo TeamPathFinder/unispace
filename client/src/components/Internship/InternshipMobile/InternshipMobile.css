@@ -82,6 +82,40 @@
     color: #3D3FEB;
 }
 
+.input-mobile{
+    color: #3D3FEB;
+}
+
+.mobile-internship-listing-container{
+    display: flex;
+    height: 70px;
+    position: relative;
+}
+
+.mobile-internship-listing-grid.with-decoration::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-bottom: 20px solid #3D3FEB;
+    /* Set the color you want */
+}
+
+.mobile-internship-listing-grid {
+    display: grid;
+    height: 70px;
+    width: 100%;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+    padding-left: 20px;
+    grid-template-columns: 1fr 5fr;
+    column-gap: 20px;
+    box-sizing: border-box;
+}
+
+
 .input-mobile::placeholder {
     color: #3D3FEB;
     opacity: 0.5;

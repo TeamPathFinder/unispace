@@ -25,6 +25,7 @@ const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange }) => {
         style={{
           borderWidth: "0px",
           backgroundColor: "transparent",
+          color:'#3D3FEB'
         }}
       />
       <SearchIcon className="search-icon" />
