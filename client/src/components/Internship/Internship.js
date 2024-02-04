@@ -295,6 +295,14 @@ const Internship = () => {
 		setCurrPage(1);
 	}, [filterOptions]);
 
+    // useEffect to update state of isFilterOn
+    useEffect(() => {
+        // Check if any filter option is checked
+        const isAnyFilterChecked = filterOptions.some(option => option.isChecked);
+        
+        setIsFilterOn(isAnyFilterChecked);
+      }, [filterOptions]); 
+
 	//***********************************JSX below ********************************* */
 	return (
 		<>
@@ -535,7 +543,7 @@ const Internship = () => {
 							</div>
 
 							<div
-								className="mobile-filter-apply-button"
+								className={`mobile-filter-apply-button`}
 								onClick={() => {
 									console.log("this shouldn't be happening");
 									setIsFilterFocus(false);
@@ -569,8 +577,8 @@ const Internship = () => {
 								</div>
 
 								<div className="internship-search-area-mobile flex fd-row">
-									<button
-										className="filter-button-mobile"
+									<button 
+										className={`filter-button-mobile ${isFilterOn ? 'on' : 'off'}`}
 										onClick={() => {
 											setIsFilterFocus(true);
 										}}

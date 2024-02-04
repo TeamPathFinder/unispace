@@ -59,6 +59,11 @@
 	border-width: 1px;
 }
 
+.filter-button-mobile.on{
+    background-color: rgba(61, 63, 235, 0.9);
+    color: white;
+}
+
 .filter-icon{
     fill: #3D3FEB;
 }
