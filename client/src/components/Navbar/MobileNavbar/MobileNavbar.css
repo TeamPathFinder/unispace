@@ -1,0 +1,36 @@
+.mobile-navbar-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.mobile-navbar {
+	background-color: aqua;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #ffffff;
+    padding: 1.7rem 1rem 0 1rem;
+}
+
+.mobile-navbar-slogan-logo {
+	width: auto;
+	height: 50px;
+}
+
+.mobile-navbar-links {
+	display: flex;
+	align-items: center;
+	font-size: 11pt; /* Temorary */
+	font-weight: 600;
+    padding-right: 1rem;
+}
+
+.mobile-navbar-phrase-container {
+	background-image: url('../../../assets/unispace_gradient.svg');
+	background-size: auto;
+}
+
+.mobile-navbar-phrase {
+	font-size: 1.1rem;
+    padding-left: 1.2rem;
+}
