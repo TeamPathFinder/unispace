@@ -57,6 +57,10 @@
 	border-color: #3d3feb;
 	color: #3d3feb;
 	border-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .filter-button-mobile.on{
@@ -66,6 +70,7 @@
 
 .filter-icon{
     fill: #3D3FEB;
+    font-size: 1.5rem;
 }
 
 .searchbar-mobile {
