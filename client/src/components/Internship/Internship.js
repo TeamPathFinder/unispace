@@ -599,7 +599,7 @@ const Internship = () => {
                                         </div>
 
                                         <div style={shownInternshipList.length ? { border: 'solid 1px black', marginTop: '1.5em' }
-                                            : { display: none}}>
+                                            : { display: 'none' }}>
                                             {/* <InternshipListingMobile
                                                 job_id={1}
                                                 company={'Apple Apple Apple Apple Apple Apple'}
