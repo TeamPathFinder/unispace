@@ -12,7 +12,7 @@ const UnderDevelopment = () => {
 
     body: {
       kr: "여러분을 만나기에는 아직 부족해 준비중에 있습니다. 멋진 모습으로 인사드리겠습니다.",
-      en: "This page is not quite ready - hold tight, it wil be much nicer next time you visit.",
+      en: "This page is not quite ready - hold tight, it will be much nicer next time you visit.",
     },
   };
   const { lang } = useParams();
