@@ -156,3 +156,13 @@
     margin: 0;
     
 }
+
+.curr-internship-count-mobile {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color:rgba(61, 63, 235, 0.9);
+}
+
+.internship-list-container-mobile {
+    border: 1px solid black;
+}

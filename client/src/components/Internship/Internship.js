@@ -605,8 +605,9 @@ const Internship = () => {
 												'*' +
 													currInternshipCount +
 													' ' +
-													'results from your interest'}
+													'results from your interests.'}
 										</div>
+                                        <div className="internship-list-container-mobile flex fd-col">
 										{shownInternshipList.map((item) => (
 											<InternshipListingMobile
 												key={item.id}
@@ -620,6 +621,8 @@ const Internship = () => {
 												url={item.apply_link}
 											/>
 										))}
+
+                                        </div>
 										<div ref={observerTarget} />
 									</div>
 								</div>
