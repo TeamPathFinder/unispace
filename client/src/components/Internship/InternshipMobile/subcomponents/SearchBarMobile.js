@@ -8,7 +8,7 @@ const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange }) => {
   };
 
   const placeholder = isEnglish
-    ? "Search"
+    ? "Company / Position"
     : "찾고 있는 회사, 포지션을 자유롭게 검색해보세요.";
 
   return (
