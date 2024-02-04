@@ -599,11 +599,11 @@ const Internship = () => {
                                         </div>
 
                                         <div style={shownInternshipList.length ? { border: 'solid 1px black', marginTop: '1.5em' }
-                                            : { display: 'none' }}>
-                                            {/* <InternshipListingMobile
+                                            : { border: 'solid 1px black', marginTop: '1.5em' }}>
+                                            <InternshipListingMobile
                                                 job_id={1}
-                                                company={'Apple'}
-                                                position={'Software Engineer'}
+                                                company={'Apple Apple Apple Apple Apple Apple'}
+                                                position={'Software Engineer aksdjfh askdjfh asdkfj hasdf'}
                                                 city={'Toronto'}
                                                 country={'Canada'}
                                                 viewCount={53}
@@ -619,9 +619,9 @@ const Internship = () => {
                                                 viewCount={53}
                                                 isNew={false}
                                                 url={'none'}
-                                            /> */}
+                                            />
 
-                                            {shownInternshipList.map((item) => (
+                                            {/* {shownInternshipList.map((item) => (
                                                 <InternshipListingMobile
                                                     key={item.id}
                                                     job_id={item.id}
@@ -633,7 +633,7 @@ const Internship = () => {
                                                     isNew={false}
                                                     url={item.apply_link}
                                                 />
-                                            ))}
+                                            ))} */}
 
                                         </div>
 

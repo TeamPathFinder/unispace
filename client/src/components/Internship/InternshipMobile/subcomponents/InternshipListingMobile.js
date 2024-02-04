@@ -31,11 +31,11 @@ const InternshipListing = ({ job_id, company, position, city, country, viewCount
 					className={`mobile-internship-listing-grid ${isNew ? 'with-decoration' : ''
 						}`}
 				>
-					<div style={{display: 'flex', paddingTop:'10px'}}>
+					<div style={{display: 'flex', paddingTop:'10px', overflow:'hidden'}}>
 						<p style={{margin:'0px', fontSize:'14px'}}className="fw-500 textWithEllipsis">{company}</p>
 					</div>
-					<div style={{display: 'flex', flexDirection: 'column', paddingTop:'10px'}}>
-						<p style={{margin:'0px', fontSize:'14px', fontWeight:'600', marginBottom:'4px'}}>{position}</p>
+					<div style={{display: 'flex', flexDirection: 'column', paddingTop:'10px', overflow:'hidden'}}>
+						<p className="textWithEllipsis" style={{margin:'0px', fontSize:'14px', fontWeight:'600', marginBottom:'4px'}}>{position}</p>
 						<p style={{margin:'0px', fontSize:'12px', marginBottom:'3px'}} >{city != 'Remote' ? `${city}, ${country}` : 'Remote'}</p>
 						<p style={{margin:'0px', fontSize:'10px', opacity:'50%'}} className="mobile-view-count">
 							{viewCount} viewed
