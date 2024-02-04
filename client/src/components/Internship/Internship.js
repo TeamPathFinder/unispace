@@ -554,43 +554,38 @@ const Internship = () => {
 						<>
 							<InternshipTagline />
 							<div className="internship-container-mobile flex fd-col">
+								<div className="internship-info-mobile flex fd-col">
+									<div className="internship-info time">
+										<span className="curr-time">
+											{getCurrentTimeFormatted().toLocaleString()} EST
+										</span>
+									</div>
+									<div className="internship-info">
+										<span className="count">
+											{totalInternshipCount.toLocaleString()} opportunities are
+											waiting for you!
+										</span>
+									</div>
+								</div>
+
+								<div className="internship-search-area-mobile flex fd-row">
+									<button
+										className="filter-button-mobile"
+										onClick={() => {
+											setIsFilterFocus(true);
+										}}
+									>
+										<FilterIcon className="filter-icon" />
+										Filter
+									</button>
+									<SearchBarMobile
+										isEnglish={isEnglish}
+										setSearch={setSearch}
+										handlePageChange={handlePageChange}
+									/>
+								</div>
+
 								<div className="internship-content-container-mobile flex fd-col">
-									<div className="internship-header-container-mobile flex fd-col">
-										<div className="internship-info-mobile flex fd-col">
-											<div className="curr-time flex flex-1">
-												{getCurrentTimeFormatted()}
-											</div>
-											<div className="internship-count-mobile-container flex flex-1">
-												<div className="internship-count-mobile flex">
-													<div className="count" style={{ fontWeight: 'bold' }}>
-														{totalInternshipCount + ' '}{' '}
-													</div>
-													<div>
-														{isEnglish
-															? 'opportunities are waiting for you!'
-															: '개의 채용공고가 당신을 기다리고 있어요!'}
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div className="search-area-mobile flex fd-row">
-										<button
-											className="filter-button-mobile"
-											onClick={() => {
-												console.log('wtf');
-												setIsFilterFocus(true);
-											}}
-										>
-											<FilterIcon className="filter-icon" />
-											Filter
-										</button>
-										<SearchBarMobile
-											isEnglish={isEnglish}
-											setSearch={setSearch}
-											handlePageChange={handlePageChange}
-										/>
-									</div>
 									<div className="internship-content-col-mobile">
 										<div className="curr-internship-count-mobile">
 											{isFilterOn &&

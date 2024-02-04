@@ -1,33 +1,33 @@
 .internship-container-mobile {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px
+    padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .internship-info-mobile {
     border: 1px solid black;
-    margin-bottom: 10px;
-    height: 5rem;
-    justify-content: flex-start;
+	margin-bottom: 1.5rem;
 }
 
 .flex-1{
     flex: 1;
 }
 
-.curr-time {
-    height: 2.5rem;
-    font-size: 15px;
-    font-weight: bold;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 1rem;
+.internship-info {
+	padding: 1rem;
 }
 
-.internship-count-mobile-container {
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 1rem;
+.internship-info.time {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.curr-time {
+    font-weight: 600;
+	font-size: 1.2rem;
+}
+
+.count {
+	font-size: 1.2rem;
 }
 
 .internship-count-mobile {
@@ -43,20 +43,20 @@
     border-top: 0.5px solid rgba(0, 0, 0, 0.5);
 }
 
-.search-area-mobile {
-    height: 3rem;
+.internship-search-area-mobile {
+	height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .filter-button-mobile {
-    width: 6rem;
-    height: auto;
-    background: none;
-    border-color: #3D3FEB;
-    color: #3D3FEB;
-    border-width: 1px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    width: 30%;
+	height: auto;
+	background: none;
+	border-color: #3d3feb;
+	color: #3d3feb;
+	border-width: 1px;
 }
 
 .filter-icon{
