@@ -263,6 +263,11 @@ const Internship = () => {
 				.filter((option) => option.isChecked)
 				.map((option) => option.id)
 				.join(',');
+            if (cities) {
+                setIsFilterOn(true);
+            } else {
+                setIsFilterOn(false);
+            }
 			const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}`;
 			axios
 				.get(requestURL)
