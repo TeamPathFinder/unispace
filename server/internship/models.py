@@ -22,6 +22,7 @@ REGION = {
 COUNTRY_CHOICES = [(country, country) for country in REGION.keys()]
 CITY_CHOICES = [city for cities in REGION.values() for city in cities]
 
+
 class Job(models.Model):
     id = models.AutoField(primary_key=True)
     job_id = models.CharField(max_length=100)
@@ -31,7 +32,8 @@ class Job(models.Model):
     city = models.CharField(max_length=50, choices=CITY_CHOICES)
     apply_link = models.URLField(max_length=300)
     description = models.TextField(default="")
-    date_posted = models.IntegerField()
+    # date_posted = models.IntegerField()  # Days ago
+    posted_date = models.DateField()  # Actual date posted
     view_count = models.IntegerField(default=0)
 
     def __str__(self):
