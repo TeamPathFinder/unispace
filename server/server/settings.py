@@ -187,6 +187,7 @@ CELERY_BEAT_SCHEDULE = {
     # Executes every day at midnight
     "run_scrapper": {
         "task": "internship.tasks.run_scraper",
-        "schedule": crontab(minute=0, hour=2),
+        # Run every 2 days at 4:00 AM
+        "schedule": crontab(minute=0, hour=4, day_of_month='1-31/2'),
     },
 }

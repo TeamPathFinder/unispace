@@ -34,8 +34,8 @@ def scrape_google_jobs():
     # options.add_argument("--no-sandbox")
     # options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(options=options)
-    # Set wait time to 30 seconds
-    wait = WebDriverWait(driver, 30)
+    # Set wait time to 60 seconds
+    wait = WebDriverWait(driver, 60)
 
     # OPEN GOOGLE JOB SEARCH
     for country in REGION:
