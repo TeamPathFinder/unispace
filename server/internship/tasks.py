@@ -1,4 +1,5 @@
 from celery import shared_task
+from datetime import datetime, timedelta
 
 from .scraper import scrape_google_jobs
 from .models import Job
@@ -7,11 +8,13 @@ from django.db.models import F
 
 @shared_task
 def run_scraper():
-    # Add one date to all jobs
-    Job.objects.all().update(date_posted=F("date_posted") + 1)
-
     # Scrape jobs and save to database
     scrape_google_jobs()
 
-    # Remove jobs older than 30 days
-    Job.objects.filter(date_posted__gte=30).delete()
+    # Calculate the date 30 days ago from today
+    thirty_days_ago = datetime.now() - timedelta(days=30)
+
+    # Delete jobs that are older than 30 days
+    print("Deleting jobs older than 30 days")
+    deleted_count, _ = Job.objects.filter(posted_date__lte=thirty_days_ago).delete()
+    print(f"{deleted_count} jobs were deleted.")

@@ -63,6 +63,8 @@ INSTALLED_APPS = [
 # React - Django connection (CORS bypass, erase at deploy)
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
     "http://127.0.0.1:8000",
     "https://api.unispace.world",
     # Frontend Deployed
@@ -182,6 +184,6 @@ CELERY_BEAT_SCHEDULE = {
     # Executes every day at midnight
     "run_scrapper": {
         "task": "internship.tasks.run_scraper",
-        "schedule": crontab(minute=0, hour=0),
+        "schedule": crontab(minute=0, hour=2),
     },
 }

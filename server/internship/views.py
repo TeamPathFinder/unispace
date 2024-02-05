@@ -46,7 +46,7 @@ class InternshipList(ListAPIView):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ["title", "company"]
     filterset_class = JobFilter
-    queryset = Job.objects.all().order_by('date_posted')
+    queryset = Job.objects.all().order_by("posted_date")
 
     @swagger_auto_schema()
     def get(self, request, *args, **kwargs):
