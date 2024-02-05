@@ -221,6 +221,21 @@ const Internship = () => {
         return `${year}.${month}.${date}.${hour}:${minute}`;
     };
 
+    const getCurrentDateFormatted = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        if (month < 10) {
+            month = `0${month}`;
+        }
+        let date = now.getDate();
+        if (date < 10) {
+            date = `0${date}`;
+        }
+        //format YYYY-MM-DD
+        return `${year}-${month}-${date}`;
+    };
+
 	useEffect(() => {
 		//Axios call here to get max page number and fetch internship list
 		const fetchInternshipList = () => {
@@ -426,7 +441,7 @@ const Internship = () => {
                                         city={item.city.includes('Other') ? 'Other' : item.city}
                                         country={item.country}
                                         viewCount={item.view_count}
-                                        isNew={item.date_posted == 0}
+                                        isNew={item.posted_date == getCurrentDateFormatted()}
                                         url={item.apply_link}
                                     />
                                 ))}
