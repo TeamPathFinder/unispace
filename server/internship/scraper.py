@@ -186,7 +186,7 @@ def scrape_google_jobs():
                         city=this_city,
                         apply_link=apply_link,
                         # description=description,
-                        date_posted=posted_date,
+                        # date_posted=posted_date,
                         posted_date=actual_date_posted,
                     )
 
