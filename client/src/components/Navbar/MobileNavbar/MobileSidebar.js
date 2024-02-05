@@ -88,7 +88,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
 						Email
 					</a>
 					<a
-						href="https://www.instagram.com/unispace.world/"
+						href="https://www.instagram.com/team.unispace/"
 						className="additional-link"
 					>
 						Instagram
