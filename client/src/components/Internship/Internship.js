@@ -68,7 +68,7 @@ const Internship = () => {
         { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city' },
         { id: 'Korea Other', label: 'Other', isChecked: false, type: 'city' },
         // Remote
-        { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' },
+        { id: 'Remote dummy', label: 'Remote', isChecked: false, type: 'city' }, //won't be used as coutry remote is sufficient
         // Add more filter options here
 
         // Countries // mostly for mobile view use
@@ -248,11 +248,7 @@ const Internship = () => {
 				.filter((option) => option.isChecked && option.type === 'country')
 				.map((option) => option.id)
 				.join(',');
-            if (cities || search || countries) {
-                setIsFilterOn(true);
-            } else {
-                setIsFilterOn(false);
-            }
+
 			const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}&countries=${countries}`;
 			axios
 				.get(requestURL)
@@ -290,8 +286,8 @@ const Internship = () => {
         // Check if any filter option is checked
         const isAnyFilterChecked = filterOptions.some(option => option.isChecked);
 
-        setIsFilterOn(isAnyFilterChecked);
-      }, [filterOptions]); 
+        setIsFilterOn(isAnyFilterChecked || search);
+      }, [filterOptions, search]); 
 
       let timeouts = {};
 
@@ -427,7 +423,7 @@ const Internship = () => {
                                         className={`filter-collapsible-div ${collapsibleHeaders['remote'] ? 'open' : ''
                                             }`}
                                     >
-                                        {renderFilterList(11, 12)}
+                                        {renderFilterList(15,16)}
                                     </div>
                                 </div>
                             </div>
