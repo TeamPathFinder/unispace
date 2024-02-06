@@ -22,18 +22,24 @@ class InternshipPageSetPagination(PageNumberPagination):
 
 
 class JobFilter(filters.FilterSet):
-    """Filter for Job model by cities."""
+    """Filter for Job model by cities, countries."""
 
     cities = filters.CharFilter(method="filter_cities")
+    countries = filters.CharFilter(method="filter_countries")
 
     class Meta:
         model = Job
-        fields = ["country", "cities"]
+        fields = ["countries", "cities"]
 
     def filter_cities(self, queryset, name, value):
         # Split the city values by comma and filter
         cities = list(map(str.strip, value.split(",")))
         return queryset.filter(city__in=cities)
+
+    def filter_countries(self, queryset, name, value):
+        # Split the country values by comma and filter
+        countries = list(map(str.strip, value.split(",")))
+        return queryset.filter(country__in=countries)
 
 
 class InternshipList(ListAPIView):
