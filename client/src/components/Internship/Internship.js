@@ -51,30 +51,31 @@ const Internship = () => {
     };
 
     //***************************** FILTER RELATED VARS **************** */
+    
     const [filterOptions, setFilterOptions] = useState([
         // Canada
-        { id: 'Toronto', label: 'Toronto', isChecked: false },
-        { id: 'Vancouver', label: 'Vancouver', isChecked: false },
-        { id: 'Québec City', label: 'Québec', isChecked: false },
-        { id: 'Ottawa', label: 'Ottawa', isChecked: false },
-        { id: 'Canada Other', label: 'Other', isChecked: false },
+        { id: 'Toronto', label: 'Toronto', isChecked: false, type: 'city' },
+        { id: 'Vancouver', label: 'Vancouver', isChecked: false, type: 'city' },
+        { id: 'Québec City', label: 'Québec', isChecked: false, type: 'city' },
+        { id: 'Ottawa', label: 'Ottawa', isChecked: false, type: 'city' },
+        { id: 'Canada Other', label: 'Other', isChecked: false, type: 'city' },
         // USA
-        { id: 'New York', label: 'New York City', isChecked: false },
-        { id: 'San Francisco', label: 'San Francisco', isChecked: false },
-        { id: 'Boston', label: 'Boston', isChecked: false },
-        { id: 'USA Other', label: 'Other', isChecked: false },
+        { id: 'New York', label: 'New York City', isChecked: false, type: 'city' },
+        { id: 'San Francisco', label: 'San Francisco', isChecked: false, type: 'city' },
+        { id: 'Boston', label: 'Boston', isChecked: false, type: 'city' },
+        { id: 'USA Other', label: 'Other', isChecked: false, type: 'city' },
         // Korea
-        { id: 'Seoul', label: 'Seoul', isChecked: false },
-        { id: 'Korea Other', label: 'Other', isChecked: false },
+        { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city' },
+        { id: 'Korea Other', label: 'Other', isChecked: false, type: 'city' },
         // Remote
-        { id: 'Remote', label: 'Remote', isChecked: false },
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' },
         // Add more filter options here
 
         // Countries // mostly for mobile view use
-        { id: 'Canada', label: 'Canada', isChecked: false },
-        { id: 'USA', label: 'USA', isChecked: false },
-        { id: 'Korea', label: 'Korea', isChecked: false },
-        { id: 'Remote', label: 'Remote', isChecked: false },
+        { id: 'Canada', label: 'Canada', isChecked: false, type: 'country' },
+        { id: 'USA', label: 'USA', isChecked: false, type: 'country'  },
+        { id: 'Korea', label: 'Korea', isChecked: false, type: 'country'  },
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'country'  },
     ]);
 
     const { lang } = useParams();
@@ -240,15 +241,19 @@ const Internship = () => {
 		//Axios call here to get max page number and fetch internship list
 		const fetchInternshipList = () => {
 			const cities = filterOptions
-				.filter((option) => option.isChecked)
+				.filter((option) => option.isChecked && option.type === 'city')
 				.map((option) => option.id)
 				.join(',');
-            if (cities) {
+			const countries = filterOptions
+				.filter((option) => option.isChecked && option.type === 'country')
+				.map((option) => option.id)
+				.join(',');
+            if (cities || search || countries) {
                 setIsFilterOn(true);
             } else {
                 setIsFilterOn(false);
             }
-			const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}`;
+			const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}&countries=${countries}`;
 			axios
 				.get(requestURL)
 				.then((response) => {
