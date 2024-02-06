@@ -68,7 +68,7 @@ const Internship = () => {
         { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city' },
         { id: 'Korea Other', label: 'Other (Korea)', isChecked: false, type: 'city' },
         // Remote
-        { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' }, //won't be used as coutry remote is sufficient
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' },
         // Add more filter options here
 
         // Countries // mostly for mobile view use
