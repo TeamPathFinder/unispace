@@ -58,17 +58,17 @@ const Internship = () => {
         { id: 'Vancouver', label: 'Vancouver', isChecked: false, type: 'city' },
         { id: 'Québec City', label: 'Québec', isChecked: false, type: 'city' },
         { id: 'Ottawa', label: 'Ottawa', isChecked: false, type: 'city' },
-        { id: 'Canada Other', label: 'Other', isChecked: false, type: 'city' },
+        { id: 'Canada Other', label: 'Other (Canada)', isChecked: false, type: 'city' },
         // USA
         { id: 'New York', label: 'New York City', isChecked: false, type: 'city' },
         { id: 'San Francisco', label: 'San Francisco', isChecked: false, type: 'city' },
         { id: 'Boston', label: 'Boston', isChecked: false, type: 'city' },
-        { id: 'USA Other', label: 'Other', isChecked: false, type: 'city' },
+        { id: 'USA Other', label: 'Other (USA)', isChecked: false, type: 'city' },
         // Korea
         { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city' },
-        { id: 'Korea Other', label: 'Other', isChecked: false, type: 'city' },
+        { id: 'Korea Other', label: 'Other (Korea)', isChecked: false, type: 'city' },
         // Remote
-        { id: 'Remote dummy', label: 'Remote', isChecked: false, type: 'city' }, //won't be used as coutry remote is sufficient
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' }, //won't be used as coutry remote is sufficient
         // Add more filter options here
 
         // Countries // mostly for mobile view use
@@ -90,12 +90,12 @@ const Internship = () => {
     // index_start is start index of filter options, index_end is end index
     const renderFilterList = (index_start, index_end) => {
         // function that occurs when clicking on filter checkbox
-        const handleFilterChange = (id) => {
+        const handleFilterChange = (id, type) => {
             //TODO: axios call here later at some point
 
             setFilterOptions((prevOptions) =>
                 prevOptions.map((option) =>
-                    option.id === id
+                    option.id === id && option.type === type
                         ? { ...option, isChecked: !option.isChecked }
                         : option
                 )
@@ -106,11 +106,12 @@ const Internship = () => {
             .slice(index_start, index_end)
             .map((option) => (
                 <FilterOption
+                    type={option.type}
                     key={option.id}
                     id={option.id}
                     label={option.label}
                     isChecked={option.isChecked}
-                    onChange={() => handleFilterChange(option.id)}
+                    onChange={() => handleFilterChange(option.id, option.type)}
                 />
             ));
     };
@@ -423,7 +424,7 @@ const Internship = () => {
                                         className={`filter-collapsible-div ${collapsibleHeaders['remote'] ? 'open' : ''
                                             }`}
                                     >
-                                        {renderFilterList(15,16)}
+                                        {renderFilterList(11,12)}
                                     </div>
                                 </div>
                             </div>
