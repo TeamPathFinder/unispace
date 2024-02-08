@@ -21,12 +21,16 @@ const MobileNavbar = () => {
 	const getButtonText = (pathname) => {
 		switch (pathname) {
 			case '/en/internship':
+			case '/kr/internship':
 				return 'Internship';
 			case '/en/coffee_chat':
+			case '/kr/coffee_chat':
 				return 'Coffee Chat';
 			case '/en/career':
+			case '/kr/career':
 				return 'Career';
 			case '/en/blog':
+			case '/kr/blog':
 				return 'Blog';
 			default:
 				return 'Links';

@@ -51,30 +51,31 @@ const Internship = () => {
     };
 
     //***************************** FILTER RELATED VARS **************** */
+    
     const [filterOptions, setFilterOptions] = useState([
         // Canada
-        { id: 'Toronto', label: 'Toronto', isChecked: false },
-        { id: 'Vancouver', label: 'Vancouver', isChecked: false },
-        { id: 'Québec City', label: 'Québec', isChecked: false },
-        { id: 'Ottawa', label: 'Ottawa', isChecked: false },
-        { id: 'Canada Other', label: 'Other', isChecked: false },
+        { id: 'Toronto', label: 'Toronto', isChecked: false, type: 'city' },
+        { id: 'Vancouver', label: 'Vancouver', isChecked: false, type: 'city' },
+        { id: 'Québec City', label: 'Québec', isChecked: false, type: 'city' },
+        { id: 'Ottawa', label: 'Ottawa', isChecked: false, type: 'city' },
+        { id: 'Canada Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Canada)' },
         // USA
-        { id: 'New York', label: 'New York City', isChecked: false },
-        { id: 'San Francisco', label: 'San Francisco', isChecked: false },
-        { id: 'Boston', label: 'Boston', isChecked: false },
-        { id: 'USA Other', label: 'Other', isChecked: false },
+        { id: 'New York', label: 'New York City', isChecked: false, type: 'city' },
+        { id: 'San Francisco', label: 'San Francisco', isChecked: false, type: 'city' },
+        { id: 'Boston', label: 'Boston', isChecked: false, type: 'city' },
+        { id: 'USA Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (USA)' },
         // Korea
-        { id: 'Seoul', label: 'Seoul', isChecked: false },
-        { id: 'Korea Other', label: 'Other', isChecked: false },
+        { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city' },
+        { id: 'Korea Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Korea)' },
         // Remote
-        { id: 'Remote', label: 'Remote', isChecked: false },
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' },
         // Add more filter options here
 
         // Countries // mostly for mobile view use
-        { id: 'Canada', label: 'Canada', isChecked: false },
-        { id: 'USA', label: 'USA', isChecked: false },
-        { id: 'Korea', label: 'Korea', isChecked: false },
-        { id: 'Remote', label: 'Remote', isChecked: false },
+        { id: 'Canada', label: 'Canada', isChecked: false, type: 'country' },
+        { id: 'USA', label: 'USA', isChecked: false, type: 'country'  },
+        { id: 'Korea', label: 'Korea', isChecked: false, type: 'country'  },
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'country'  },
     ]);
 
     const { lang } = useParams();
@@ -89,12 +90,12 @@ const Internship = () => {
     // index_start is start index of filter options, index_end is end index
     const renderFilterList = (index_start, index_end) => {
         // function that occurs when clicking on filter checkbox
-        const handleFilterChange = (id) => {
+        const handleFilterChange = (id, type) => {
             //TODO: axios call here later at some point
 
             setFilterOptions((prevOptions) =>
                 prevOptions.map((option) =>
-                    option.id === id
+                    option.id === id && option.type === type
                         ? { ...option, isChecked: !option.isChecked }
                         : option
                 )
@@ -105,11 +106,12 @@ const Internship = () => {
             .slice(index_start, index_end)
             .map((option) => (
                 <FilterOption
+                    type={option.type}
                     key={option.id}
                     id={option.id}
-                    label={option.label}
+                    label={isMobile && option.mobileLabel ? option.mobileLabel : option.label}
                     isChecked={option.isChecked}
-                    onChange={() => handleFilterChange(option.id)}
+                    onChange={() => handleFilterChange(option.id, option.type)}
                 />
             ));
     };
@@ -240,15 +242,15 @@ const Internship = () => {
 		//Axios call here to get max page number and fetch internship list
 		const fetchInternshipList = () => {
 			const cities = filterOptions
-				.filter((option) => option.isChecked)
+				.filter((option) => option.isChecked && option.type === 'city')
 				.map((option) => option.id)
 				.join(',');
-            if (cities) {
-                setIsFilterOn(true);
-            } else {
-                setIsFilterOn(false);
-            }
-			const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}`;
+			const countries = filterOptions
+				.filter((option) => option.isChecked && option.type === 'country')
+				.map((option) => option.id)
+				.join(',');
+
+			const requestURL = `${baseURL}/api/internship/jobs-list/?page=${currPage}&search=${search}&cities=${cities}&countries=${countries}`;
 			axios
 				.get(requestURL)
 				.then((response) => {
@@ -285,8 +287,8 @@ const Internship = () => {
         // Check if any filter option is checked
         const isAnyFilterChecked = filterOptions.some(option => option.isChecked);
 
-        setIsFilterOn(isAnyFilterChecked);
-      }, [filterOptions]); 
+        setIsFilterOn(isAnyFilterChecked || search);
+      }, [filterOptions, search]); 
 
       let timeouts = {};
 
@@ -422,7 +424,7 @@ const Internship = () => {
                                         className={`filter-collapsible-div ${collapsibleHeaders['remote'] ? 'open' : ''
                                             }`}
                                     >
-                                        {renderFilterList(11, 12)}
+                                        {renderFilterList(11,12)}
                                     </div>
                                 </div>
                             </div>
@@ -431,6 +433,7 @@ const Internship = () => {
                                     setSearch={setSearch}
                                     isEnglish={isEnglish}
                                     handlePageChange={handlePageChange}
+                                    search={search}
                                 ></Searchbar>
                                 {shownInternshipList.map((item) => (
                                     <InternshipListing
@@ -601,6 +604,7 @@ const Internship = () => {
                                         isEnglish={isEnglish}
                                         setSearch={setSearch}
                                         handlePageChange={handlePageChange}
+                                        search={search}
                                     />
                                 </div>
 
