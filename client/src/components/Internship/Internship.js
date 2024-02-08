@@ -433,6 +433,7 @@ const Internship = () => {
                                     setSearch={setSearch}
                                     isEnglish={isEnglish}
                                     handlePageChange={handlePageChange}
+                                    search={search}
                                 ></Searchbar>
                                 {shownInternshipList.map((item) => (
                                     <InternshipListing
@@ -603,6 +604,7 @@ const Internship = () => {
                                         isEnglish={isEnglish}
                                         setSearch={setSearch}
                                         handlePageChange={handlePageChange}
+                                        search={search}
                                     />
                                 </div>
 

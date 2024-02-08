@@ -1,6 +1,6 @@
 import { ReactComponent as SearchIcon } from '../../../assets/search.svg'
 
-const Searchbar = ({ setSearch, isEnglish, handlePageChange }) => {
+const Searchbar = ({ setSearch, isEnglish, handlePageChange, search }) => {
     const handleChange = (event) => {
         handlePageChange(1);
         setSearch(event.target.value);
@@ -11,6 +11,7 @@ const Searchbar = ({ setSearch, isEnglish, handlePageChange }) => {
     return (
         <div className="flex fd-row searchbar">
             <input
+                defaultValue={search}
                 type="text"
                 placeholder= {placeholder}
                 onKeyDown={(e) => {

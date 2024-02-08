@@ -1,7 +1,7 @@
 import { ReactComponent as SearchIcon } from "../../../../assets/search.svg";
 import "../InternshipMobile.css";
 
-const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange }) => {
+const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange, search }) => {
   const handleChange = (event) => {
     handlePageChange(1);
     setSearch(event.target.value);
@@ -15,6 +15,7 @@ const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange }) => {
   return (
     <div className="flex fd-row searchbar-mobile">
       <input
+        defaultValue={search}
         className="input-mobile"
         type="text"
         placeholder={placeholder}
