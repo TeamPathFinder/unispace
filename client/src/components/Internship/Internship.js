@@ -58,15 +58,15 @@ const Internship = () => {
         { id: 'Vancouver', label: 'Vancouver', isChecked: false, type: 'city' },
         { id: 'Québec City', label: 'Québec', isChecked: false, type: 'city' },
         { id: 'Ottawa', label: 'Ottawa', isChecked: false, type: 'city' },
-        { id: 'Canada Other', label: 'Other (Canada)', isChecked: false, type: 'city' },
+        { id: 'Canada Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Canada)' },
         // USA
         { id: 'New York', label: 'New York City', isChecked: false, type: 'city' },
         { id: 'San Francisco', label: 'San Francisco', isChecked: false, type: 'city' },
         { id: 'Boston', label: 'Boston', isChecked: false, type: 'city' },
-        { id: 'USA Other', label: 'Other (USA)', isChecked: false, type: 'city' },
+        { id: 'USA Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (USA)' },
         // Korea
         { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city' },
-        { id: 'Korea Other', label: 'Other (Korea)', isChecked: false, type: 'city' },
+        { id: 'Korea Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Korea)' },
         // Remote
         { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' },
         // Add more filter options here
@@ -109,7 +109,7 @@ const Internship = () => {
                     type={option.type}
                     key={option.id}
                     id={option.id}
-                    label={option.label}
+                    label={isMobile && option.mobileLabel ? option.mobileLabel : option.label}
                     isChecked={option.isChecked}
                     onChange={() => handleFilterChange(option.id, option.type)}
                 />
