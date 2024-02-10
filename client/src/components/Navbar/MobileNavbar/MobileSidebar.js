@@ -3,6 +3,8 @@ import './MobileSidebar.css';
 import { ReactComponent as LinkIcon } from '../../../assets/link.svg';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useLocation } from 'react-router-dom';
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 const MobileSlidebarLink = ({ href, onClick, children }) => {
 	const location = useLocation(); // Get the current location
@@ -29,15 +31,47 @@ async function copyToClipboard(text) {
 	await navigator.clipboard.writeText(text);
 }
 
+function showToast(message) {
+	Toastify({
+		text: message,
+		className: "toast-message",
+		duration: 1000,
+		close: false,
+		gravity: "bottom",
+		position: "center",
+		stopOnFocus: false,
+		style: {
+			background: "#0000007b",
+			position: "absolute",
+			height: "0.7rem",
+			paddingLeft: "1rem",
+			paddingRight: "1rem",
+			fontSize: "1.1rem",
+			paddingBottom: "1.5rem",
+			boxShadow: "1px 1px 30px grey",
+		},
+		offset: {
+			y: "12rem",
+		},
+	}).showToast();
+}
+
 const MobileSidebar = ({ isOpen, onClose }) => {
 	// If the sidebar is closed, return null
 	if (!isOpen) return null;
 	const emailAddress = 'askteam.pathfinder@gmail.com';
 
-	const handleInviteClick = () => {
-		const url = window.location.href; // Get the current URL
-		copyToClipboard(url); // Copy the URL to the clipboard
-	};
+  	const handleInviteClick = () => {
+		// const url = window.location.href; // Get the current URL
+
+		// copied link is /internship for now
+		// TODO: remove
+		const internshipURL = window.location.origin + "/en/internship";
+
+		copyToClipboard(internshipURL); // Copy the URL to the clipboard
+
+		showToast("Link Copied!");
+  	};
 
 	return (
 		<div className="mobile-sidebar">
