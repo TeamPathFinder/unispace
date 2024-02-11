@@ -30,7 +30,7 @@ const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange, search }) => 
           color:'#3D3FEB'
         }}
       />
-      <SearchIcon className="search-icon" />
+      <SearchIcon className="search-icon-mobile" />
     </div>
   );
 };

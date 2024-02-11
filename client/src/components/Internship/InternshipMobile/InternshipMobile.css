@@ -61,6 +61,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .filter-button-mobile.on{
@@ -80,6 +81,11 @@
     border: 1px solid #3D3FEB;
     align-items: center;
     color: #3D3FEB;
+}
+
+.search-icon-mobile {
+    margin-right: 1.2rem;
+    height: 1.3rem;
 }
 
 .input-mobile{
@@ -118,7 +124,7 @@
 
 .input-mobile::placeholder {
     color: #3D3FEB;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .mobile-filter-container{
