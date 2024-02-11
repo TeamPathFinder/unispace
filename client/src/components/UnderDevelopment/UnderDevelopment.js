@@ -11,8 +11,8 @@ const UnderDevelopment = () => {
     },
 
     body: {
-      kr: "여러분을 만나기에는 아직 부족해 준비중에 있습니다. 멋진 모습으로 인사드리겠습니다.",
-      en: "This page is not quite ready - hold tight, it will be much nicer next time you visit.",
+      kr: "여러분을 만나기 위해 마지막 점검 중이에요! 곧 멋진 모습으로 인사드릴게요!",
+      en: "Hey, you caught us during our launching process… Stay tuned!",
     },
   };
   const { lang } = useParams();
