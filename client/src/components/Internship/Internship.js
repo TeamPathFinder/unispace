@@ -613,7 +613,7 @@ const Internship = () => {
                             
 
                                         <div className="curr-internship-count-mobile" >
-                                         *<strong>{isFilterOn && currInternshipCount }</strong> results from your interests.
+                                         {isFilterOn && '*'} <strong>{isFilterOn && currInternshipCount }</strong> {isFilterOn && "results from your interests."}
                                         </div>
 
                                         <div style={shownInternshipList.length ? { border: 'solid 1px black', marginTop: '1.5em' }
