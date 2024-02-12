@@ -123,7 +123,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
 					</a>
 					<a
 						href="https://www.instagram.com/team.unispace/"
-						className="additional-link"
+						className="additional-link instagram-link"
 					>
 						Instagram
 					</a>

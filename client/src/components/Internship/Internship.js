@@ -582,9 +582,9 @@ const Internship = () => {
                                             {getCurrentTimeFormatted().toLocaleString()} EST
                                         </span>
                                     </div>
-                                    <div className="internship-info">
-                                        <span className="count">
-                                            {totalInternshipCount.toLocaleString()} opportunities are
+                                    <div className="internship-info count">
+                                        <span className="curr-count">
+                                            <strong> {totalInternshipCount.toLocaleString()} </strong>  opportunities are
                                             waiting for you!
                                         </span>
                                     </div>
@@ -613,11 +613,7 @@ const Internship = () => {
                             
 
                                         <div className="curr-internship-count-mobile" >
-                                            {isFilterOn &&
-                                                '*' +
-                                                currInternshipCount +
-                                                ' ' +
-                                                'results from your interests.'}
+                                         *<strong>{isFilterOn && currInternshipCount }</strong> results from your interests.
                                         </div>
 
                                         <div style={shownInternshipList.length ? { border: 'solid 1px black', marginTop: '1.5em' }
