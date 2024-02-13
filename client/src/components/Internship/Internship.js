@@ -73,9 +73,9 @@ const Internship = () => {
 
         // Countries // mostly for mobile view use
         { id: 'Canada', label: 'Canada', isChecked: false, type: 'country' },
-        { id: 'USA', label: 'USA', isChecked: false, type: 'country'  },
-        { id: 'Korea', label: 'Korea', isChecked: false, type: 'country'  },
-        { id: 'Remote', label: 'Remote', isChecked: false, type: 'country'  },
+        { id: 'USA', label: 'USA', isChecked: false, type: 'country' },
+        { id: 'Korea', label: 'Korea', isChecked: false, type: 'country' },
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'country' },
     ]);
 
     const { lang } = useParams();
@@ -87,6 +87,19 @@ const Internship = () => {
     }, [lang, setIsEnglish]);
 
     const [selectedCountries, setSelectedCountries] = useState(new Set());
+
+    useEffect(() => {
+        setFilterOptions((prevOptions) =>
+            prevOptions.map((option) =>
+                selectedCountries.size !== 0 && 
+                !selectedCountries.has(option.locatedCountry) && 
+                option.isChecked && 
+                option.type === 'city'
+                    ? { ...option, isChecked: !option.isChecked }
+                    : option
+            )
+        );
+    }, [selectedCountries]);
 
     // function to render country options on left hand filter
     // index_start is start index of filter options, index_end is end index
@@ -102,11 +115,7 @@ const Internship = () => {
                         return newSelectedCountries;
                     });
                 } else {
-                    setSelectedCountries(selectedCountries => {
-                        const newSelectedCountries = new Set(selectedCountries);
-                        newSelectedCountries.add(id);
-                        return newSelectedCountries;
-                    });
+                    setSelectedCountries(selectedCountries => new Set(selectedCountries).add(id));
                 }
             }
 
@@ -125,7 +134,7 @@ const Internship = () => {
                 option.isChecked || // show option if the option is selected
                 option.type === 'country' || // show all country options
                 selectedCountries.size === 0 || // show all cities if no country is selected
-                (option.type === 'city' && selectedCountries.has(option.locatedCountry))); // show cities located in the selected countries
+                selectedCountries.has(option.locatedCountry)); // show cities located in the selected countries
         };
 
 
