@@ -19,23 +19,24 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
+	padding-bottom: 1.5rem;
 	border-bottom: 1px solid #ccc;
 }
 
 .mobile-sidebar-logo {
 	width: auto;
-	height: 2rem;
+	height: 2.3rem;
 }
 
 .mobile-sidebar-close-button {
 	background: none;
 	border: none;
 	font-size: 1.5rem;
+	width: 1.5rem;
 }
 
 .close-icon {
-	height: 2rem;
+	width: 1.5rem;
 }
 
 .mobile-sidebar-links {
@@ -57,7 +58,8 @@
 }
 
 .mobile-sidebar-link-icon {
-	width: 1.5rem;
+	height: 1.3rem;
+	margin-right: -1.3rem;
 }
 
 .mobile-sidebar-bottom {
