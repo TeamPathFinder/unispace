@@ -1,10 +1,19 @@
 import { ReactComponent as SearchIcon } from "../../../../assets/search.svg";
 import "../InternshipMobile.css";
+import { useRef } from 'react';
 
 const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange, search }) => {
-  const handleChange = (event) => {
+
+  const inputRef = useRef();
+
+  const handleEnter = (event) => {
     handlePageChange(1);
     setSearch(event.target.value);
+  };
+
+  const handleSearch = () => {
+    handlePageChange(1);
+    setSearch(inputRef.current.value);
   };
 
   // const placeholder = isEnglish
@@ -15,13 +24,14 @@ const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange, search }) => 
   return (
     <div className="flex fd-row searchbar-mobile">
       <input
+        ref={inputRef}
         defaultValue={search}
         className="input-mobile"
         type="text"
         placeholder={placeholder}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleChange(e);
+            handleEnter(e);
           }
         }}
         style={{
@@ -30,7 +40,7 @@ const SearchBarMobile = ({ setSearch, isEnglish, handlePageChange, search }) => 
           color:'#3D3FEB'
         }}
       />
-      <SearchIcon className="search-icon-mobile" />
+      <SearchIcon className="search-icon-mobile" onClick={handleSearch}/>
     </div>
   );
 };
