@@ -54,28 +54,28 @@ const Internship = () => {
     
     const [filterOptions, setFilterOptions] = useState([
         // Canada
-        { id: 'Toronto', label: 'Toronto', isChecked: false, type: 'city' },
-        { id: 'Vancouver', label: 'Vancouver', isChecked: false, type: 'city' },
-        { id: 'Québec City', label: 'Québec', isChecked: false, type: 'city' },
+        { id: 'Toronto', label: 'Toronto', isChecked: false, type: 'city', locatedCountry: 'Canada'},
+        { id: 'Vancouver', label: 'Vancouver', isChecked: false, type: 'city', locatedCountry: 'Canada' },
+        { id: 'Québec City', label: 'Québec', isChecked: false, type: 'city', locatedCountry: 'Canada' },
         { id: 'Ottawa', label: 'Ottawa', isChecked: false, type: 'city' },
-        { id: 'Canada Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Canada)' },
+        { id: 'Canada Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Canada)', locatedCountry: 'Canada' },
         // USA
-        { id: 'New York', label: 'New York City', isChecked: false, type: 'city' },
-        { id: 'San Francisco', label: 'San Francisco', isChecked: false, type: 'city' },
-        { id: 'Boston', label: 'Boston', isChecked: false, type: 'city' },
-        { id: 'USA Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (USA)' },
+        { id: 'New York', label: 'New York City', isChecked: false, type: 'city', locatedCountry: 'USA'},
+        { id: 'San Francisco', label: 'San Francisco', isChecked: false, type: 'city', locatedCountry: 'USA' },
+        { id: 'Boston', label: 'Boston', isChecked: false, type: 'city', locatedCountry: 'USA' },
+        { id: 'USA Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (USA)', locatedCountry: 'USA' },
         // Korea
-        { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city' },
-        { id: 'Korea Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Korea)' },
+        { id: 'Seoul', label: 'Seoul', isChecked: false, type: 'city', locatedCountry: 'Korea' },
+        { id: 'Korea Other', label: 'Other', isChecked: false, type: 'city', mobileLabel: 'Other (Korea)', locatedCountry: 'Korea' },
         // Remote
         { id: 'Remote', label: 'Remote', isChecked: false, type: 'city' },
         // Add more filter options here
 
         // Countries // mostly for mobile view use
         { id: 'Canada', label: 'Canada', isChecked: false, type: 'country' },
-        { id: 'USA', label: 'USA', isChecked: false, type: 'country'  },
-        { id: 'Korea', label: 'Korea', isChecked: false, type: 'country'  },
-        { id: 'Remote', label: 'Remote', isChecked: false, type: 'country'  },
+        { id: 'USA', label: 'USA', isChecked: false, type: 'country' },
+        { id: 'Korea', label: 'Korea', isChecked: false, type: 'country' },
+        { id: 'Remote', label: 'Remote', isChecked: false, type: 'country' },
     ]);
 
     const { lang } = useParams();
@@ -86,12 +86,38 @@ const Internship = () => {
         setIsEnglish(lang === 'en');
     }, [lang, setIsEnglish]);
 
+    const [selectedCountries, setSelectedCountries] = useState(new Set());
+
+    useEffect(() => {
+        setFilterOptions((prevOptions) =>
+            prevOptions.map((option) =>
+                selectedCountries.size !== 0 && 
+                !selectedCountries.has(option.locatedCountry) && 
+                option.isChecked && 
+                option.type === 'city'
+                    ? { ...option, isChecked: !option.isChecked }
+                    : option
+            )
+        );
+    }, [selectedCountries]);
+
     // function to render country options on left hand filter
     // index_start is start index of filter options, index_end is end index
     const renderFilterList = (index_start, index_end) => {
         // function that occurs when clicking on filter checkbox
         const handleFilterChange = (id, type) => {
             //TODO: axios call here later at some point
+            if (type === 'country') {
+                if (selectedCountries.has(id)) {
+                    setSelectedCountries(selectedCountries => {
+                        const newSelectedCountries = new Set(selectedCountries);
+                        newSelectedCountries.delete(id);
+                        return newSelectedCountries;
+                    });
+                } else {
+                    setSelectedCountries(selectedCountries => new Set(selectedCountries).add(id));
+                }
+            }
 
             setFilterOptions((prevOptions) =>
                 prevOptions.map((option) =>
@@ -101,18 +127,31 @@ const Internship = () => {
                 )
             );
         };
+        
+        const shouldDisplayOption = (option) => {
+            return (
+                !isMobile || // show all options if on desktop
+                option.isChecked || // show option if the option is selected
+                option.type === 'country' || // show all country options
+                selectedCountries.size === 0 || // show all cities if no country is selected
+                selectedCountries.has(option.locatedCountry)); // show cities located in the selected countries
+        };
+
 
         return filterOptions
             .slice(index_start, index_end)
             .map((option) => (
-                <FilterOption
-                    type={option.type}
-                    key={option.id}
-                    id={option.id}
-                    label={isMobile && option.mobileLabel ? option.mobileLabel : option.label}
-                    isChecked={option.isChecked}
-                    onChange={() => handleFilterChange(option.id, option.type)}
-                />
+                shouldDisplayOption(option) ?
+                    <FilterOption
+                        type={option.type}
+                        key={option.id}
+                        id={option.id}
+                        label={isMobile && option.mobileLabel ? option.mobileLabel : option.label}
+                        isChecked={option.isChecked}
+                        onChange={() => handleFilterChange(option.id, option.type)}
+                    />
+                    :
+                    <></>
             ));
     };
 
@@ -504,7 +543,7 @@ const Internship = () => {
                     {isFilterFocus ? (
                         <>
                             <div className="mobile-filter-container">
-                                <div className="mobile-filter-section fd-row">
+                                <div className="mobile-filter-section fd-row" onClick={() => setIsFilterFocus(false)}>
                                     <FilterIcon
                                         className="filter-icon"
                                         style={{ height: '18px' }}
@@ -563,7 +602,7 @@ const Internship = () => {
                                     setIsFilterFocus(false);
                                 }}
                             >
-                                Apply
+                                {isFilterOn ? 'Apply' : 'Cancel'}
                             </div>
                         </>
                     ) : (
@@ -582,9 +621,9 @@ const Internship = () => {
                                             {getCurrentTimeFormatted().toLocaleString()} EST
                                         </span>
                                     </div>
-                                    <div className="internship-info">
-                                        <span className="count">
-                                            {totalInternshipCount.toLocaleString()} opportunities are
+                                    <div className="internship-info count">
+                                        <span className="curr-count">
+                                            <strong> {totalInternshipCount.toLocaleString()} </strong>  opportunities are
                                             waiting for you!
                                         </span>
                                     </div>
@@ -613,11 +652,7 @@ const Internship = () => {
                             
 
                                         <div className="curr-internship-count-mobile" >
-                                            {isFilterOn &&
-                                                '*' +
-                                                currInternshipCount +
-                                                ' ' +
-                                                'results from your interests.'}
+                                         {isFilterOn && '*'} <strong>{isFilterOn && currInternshipCount }</strong> {isFilterOn && "results from your interests."}
                                         </div>
 
                                         <div style={shownInternshipList.length ? { border: 'solid 1px black', marginTop: '1.5em' }

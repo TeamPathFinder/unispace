@@ -7,6 +7,8 @@
 .internship-info-mobile {
     border: 1px solid black;
 	margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .flex-1{
@@ -26,7 +28,7 @@
 	font-size: 1.2rem;
 }
 
-.count {
+.curr-count {
 	font-size: 1.2rem;
 }
 
@@ -61,6 +63,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .filter-button-mobile.on{
@@ -80,6 +83,11 @@
     border: 1px solid #3D3FEB;
     align-items: center;
     color: #3D3FEB;
+}
+
+.search-icon-mobile {
+    margin-right: 1.2rem;
+    height: 1.3rem;
 }
 
 .input-mobile{
@@ -118,7 +126,7 @@
 
 .input-mobile::placeholder {
     color: #3D3FEB;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .mobile-filter-container{
@@ -186,9 +194,8 @@
 
 .internship-tagline {
 	font-size: 1.1rem;
-	padding: 1rem 0 1rem 1.2rem;
+	padding: 1rem 0 1rem 1.9rem;
     margin: 0;
-    
 }
 
 .curr-internship-count-mobile {
