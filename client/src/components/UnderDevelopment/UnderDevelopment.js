@@ -19,11 +19,13 @@ const UnderDevelopment = () => {
 
   return (
     <div className="flex container center gradient">
-      <div className="flex header">
-        <Loader />
-        <h1 dangerouslySetInnerHTML={{ __html: text["header"][lang] }}></h1>
+      <div className="text-body">
+        <div className="flex header">
+          <Loader />
+          <h1>{text["header"][lang]}</h1>
+        </div>
+        <p dangerouslySetInnerHTML={{ __html: text["body"][lang] }}></p>
       </div>
-      <p dangerouslySetInnerHTML={{ __html: text["body"][lang] }}></p>
     </div>
   );
 };
