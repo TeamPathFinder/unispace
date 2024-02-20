@@ -474,6 +474,9 @@ const Internship = () => {
                                     handlePageChange={handlePageChange}
                                     search={search}
                                 ></Searchbar>
+                                <div className="curr-internship-count" >
+                                         {isFilterOn && '*'} <strong>{isFilterOn && currInternshipCount }</strong> {isFilterOn && "results from your interests."}
+                                </div>
                                 {shownInternshipList.map((item) => (
                                     <InternshipListing
                                         key={item.id}
