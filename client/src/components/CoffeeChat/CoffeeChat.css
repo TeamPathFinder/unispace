@@ -1,98 +1,151 @@
-.coffee-chat-container{
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Inter';
-    background: 
-        linear-gradient(to bottom,
-            rgba(235, 253, 222, 0.4),
-            rgba(235, 253, 222, 0.4),
-            rgba(235, 253, 222, 0.4),
-            rgba(221, 253, 245, 0.1),
-            rgba(255, 255, 255, 1),
-            rgb(227, 214, 249),
-            rgb(208, 198, 246));
+.coffee-chat-container {
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Inter';
+	background: linear-gradient(
+		to bottom,
+		rgba(235, 253, 222, 0.4),
+		rgba(235, 253, 222, 0.4),
+		rgba(235, 253, 222, 0.4),
+		rgba(221, 253, 245, 0.1),
+		rgba(255, 255, 255, 1),
+		rgb(227, 214, 249),
+		rgb(208, 198, 246)
+	);
 }
 
-
-.coffee-chat-blue-button{
-    border-radius: 8px;
-    box-sizing: border-box;
-    border: solid white 1.5px;
-    background-color: #3D3FEB;
-    padding: 0.5rem 2rem; 
-    color: white;
-    box-shadow: 1px 2px 2px rgb(134, 138, 133);
-    cursor: pointer;
-    font-weight: bold;
-    box-sizing: border-box;
+.coffee-chat-title-1 {
+  margin-top: 10rem;
+  margin-bottom: 3rem;
+  font-size: 2.2rem;
+  font-weight: bold;
 }
 
-.coffee-chat-blue-button:hover{
-    background-color: white;
-    color: #3D3FEB;
-    box-shadow: inset 1px 1px 2px rgb(134, 138, 133);
-    border: solid #3D3FEB 1.5px;
+.coffee-chat-title-2{
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  line-height: 2rem;
 }
 
-.coffee-chat-blue-button2{
-    border-radius: 8px;
-    box-sizing: border-box;
-    border: solid white 1.5px;
-    background-color: #3D3FEB;
-    padding: 0.5rem 2rem; 
-    color: white;
-    box-shadow: 1px 2px 2px rgb(134, 138, 133);
-    cursor: pointer;
-    font-weight: bold;
-    box-sizing: border-box;
+.coffee-chat-blue-button {
+	box-sizing: border-box;
+	border: solid white 0.2rem;
+	background-color: #3d3feb;
+	padding: 0.5rem 2rem;
+	color: white;
+	box-shadow: 1px 2px 2px rgb(134, 138, 133);
+	cursor: pointer;
+	font-weight: bold;
+	box-sizing: border-box;
+	margin-top: 2.5rem;
+	margin-bottom: 1rem;
+	border-radius: 8px;
+}
+
+.coffee-chat-blue-button p {
+	margin: 0;
+	font-size: 1.3rem;
+	padding: 0.2rem 0.2rem;
+}
+
+.coffee-chat-blue-button:hover {
+	background-color: white;
+	color: #3d3feb;
+	box-shadow: inset 1px 1px 2px rgb(134, 138, 133);
+	border: solid #3d3feb 1.5px;
+}
+
+.coffee-chat-blue-button2 {
+	box-sizing: border-box;
+	border: solid white 0.2rem;
+	background-color: #3d3feb;
+	padding: 0.5rem 2rem;
+	color: white;
+	box-shadow: 1px 2px 2px rgb(134, 138, 133);
+	cursor: pointer;
+	font-weight: bold;
+	box-sizing: border-box;
+	margin-top: 2.5rem;
+	margin-bottom: 1rem;
+	border-radius: 8px;
+}
+
+.coffee-chat-blue-button2 p {
+  margin: 0;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.2rem;
 }
 
 .coffee-chat-white-button{
     border-radius: 8px;
     box-sizing: border-box;
-    border: solid #3D3FEB 1.5px;
-    background-color: white;
-    padding: 0.5rem 2rem; 
-    color: #3D3FEB;
-    box-shadow: inset 1px 1px 1px rgb(134, 138, 133);
-    cursor: pointer;
-    font-weight: bold;
-    box-sizing: border-box;
+	border: solid #3d3feb 1.5px;
+	background-color: white;
+	padding: 0.5rem 2rem;
+	color: #3d3feb;
+	box-shadow: inset 1px 1px 1px rgb(134, 138, 133);
+	cursor: pointer;
+	font-weight: bold;
+	box-sizing: border-box;
 }
 
-
-.coffee-chat-blue-button p{
-    margin: 0;
+.coffee-chat-white-button p {
+  margin: 0;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.2rem;
 }
 
 .coffee-chat-fade-in-container{
-    width: 360px;
+    /* width: 50%; */
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
-.coffee-chat-fade-in-container p{
-    line-height: 20px;
+.coffee-chat-fade-in-container h2 {
+	font-size: 2rem;
+}
+
+.coffee-chat-fade-in-container p {
+	font-size: 1.4rem;
+	line-height: 2.2rem;
+	margin-top: 2rem;
+  /* margin-left: 5rem;
+  margin-right: 5rem; */
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-.fadeInOnView {
-opacity: 0;
-animation-name: fadeIn;
-animation-duration: 2.5s;
-animation-fill-mode: forwards;
-transition: 2.5s linear
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
-.coffee-chat-logo-container{
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
+.fadeInOnView {
+	opacity: 0;
+	animation-name: fadeIn;
+	animation-duration: 2.5s;
+	animation-fill-mode: forwards;
+	transition: 2.5s linear;
+}
+
+.applicant-affiliation {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.coffee-chat-logo-container {
+	overflow: hidden;
+	white-space: nowrap;
+	display: inline-block;
 }
 
   .coffee-chat-logo-container img {
@@ -125,16 +178,21 @@ transition: 2.5s linear
     /* other styles as needed */
   }
 
-.coffee-chat-unispace-logo{
-    height: 16px;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+.arrow-down {
+	height: 1rem;
+	margin-bottom: 6rem;
 }
 
-.coffee-chat-footer{
-    height: 5rem;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    display: flex;
-    align-items: flex-start;
+.coffee-chat-unispace-logo {
+	height: 2rem;
+	margin-top: 2.5rem;
+	margin-bottom: 2.5rem;
+}
+
+.coffee-chat-footer {
+	height: 5rem;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.7);
+	display: flex;
+	align-items: flex-start;
 }

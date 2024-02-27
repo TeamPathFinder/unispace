@@ -187,9 +187,16 @@ input[type="text"]:focus {
 }
 
 .search-icon {
-    height: 24px;
-    width: 24px;
+    width: 20px;
     margin-right: 10px;
+}
+
+.curr-internship-count {
+    margin-top: -1.5rem;
+    margin-bottom: -0.5rem;
+    font-size: 1.2rem;
+    color:rgba(61, 63, 235, 0.9);
+    text-align: right;
 }
 
 .internship-listing-container {
