@@ -185,9 +185,14 @@ CELERY_TIMEZONE = "America/Toronto"
 
 CELERY_BEAT_SCHEDULE = {
     # Executes every day at midnight
-    "run_scrapper": {
-        "task": "internship.tasks.run_scraper",
-        # Run every 2 days at 4:00 AM
-        "schedule": crontab(minute=0, hour=4, day_of_month='1-31/2'),
+    # "run_scrapper": {
+    #     "task": "internship.tasks.run_scraper",
+    #     # Run every 2 days at 4:00 AM
+    #     "schedule": crontab(minute=0, hour=4, day_of_month='1-31/2'),
+    # },
+    "check_s3_for_new_jobs": {
+        "task": "internship.tasks.check_s3_for_new_jobs",
+        # Run every day at 8:00 AM
+        "schedule": crontab(minute=0, hour=8),
     },
 }
