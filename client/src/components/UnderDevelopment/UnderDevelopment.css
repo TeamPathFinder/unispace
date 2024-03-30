@@ -1,5 +1,5 @@
 .container {
-    height: 800px;
+    height: 70rem;
 }
 
 .center {
@@ -18,6 +18,20 @@ h1 {
 }
 
 p {
-    font-size: 20px;
+    font-size: 1.7rem;
     margin-left: 0.7rem;
+}
+
+@media only screen and (min-width: 991px) {
+    .text-body {
+        margin-left: 5.5%;
+    }
+    h1 {
+        font-size: 5rem;
+    }
+    
+    p {
+        margin-top: -1rem;
+        font-size: 3rem;
+    }
 }
